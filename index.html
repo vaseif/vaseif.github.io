@@ -25,26 +25,6 @@
             user-select: none;
             position: relative;
             overflow-x: hidden; /* Prevent horizontal scroll */
-            /* 🚀 المكان المخصص للخلفية المتحركة 🚀 */
-            /* لو هتحط فيديو كخلفية: */
-            /*
-            background: url('.mp4') no-repeat center center fixed;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-            
-
-            /* لو هتحط صورة GIF كخلفية: */
-            /*
-            background: url('.gif') no-repeat center center fixed;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-            */
-
-            /* إذا أردت استخدام لون ثابت أو خلفية النجوم فقط، احذف الأسطر العلوية التي تخص الفيديو/GIF */
             background-color: #000; /* لون خلفية افتراضي لو لم تضع فيديو/GIF */
         }
 
@@ -146,7 +126,7 @@
                         inset 0 0 .75em .25em var(--glow-color);
             text-shadow: 0 0 .5em var(--glow-color);
             position: relative;
-            transition: all 2.0s;
+            transition: all 0.5s; /* Reduced transition time */
             text-decoration: none;
             text-transform: uppercase;
             display: inline-block;
@@ -178,19 +158,19 @@
         }
         /* Services Section */
        .services {
-    padding: 0;
-    text-align: center;
-    background-color: rgba(17, 17, 17, 0.7);
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 1.5s ease-in-out, opacity 1.5s ease-in-out, padding 1.5s ease-in-out;
-    opacity: 0;
-}
-.services.visible {
-    max-height: 1200px;
-    opacity: 1;
-    padding: 60px 20px;
-}
+            padding: 0;
+            text-align: center;
+            background-color: rgba(17, 17, 17, 0.7);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s ease-in-out, opacity 0.7s ease-in-out, padding 0.7s ease-in-out; /* Reduced transition time */
+            opacity: 0;
+        }
+        .services.visible {
+            max-height: 1200px;
+            opacity: 1;
+            padding: 60px 20px;
+        }
         /* Styling for fancy headings */
         .fancy-heading {
             font-family: 'Lexend', sans-serif;
@@ -247,7 +227,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: background-color 0.7s ease, transform 1.7s ease, color 2.9s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease; /* Reduced transition time */
         }
         .card:hover {
             background-color: #8a0202;
@@ -264,7 +244,7 @@
             position: relative;
             text-transform: uppercase;
             text-shadow: 0 0 8px #ab0202, 0 0 15px #ab0202;
-            transition: text-shadow 0.7s ease, transform 0.7s ease;
+            transition: text-shadow 0.3s ease, transform 0.3s ease; /* Reduced transition time */
             text-align: center;
         }
 
@@ -276,7 +256,7 @@
             background-color: #ab0202;
             margin: 8px auto 0;
             border-radius: 2px;
-            transition: width 0.7s ease;
+            transition: width 0.3s ease; /* Reduced transition time */
         }
 
         .card h3:hover {
@@ -295,7 +275,7 @@
             background-color: rgba(17, 17, 17, 0.7);
             max-height: 0;
             overflow: hidden;
-            transition: max-height 1.5s ease-in-out, opacity 1.5s ease-in-out;
+            transition: max-height 0.7s ease-in-out, opacity 0.7s ease-in-out; /* Reduced transition time */
             opacity: 0;
         }
         .contact.visible {
@@ -516,7 +496,7 @@
             background-color: rgba(17, 17, 17, 0.7);
             max-height: 0;
             overflow: hidden;
-            transition: max-height 8.5s ease-in-out, opacity 7.5s ease-in-out;
+            transition: max-height 0.7s ease-in-out, opacity 0.7s ease-in-out; /* Reduced transition time */
             opacity: 0;
         }
         .about.visible {
@@ -548,7 +528,7 @@
     z-index: 1;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 1.5s ease-in-out, opacity 1.5s ease-in-out, padding 1.5s ease-in-out;
+    transition: max-height 0.7s ease-in-out, opacity 0.7s ease-in-out, padding 0.7s ease-in-out; /* Reduced transition time */
     opacity: 0;
 }
 .footer-section.visible {
@@ -601,7 +581,7 @@
             overflow: hidden;
             box-shadow: 0 8px 25px rgba(171, 2, 2, 0.4);
             animation: float 18s ease-in-out infinite;
-            transition: transform 1.3s ease, box-shadow 1.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Reduced transition time */
         }
         .avatar:hover {
             transform: scale(1.1);
@@ -633,7 +613,7 @@
             height: 60px;
             border-radius: 50%;
             background-color: #333;
-            transition: all 0.8s ease;
+            transition: all 0.3s ease; /* Reduced transition time */
             text-decoration: none;
         }
         .social-icon img {
@@ -663,7 +643,9 @@
         }
         @media (max-width: 768px) {
             .service-cards {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* كارت واحد في كل صف */
+                padding: 0 15px; /* زيادة الـ padding على الأطراف */
+                gap: 15px; /* تقليل المسافة بين الكروت */
             }
             .intro h1 {
                 font-size: 9vw;
@@ -708,6 +690,10 @@
             .social-icon img {
                 width: 30px;
                 height: 30px;
+            }
+            .card {
+                min-height: unset; /* إزالة الـ min-height في الموبايل */
+                padding: 15px;
             }
         }
         /* Links Styling */
@@ -775,6 +761,7 @@
                     <p>*Create a content calendar or simple social media posts.</p>
                     <p>*Research trending topics or popular hashtags for engagement.</p>
                 <p>
+                </div>
             </div>
         </section>
         <section id="contact" class="contact">
@@ -812,7 +799,7 @@
             <div class="avatar-container">
                 <a href="https://www.instagram.com/seif_yasser8/" target="_blank" class="avatar-link">
                     <div class="avatar">
-                       <a href="https://ibb.co/3bbHjYC"><img src="https://i.ibb.co/3bbHjYC/Untitled-Project.jpg" alt="Untitled-Project" border="0"></a>
+                       <img src="https://i.ibb.co/3bbHjYC/Untitled-Project.jpg" alt="Untitled-Project" border="0">
                     </div>
                 </a>
             </div>
@@ -834,27 +821,26 @@
                 </a>
             </div>
         </section>
-        </main>
+    </main>
     <script>
         document.getElementsByTagName("h1")[0].style.fontSize = "6vw";
         const exploreServicesBtn = document.getElementById('exploreServicesBtn');
         const servicesSection = document.getElementById('services');
         const contactSection = document.getElementById('contact');
         const aboutSection = document.getElementById('about');
-        // NEW: Reference to the new footer-section
         const footerSection = document.querySelector('.footer-section');
 
-   exploreServicesBtn.addEventListener('click', function(event) {
-    event.preventDefault();
-    servicesSection.classList.toggle('visible');
-    contactSection.classList.toggle('visible');
-    aboutSection.classList.toggle('visible');
-    footerSection.classList.toggle('visible');
+        exploreServicesBtn.addEventListener('click', function(event) {
+            event.preventDefault();
+            servicesSection.classList.toggle('visible');
+            contactSection.classList.toggle('visible');
+            aboutSection.classList.toggle('visible');
+            footerSection.classList.toggle('visible');
 
-    setTimeout(() => {
-        servicesSection.scrollIntoView({ behavior: 'smooth' });
-    }, 700);
-});
+            setTimeout(() => {
+                servicesSection.scrollIntoView({ behavior: 'smooth' });
+            }, 700); // Reduce timeout to match faster transitions
+        });
 
         const bookingButton = document.querySelector('.cta');
         bookingButton.addEventListener('click', function() {
@@ -866,17 +852,17 @@
         });
 
         const galaxyBackground = document.getElementById('galaxyBackground');
-        const numberOfStars = 500; // Increased number of stars for a denser galaxy
+        const numberOfStars = 150; // Reduced number of stars for better performance
 
         function createStar() {
             const star = document.createElement('div');
             star.classList.add('star');
-            star.style.width = `${Math.random() * 2 + 1}px`; // Random size between 1px and 3px
+            star.style.width = `${Math.random() * 2 + 1}px`;
             star.style.height = star.style.width;
             star.style.left = `${Math.random() * 100}vw`;
-            star.style.top = `${Math.random() * 100}vh`; // Start within viewport
+            star.style.top = `${Math.random() * 100}vh`;
             star.style.animationDelay = `${Math.random() * 5}s`;
-            star.style.animationDuration = `${Math.random() * 20 + 20}s, ${Math.random() * 30 + 30}s`;
+            star.style.animationDuration = `${Math.random() * 10 + 10}s, ${Math.random() * 20 + 20}s`; // Adjusted duration for moveStars
             galaxyBackground.appendChild(star);
         }
 
@@ -884,7 +870,7 @@
             createStar();
         }
 
-        // Mouse interaction for stars
+        // Mouse interaction for stars (Simplified for performance)
         document.addEventListener('mousemove', (e) => {
             const stars = document.querySelectorAll('.star');
             stars.forEach(star => {
@@ -893,14 +879,13 @@
                 const starY = rect.top + rect.height / 2;
                 const distance = Math.sqrt(Math.pow(e.clientX - starX, 2) + Math.pow(e.clientY - starY, 2));
 
-                // Stars closer to the mouse glow brighter and grow slightly
-                if (distance < 150) { // Interaction radius
-                    const opacity = 1 - (distance / 150);
-                    star.style.opacity = Math.min(1, opacity + 0.5); // Ensure a base opacity
-                    star.style.transform = `scale(${1 + (1 - opacity) * 0.5})`; // Scale up slightly
+                if (distance < 100) { // Reduced interaction radius
+                    const opacity = 1 - (distance / 100);
+                    star.style.opacity = Math.min(1, opacity + 0.3); // Less intense glow
+                    star.style.transform = `scale(${1 + (1 - opacity) * 0.2})`; // Less scaling
                 } else {
-                    star.style.opacity = ''; // Reset to CSS animation opacity
-                    star.style.transform = ''; // Reset scale
+                    star.style.opacity = '';
+                    star.style.transform = '';
                 }
             });
         });
@@ -910,18 +895,17 @@
             const shootingStar = document.createElement('div');
             shootingStar.classList.add('shooting-star');
             shootingStar.style.left = `${Math.random() * 100}vw`;
-            shootingStar.style.top = `${Math.random() * 50}vh`; // Start from upper half
-            shootingStar.style.animationDuration = `${Math.random() * 1.5 + 1}s`; // Random duration
-            shootingStar.style.animationDelay = `${Math.random() * 10}s`; // Random delay
+            shootingStar.style.top = `${Math.random() * 50}vh`;
+            shootingStar.style.animationDuration = `${Math.random() * 1.5 + 1}s`;
+            shootingStar.style.animationDelay = `${Math.random() * 10}s`;
             galaxyBackground.appendChild(shootingStar);
 
             shootingStar.addEventListener('animationend', () => {
-                shootingStar.remove(); // Remove after animation ends
+                shootingStar.remove(); // Remove the shooting star after animation ends
             });
         }
-
-        // Create shooting stars at intervals
-        setInterval(createShootingStar, 5000); // Every 5 seconds
+        // Call createShootingStar periodically
+        setInterval(createShootingStar, 5000); // Create a shooting star every 5 seconds
     </script>
 </body>
 </html>
