@@ -9,6 +9,13 @@
         @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         
+        /* CSS Variables */
+        :root {
+            --primary: #ab0202;
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-muted: #aaa;
+        }
+        
         /* Reset and Global Styles */
         * {
             margin: 0;
@@ -21,6 +28,49 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
+            cursor: none; /* إخفاء الماوس الافتراضي */
+        }
+
+        /* --- Custom Cursor --- */
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary);
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255, 31, 31, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+
+        body:hover .cursor-outline {
+            opacity: 1;
+        }
+
+        /* Hover states for cursor */
+        body.hover-target .cursor-outline {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 31, 31, 0.1);
+            border-color: var(--primary);
+        }
+
+        /* New Animations */
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
         }
 
         body {
@@ -187,14 +237,7 @@
             z-index: 1;
             opacity: 0;
             transform: translateY(30px);
-            animation: slideUp 1s ease forwards 1s;
-        }
-
-        @keyframes slideUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            animation: fadeUp 1s ease forwards 0.5s;
         }
 
         .hero .subtitle {
@@ -208,7 +251,7 @@
             z-index: 1;
             opacity: 0;
             transform: translateY(30px);
-            animation: slideUp 1s ease forwards 1.2s;
+            animation: fadeUp 1s ease forwards 0.7s;
         }
 
         .hero p {
@@ -220,8 +263,7 @@
             position: relative;
             z-index: 1;
             opacity: 0;
-            transform: translateY(30px);
-            animation: slideUp 1s ease forwards 1.4s;
+            animation: fadeUp 1s ease forwards 0.9s;
         }
 
         /* New Explore Services Button */
@@ -246,8 +288,7 @@
             backdrop-filter: blur(8px);
             z-index: 1;
             opacity: 0;
-            transform: translateY(30px);
-            animation: slideUp 1s ease forwards 1.6s;
+            animation: fadeUp 1s ease forwards 1.1s;
         }
 
         .super-button::before {
@@ -307,7 +348,7 @@
             z-index: 1;
             opacity: 0;
             transform: translateY(30px);
-            animation: slideUp 1s ease forwards 1.8s;
+            animation: fadeUp 1s ease forwards 1.3s;
         }
 
         .stat-item {
@@ -329,6 +370,12 @@
             color: #aaa;
             text-transform: uppercase;
             letter-spacing: 1px;
+        }
+
+        /* Glow Button Animation Class */
+        .btn-glow {
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 1.1s;
         }
 
         /* Sections hidden by default */
@@ -394,80 +441,83 @@
             line-height: 1.8;
         }
 
+        /* --- Services 3D Cards --- */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 50px;
         }
 
         .service-card {
-            background: linear-gradient(145deg, rgba(26, 26, 26, 0.8), rgba(34, 34, 34, 0.8));
-            border-radius: 15px;
-            padding: 30px;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(51, 51, 51, 0.5);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 30px;
+            border-radius: 20px;
+            transition: transform 0.1s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
+            transform-style: preserve-3d;
+            perspective: 1000px;
             height: 100%;
             display: flex;
             flex-direction: column;
-            backdrop-filter: blur(5px);
             opacity: 0;
-            transform: translateY(30px) scale(0.95);
+            transform: translateY(50px) rotateX(10deg);
         }
 
-        .service-card.revealed {
-            animation: cardReveal 0.8s ease forwards;
-            animation-delay: calc(var(--card-index) * 0.1s);
+        .service-card:hover {
+            border-color: rgba(255, 31, 31, 0.3);
+            box-shadow: 0 15px 40px rgba(171, 2, 2, 0.3);
         }
 
-        @keyframes cardReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .service-card::before {
+        /* Radial Gradient Effect on Hover */
+        .service-card::after {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #ab0202, #ff4444);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s ease;
+            height: 100%;
+            background: radial-gradient(circle at var(--x) var(--y), rgba(255, 31, 31, 0.15), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .service-card:hover::before {
-            transform: scaleX(1);
+        .service-card:hover::after {
+            opacity: 1;
         }
 
-        .service-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(171, 2, 2, 0.3);
-            border-color: #ab0202;
-        }
-
+        /* محتويات الكارد مع تأثير 3D */
         .service-icon {
             font-size: 2.5rem;
-            color: #ab0202;
-            margin-bottom: 20px;
+            color: var(--primary);
+            margin-bottom: 25px;
+            transform: translateZ(20px);
+            position: relative;
+            z-index: 1;
         }
 
         .service-card h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
             color: #fff;
+            transform: translateZ(30px);
+            position: relative;
+            z-index: 1;
         }
 
         .service-card p {
+            font-size: 1rem;
             color: #bbb;
+            margin-bottom: 20px;
             line-height: 1.7;
-            margin-bottom: 15px;
+            transform: translateZ(20px);
+            position: relative;
+            z-index: 1;
         }
 
         .service-features {
@@ -476,18 +526,34 @@
         }
 
         .service-features li {
-            padding: 5px 0;
-            color: #ccc;
+            color: #ddd;
+            font-size: 0.95rem;
+            padding: 8px 0;
+            padding-left: 25px;
             position: relative;
-            padding-left: 20px;
+            transform: translateZ(10px);
+            position: relative;
+            z-index: 1;
         }
 
         .service-features li::before {
-            content: '✓';
+            content: '▹';
+            color: var(--primary);
             position: absolute;
             left: 0;
-            color: #ab0202;
             font-weight: bold;
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px) rotateX(10deg);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) rotateX(0);
         }
 
         /* About Section */
@@ -1120,11 +1186,19 @@
             }
             
             .services-grid {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             }
         }
 
         @media (max-width: 768px) {
+            /* CSS لتعطيل المؤشر المخصص على الهواتف */
+            .cursor-dot, .cursor-outline { 
+                display: none; 
+            }
+            * { 
+                cursor: auto; 
+            }
+            
             .navbar {
                 padding: 15px 5%;
             }
@@ -1179,6 +1253,10 @@
             .section-title {
                 font-size: 2.3rem;
             }
+            
+            .service-card {
+                padding: 30px 20px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1205,7 +1283,7 @@
             }
             
             .service-card {
-                padding: 25px;
+                padding: 25px 15px;
             }
             
             .certificate-container {
@@ -1226,6 +1304,10 @@
     </style>
 </head>
 <body>
+    <!-- Custom Cursor Elements -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
     <!-- Floating Elements -->
     <div class="floating-element" style="top: 10%; left: 5%; animation-delay: 0s;"></div>
     <div class="floating-element" style="top: 30%; left: 80%; animation-delay: -5s;"></div>
@@ -1291,7 +1373,7 @@
         <p class="section-subtitle">I offer a comprehensive range of virtual assistant services tailored to meet your specific needs and help streamline your operations.</p>
         
         <div class="services-grid">
-            <div class="service-card">
+            <div class="service-card reveal" data-tilt data-hover>
                 <div class="service-icon">
                     <i class="fas fa-plane"></i>
                 </div>
@@ -1305,7 +1387,7 @@
                 </ul>
             </div>
             
-            <div class="service-card">
+            <div class="service-card reveal" data-tilt data-hover>
                 <div class="service-icon">
                     <i class="fas fa-calendar-check"></i>
                 </div>
@@ -1319,7 +1401,7 @@
                 </ul>
             </div>
             
-            <div class="service-card">
+            <div class="service-card reveal" data-tilt data-hover>
                 <div class="service-icon">
                     <i class="fas fa-birthday-cake"></i>
                 </div>
@@ -1333,7 +1415,7 @@
                 </ul>
             </div>
             
-            <div class="service-card">
+            <div class="service-card reveal" data-tilt data-hover>
                 <div class="service-icon">
                     <i class="fas fa-file-alt"></i>
                 </div>
@@ -1347,7 +1429,7 @@
                 </ul>
             </div>
             
-            <div class="service-card">
+            <div class="service-card reveal" data-tilt data-hover>
                 <div class="service-icon">
                     <i class="fas fa-utensils"></i>
                 </div>
@@ -1361,7 +1443,7 @@
                 </ul>
             </div>
             
-            <div class="service-card">
+            <div class="service-card reveal" data-tilt data-hover>
                 <div class="service-icon">
                     <i class="fas fa-laptop-house"></i>
                 </div>
@@ -1375,7 +1457,7 @@
                 </ul>
             </div>
             
-            <div class="service-card">
+            <div class="service-card reveal" data-tilt data-hover>
                 <div class="service-icon">
                     <i class="fas fa-envelope"></i>
                 </div>
@@ -1389,7 +1471,7 @@
                 </ul>
             </div>
             
-            <div class="service-card">
+            <div class="service-card reveal" data-tilt data-hover>
                 <div class="service-icon">
                     <i class="fas fa-hashtag"></i>
                 </div>
@@ -1601,7 +1683,8 @@
             </div>
         </div>
         
-    
+        <div class="footer-bottom">
+            <p>&copy; 2024 SEIF YASSER. All Rights Reserved. | Virtual Assistant Services</p>
         </div>
     </footer>
 
@@ -1616,7 +1699,33 @@
     </button>
 
     <script>
-        // Mobile Menu Toggle
+        // --- 1. Custom Cursor Logic ---
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            // Delay for outline
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Hover Effect for Cursor - Apply to all interactive elements
+        const hoverElements = document.querySelectorAll('a, button, .super-button, .certificate-btn, .submit-btn, .skill-tag, .service-card, .social-link, .form-control, .mute-btn');
+        
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hover-target'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('hover-target'));
+        });
+
+        // --- 2. Mobile Menu Toggle ---
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
         
@@ -1635,7 +1744,7 @@
             });
         });
         
-        // Explore Services Button - Reveal Sections
+        // --- 3. Explore Services Button - Reveal Sections ---
         const exploreServicesBtn = document.getElementById('exploreServicesBtn');
         const sectionsToReveal = [
             document.getElementById('services'),
@@ -1669,9 +1778,19 @@
                                 serviceCards.forEach((card, cardIndex) => {
                                     card.style.setProperty('--card-index', cardIndex);
                                     setTimeout(() => {
-                                        card.classList.add('revealed');
-                                    }, cardIndex * 100 + 300);
+                                        card.classList.add('reveal');
+                                    }, 100);
                                 });
+                                
+                                // Trigger reveal animation for service cards
+                                setTimeout(() => {
+                                    const reveals = document.querySelectorAll('.service-card.reveal');
+                                    for (let i = 0; i < reveals.length; i++) {
+                                        setTimeout(() => {
+                                            reveals[i].classList.add('active');
+                                        }, i * 100);
+                                    }
+                                }, 300);
                             }
                             
                             // Add animation delays to contact items
@@ -1759,13 +1878,13 @@
             }
         });
         
-        // View Certificate Button
+        // --- 4. View Certificate Button ---
         const viewCertificateBtn = document.getElementById('viewCertificateBtn');
         viewCertificateBtn.addEventListener('click', () => {
             window.open('https://savanna.alxafrica.com/certificates/ByHL7YcMrX', '_blank');
         });
         
-        // Animated Counter for Stats
+        // --- 5. Animated Counter for Stats ---
         const statNumbers = document.querySelectorAll('.stat-number');
         
         const animateCounter = () => {
@@ -1802,7 +1921,53 @@
             statsObserver.observe(statsSection);
         }
         
-        // Form Submission
+        // --- 6. 3D Tilt Effect for Cards ---
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Set CSS custom properties for radial gradient position
+                card.style.setProperty('--x', `${x}px`);
+                card.style.setProperty('--y', `${y}px`);
+
+                // Tilt calculation
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -8; // Max 8 degrees
+                const rotateY = ((x - centerX) / centerX) * 8;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+                card.style.setProperty('--x', '50%');
+                card.style.setProperty('--y', '50%');
+            });
+        });
+        
+        // --- 7. Scroll Reveal Animation ---
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 150;
+            
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        };
+
+        // استدعاء الدالة عند التمرير
+        window.addEventListener('scroll', revealOnScroll);
+        
+        // --- 8. Form Submission ---
         const contactForm = document.getElementById('contactForm');
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -1853,7 +2018,7 @@
             }
         });
         
-        // Navbar scroll effect
+        // --- 9. Navbar scroll effect ---
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 100) {
@@ -1883,9 +2048,12 @@
                     link.classList.add('active');
                 }
             });
+            
+            // Trigger reveal animation on scroll
+            revealOnScroll();
         });
         
-        // Music mute/unmute button
+        // --- 10. Music mute/unmute button ---
         const muteBtn = document.getElementById('muteBtn');
         const bgMusic = document.getElementById('background-music');
         
@@ -1901,7 +2069,7 @@
             }
         });
         
-        // Prevent text selection/copy
+        // --- 11. Prevent text selection/copy ---
         document.addEventListener('copy', (e) => {
             e.preventDefault();
             alert('Copying content from this website is not allowed.');
@@ -1911,7 +2079,7 @@
             e.preventDefault();
         });
         
-        // Initialize animations on page load
+        // --- 12. Initialize animations on page load ---
         window.addEventListener('load', () => {
             // Start counter animation if stats are visible
             const rect = statsSection.getBoundingClientRect();
@@ -1931,6 +2099,14 @@
                 floatingEl.style.opacity = Math.random() * 0.3 + 0.1;
                 document.body.appendChild(floatingEl);
             }
+            
+            // Add reveal class to all service cards
+            document.querySelectorAll('.service-card').forEach(card => {
+                card.classList.add('reveal');
+            });
+            
+            // Trigger initial reveal check
+            setTimeout(revealOnScroll, 100);
         });
     </script>
 </body>
