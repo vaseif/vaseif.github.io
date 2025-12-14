@@ -726,48 +726,31 @@
             z-index: 1;
         }
 
-        /* Certificate Button */
-        .certificate-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(45deg, rgba(26, 26, 26, 0.8), rgba(42, 42, 42, 0.8));
-            color: white;
-            border: 2px solid #ab0202;
-            padding: 15px 35px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 50px;
+        /* Certificate Button - New Design */
+        .btn {
+            font-size: 1.2rem;
+            padding: 1rem 2.5rem;
+            border: none;
+            outline: none;
+            border-radius: 0.4rem;
             cursor: pointer;
-            transition: all 0.4s ease;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            backdrop-filter: blur(5px);
+            background-color: rgb(14, 14, 26);
+            color: rgb(234, 234, 234);
+            font-weight: 700;
+            transition: 0.6s;
+            box-shadow: 0px 0px 60px rgba(171, 2, 2, 0.3);
+            -webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
         }
 
-        .certificate-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background: linear-gradient(45deg, #ab0202, #ff4444);
-            transition: width 0.4s ease;
-            z-index: -1;
+        .btn:active {
+            scale: 0.92;
         }
 
-        .certificate-btn:hover::before {
-            width: 100%;
-        }
-
-        .certificate-btn:hover {
-            border-color: transparent;
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 10px 25px rgba(171, 2, 2, 0.4);
+        .btn:hover {
+            background: rgb(2,29,78);
+            background: linear-gradient(270deg, rgba(171, 2, 2, 0.681) 0%, rgba(255, 68, 68, 0.873) 60%);
+            color: rgb(234, 234, 234);
         }
 
         /* Contact Section */
@@ -930,21 +913,31 @@
             resize: vertical;
         }
 
+        /* Updated Send Message Button - Much Better Design */
         .submit-btn {
-            background: linear-gradient(45deg, #ab0202, #ff4444);
-            color: white;
-            border: none;
-            padding: 16px 40px;
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
+            border: 2px solid rgba(171, 2, 2, 0.4);
+            border-radius: 12px;
+            color: #fff;
             font-size: 1.1rem;
             font-weight: 600;
-            border-radius: 10px;
+            letter-spacing: 0.5px;
             cursor: pointer;
-            transition: all 0.4s ease;
-            width: 100%;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            overflow: hidden;
+            transition: all 0.4s ease-in-out;
+            box-shadow: 0 0 20px rgba(171, 2, 2, 0.2);
+            backdrop-filter: blur(8px);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
             opacity: 0;
             transform: translateY(20px);
+            text-transform: uppercase;
         }
 
         .submit-btn.revealed {
@@ -952,9 +945,48 @@
             animation-delay: 0.4s;
         }
 
+
+        .submit-btn::after {
+            content: "";
+            position: absolute;
+            inset: 2px;
+            background: #0a0a0a;
+            border-radius: 10px;
+            z-index: -1;
+        }
+
         .submit-btn:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 10px 25px rgba(171, 2, 2, 0.4);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 30px rgba(171, 2, 2, 0.4);
+            border-color: rgba(255, 31, 31, 0.6);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .submit-btn i {
+            font-size: 1.2rem;
+            color: #ff4444;
+            transition: transform 0.3s ease;
+        }
+
+        .submit-btn:hover i {
+            transform: translateX(5px);
+        }
+
+        .submit-btn.loading {
+            background: rgba(171, 2, 2, 0.1);
+            cursor: not-allowed;
+        }
+
+        .submit-btn.loading i {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* Footer */
@@ -1170,6 +1202,179 @@
             }
         }
 
+        /* Letter Animation */
+        .letter-image {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            transform: translate(-50%, -50%);
+            z-index: 99999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .letter-image.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .animated-mail {
+            position: absolute;
+            height: 150px;
+            width: 200px;
+            transition: 0.4s;
+        }
+
+        .animated-mail .body {
+            position: absolute;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 0 100px 200px;
+            border-color: transparent transparent #ab0202 transparent;
+            z-index: 2;
+        }
+
+        .animated-mail .top-fold {
+            position: absolute;
+            top: 50px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 50px 100px 0 100px;
+            transform-origin: 50% 0%;
+            transition: transform 0.4s 0.4s, z-index 0.2s 0.4s;
+            border-color: #8a0202 transparent transparent transparent;
+            z-index: 2;
+        }
+
+        .animated-mail .back-fold {
+            position: absolute;
+            bottom: 0;
+            width: 200px;
+            height: 100px;
+            background: #8a0202;
+            z-index: 0;
+        }
+
+        .animated-mail .left-fold {
+            position: absolute;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 50px 0 50px 100px;
+            border-color: transparent transparent transparent #9a0202;
+            z-index: 2;
+        }
+
+        .animated-mail .letter {
+            left: 20px;
+            bottom: 0px;
+            position: absolute;
+            width: 160px;
+            height: 60px;
+            background: white;
+            z-index: 1;
+            overflow: hidden;
+            transition: 0.4s 0.2s;
+        }
+
+        .animated-mail .letter .letter-border {
+            height: 10px;
+            width: 100%;
+            background: repeating-linear-gradient(
+                -45deg,
+                #ab0202,
+                #ab0202 8px,
+                transparent 8px,
+                transparent 18px
+            );
+        }
+
+        .animated-mail .letter .letter-title {
+            margin-top: 10px;
+            margin-left: 5px;
+            height: 10px;
+            width: 40%;
+            background: #ab0202;
+        }
+
+        .animated-mail .letter .letter-context {
+            margin-top: 10px;
+            margin-left: 5px;
+            height: 10px;
+            width: 20%;
+            background: #ab0202;
+        }
+
+        .animated-mail .letter .letter-stamp {
+            margin-top: 30px;
+            margin-left: 120px;
+            border-radius: 100%;
+            height: 30px;
+            width: 30px;
+            background: #ab0202;
+            opacity: 0.3;
+        }
+
+        .letter-image .shadow {
+            position: absolute;
+            top: 200px;
+            left: 50%;
+            width: 400px;
+            height: 30px;
+            transition: 0.4s;
+            transform: translateX(-50%);
+            border-radius: 100%;
+            background: radial-gradient(
+                rgba(171, 2, 2, 0.5),
+                rgba(171, 2, 2, 0.2),
+                rgba(171, 2, 2, 0)
+            );
+        }
+
+        .letter-image:hover .animated-mail {
+            transform: translateY(50px);
+        }
+
+        .letter-image:hover .animated-mail .top-fold {
+            transition: transform 0.4s, z-index 0.2s;
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
+
+        .letter-image:hover .animated-mail .letter {
+            height: 180px;
+        }
+
+        .letter-image:hover .shadow {
+            width: 250px;
+        }
+
+        /* Overlay for letter animation */
+        .letter-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 99998;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .letter-overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero h1 {
@@ -1257,6 +1462,44 @@
             .service-card {
                 padding: 30px 20px;
             }
+            
+            .letter-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .animated-mail {
+                height: 120px;
+                width: 160px;
+            }
+            
+            .animated-mail .body {
+                border-width: 0 0 80px 160px;
+            }
+            
+            .animated-mail .top-fold {
+                top: 40px;
+                border-width: 40px 80px 0 80px;
+            }
+            
+            .animated-mail .back-fold {
+                width: 160px;
+                height: 80px;
+            }
+            
+            .animated-mail .left-fold {
+                border-width: 40px 0 40px 80px;
+            }
+            
+            .animated-mail .letter {
+                left: 16px;
+                width: 128px;
+            }
+            
+            .letter-image .shadow {
+                width: 300px;
+                top: 160px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1294,11 +1537,21 @@
                 padding: 30px 20px;
             }
             
+            .submit-btn {
+                height: 55px;
+                font-size: 1rem;
+            }
+            
             .mute-btn {
                 width: 50px;
                 height: 50px;
                 bottom: 20px;
                 right: 20px;
+            }
+            
+            .btn {
+                font-size: 1rem;
+                padding: 0.8rem 2rem;
             }
         }
     </style>
@@ -1313,6 +1566,26 @@
     <div class="floating-element" style="top: 30%; left: 80%; animation-delay: -5s;"></div>
     <div class="floating-element" style="top: 70%; left: 10%; animation-delay: -10s;"></div>
     <div class="floating-element" style="top: 80%; left: 70%; animation-delay: -15s;"></div>
+
+    <!-- Letter Animation (Hidden by default) -->
+    <div class="letter-overlay" id="letterOverlay"></div>
+    <div class="letter-image" id="letterImage">
+        <div class="animated-mail">
+            <div class="back-fold"></div>
+            <div class="letter">
+                <div class="letter-border"></div>
+                <div class="letter-title"></div>
+                <div class="letter-context"></div>
+                <div class="letter-stamp">
+                    <div class="letter-stamp-inner"></div>
+                </div>
+            </div>
+            <div class="top-fold"></div>
+            <div class="body"></div>
+            <div class="left-fold"></div>
+        </div>
+        <div class="shadow"></div>
+    </div>
 
     <!-- Navigation -->
     <nav class="navbar">
@@ -1526,7 +1799,7 @@
             <h3>Professional Certification</h3>
             <p>Successfully completed an intensive 8-week Virtual Assistant training program focused on professional skills, task management, and client coordination. This certification demonstrates expertise in scheduling, travel planning, data organization, and efficient administrative support.</p>
             
-            <button class="certificate-btn" id="viewCertificateBtn">
+            <button class="btn" id="viewCertificateBtn">
                 <i class="fas fa-award"></i> View Certificate
             </button>
         </div>
@@ -1626,8 +1899,10 @@
                     <input type="hidden" name="_subject" value="New Contact Form Submission from Website">
                     <input type="text" name="_gotcha" style="display:none">
                     
-                    <button type="submit" class="submit-btn">
-                        <i class="fas fa-paper-plane"></i> Send Message
+                    <!-- Updated Send Button -->
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>SEND MESSAGE</span>
                     </button>
                 </form>
             </div>
@@ -1714,7 +1989,7 @@
         });
 
         // Hover Effect for Cursor - Apply to all interactive elements
-        const hoverElements = document.querySelectorAll('a, button, .super-button, .certificate-btn, .submit-btn, .skill-tag, .service-card, .social-link, .form-control, .mute-btn');
+        const hoverElements = document.querySelectorAll('a, button, .super-button, .btn, .submit-btn, .skill-tag, .service-card, .social-link, .form-control, .mute-btn');
         
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('hover-target'));
@@ -1965,14 +2240,18 @@
         
         // --- 8. Form Submission ---
         const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const letterImage = document.getElementById('letterImage');
+        const letterOverlay = document.getElementById('letterOverlay');
+        
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
             
             // Show loading state
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span> SENDING...</span>';
+            submitBtn.classList.add('loading');
             submitBtn.disabled = true;
             
             try {
@@ -1988,30 +2267,68 @@
                 
                 if (response.ok) {
                     // Success message
-                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-                    submitBtn.style.background = 'linear-gradient(45deg, #4CAF50, #45a049)';
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i><span> MESSAGE SENT!</span>';
+                    submitBtn.style.background = 'rgba(0, 200, 0, 0.2)';
+                    submitBtn.style.borderColor = 'rgba(0, 200, 0, 0.5)';
                     
-                    // Reset form after delay
+                    // Show letter animation
+                    letterOverlay.classList.add('show');
+                    letterImage.classList.add('show');
+                    
+                    // Trigger hover effect on letter animation
                     setTimeout(() => {
-                        contactForm.reset();
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                        submitBtn.style.background = 'linear-gradient(45deg, #ab0202, #ff4444)';
+                        letterImage.style.transform = 'translate(-50%, -50%)';
+                        letterImage.querySelector('.animated-mail').style.transform = 'translateY(50px)';
+                        letterImage.querySelector('.animated-mail .top-fold').style.transform = 'rotateX(180deg)';
+                        letterImage.querySelector('.animated-mail .top-fold').style.zIndex = '0';
+                        letterImage.querySelector('.animated-mail .letter').style.height = '180px';
+                        letterImage.querySelector('.shadow').style.width = '250px';
+                    }, 100);
+                    
+                    // Hide letter animation after 3 seconds
+                    setTimeout(() => {
+                        letterOverlay.classList.remove('show');
+                        letterImage.classList.remove('show');
+                        letterImage.style.transform = 'translate(-50%, -50%)';
+                        letterImage.querySelector('.animated-mail').style.transform = '';
+                        letterImage.querySelector('.animated-mail .top-fold').style.transform = '';
+                        letterImage.querySelector('.animated-mail .top-fold').style.zIndex = '';
+                        letterImage.querySelector('.animated-mail .letter').style.height = '';
+                        letterImage.querySelector('.shadow').style.width = '';
+                        
+                        // Reset form after delay
+                        setTimeout(() => {
+                            contactForm.reset();
+                            submitBtn.innerHTML = originalText;
+                            submitBtn.classList.remove('loading');
+                            submitBtn.disabled = false;
+                            submitBtn.style.background = '';
+                            submitBtn.style.borderColor = '';
+                        }, 1000);
                     }, 3000);
                 } else {
                     throw new Error('Form submission failed');
                 }
             } catch (error) {
                 // Error message
-                submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Try Again';
-                submitBtn.style.background = 'linear-gradient(45deg, #f44336, #d32f2f)';
+                submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i><span> ERROR! TRY AGAIN</span>';
+                submitBtn.style.background = 'rgba(255, 0, 0, 0.2)';
+                submitBtn.style.borderColor = 'rgba(255, 0, 0, 0.5)';
                 
                 setTimeout(() => {
                     submitBtn.innerHTML = originalText;
+                    submitBtn.classList.remove('loading');
                     submitBtn.disabled = false;
-                    submitBtn.style.background = 'linear-gradient(45deg, #ab0202, #ff4444)';
+                    submitBtn.style.background = '';
+                    submitBtn.style.borderColor = '';
                 }, 3000);
             }
+        });
+        
+        // Close letter animation when clicking on overlay
+        letterOverlay.addEventListener('click', () => {
+            letterOverlay.classList.remove('show');
+            letterImage.classList.remove('show');
         });
         
         // --- 9. Navbar scroll effect ---
