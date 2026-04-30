@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SEIF YASSER | WEB DEVELOPER</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -29,7 +29,8 @@
             cursor: none;
         }
 
-        .cursor-dot, .cursor-outline {
+        .cursor-dot,
+        .cursor-outline {
             position: fixed;
             top: 0;
             left: 0;
@@ -38,48 +39,53 @@
             z-index: 9999;
             pointer-events: none;
         }
-        .cursor-dot { width: 8px; height: 8px; background-color: var(--primary); }
-        .cursor-outline { width: 40px; height: 40px; border: 2px solid rgba(255, 31, 31, 0.5); transition: width 0.2s, height 0.2s; }
-        body.hover-target .cursor-outline { width: 60px; height: 60px; background-color: rgba(255, 31, 31, 0.1); border-color: var(--primary); }
 
-        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideDown { to { opacity: 1; transform: translateY(0); } }
-        @keyframes backgroundPulse {
-            0%, 100% { background: radial-gradient(circle at center, #1a0000 0%, #0a0000 50%, #000000 100%); }
-            50% { background: radial-gradient(circle at center, #220000 0%, #0a0000 50%, #000000 100%); }
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary);
         }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-30px); }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255, 31, 31, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
         }
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+
+        body:hover .cursor-outline { opacity: 1; }
+
+        body.hover-target .cursor-outline {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 31, 31, 0.1);
+            border-color: var(--primary);
         }
-        @keyframes rotateSlow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
         }
-        @keyframes stepIn {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes formReveal { to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideInRight { to { opacity: 1; transform: translateX(0); } }
-        @keyframes socialReveal { to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
 
         body {
             font-family: 'Lexend', 'Poppins', sans-serif;
             line-height: 1.6;
             color: #fff;
             overflow-x: hidden;
-            font-smoothing: antialiased;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             background: radial-gradient(circle at center, #1a0000 0%, #0a0000 50%, #000000 100%);
             animation: backgroundPulse 15s ease infinite;
+            overflow-y: auto;
         }
 
-        /* Navbar */
+        body.no-scroll { overflow-y: hidden; }
+
+        @keyframes backgroundPulse {
+            0%, 100% { background: radial-gradient(circle at center, #1a0000 0%, #0a0000 50%, #000000 100%); }
+            50% { background: radial-gradient(circle at center, #220000 0%, #0a0000 50%, #000000 100%); }
+        }
+
+        /* ── NAVBAR ── */
         .navbar {
             position: fixed;
             top: 0;
@@ -97,16 +103,63 @@
             transform: translateY(-100%);
             animation: slideDown 1s ease forwards 0.5s;
         }
-        .logo { font-size: 1.8rem; font-weight: 700; color: #fff; text-decoration: none; letter-spacing: 1px; }
-        .logo span { color: #ab0202; }
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { color: #fff; text-decoration: none; font-weight: 500; transition: all 0.3s ease; position: relative; padding: 5px 0; }
-        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #ab0202; transition: width 0.3s ease; }
-        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-        .nav-links a:hover, .nav-links a.active { color: #ab0202; }
-        .mobile-menu-btn { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
 
-        /* Hero */
+        @keyframes slideDown {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .logo span { color: #ab0202; }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ab0202;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after { width: 100%; }
+
+        .nav-links a:hover,
+        .nav-links a.active { color: #ab0202; }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ── HERO ── */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -120,7 +173,9 @@
             opacity: 0;
             animation: fadeIn 1.5s ease forwards 0.8s;
         }
+
         @keyframes fadeIn { to { opacity: 1; } }
+
         .hero::before {
             content: '';
             position: absolute;
@@ -132,6 +187,7 @@
             border-radius: 50%;
             animation: float 6s ease-in-out infinite;
         }
+
         .hero::after {
             content: '';
             position: absolute;
@@ -143,10 +199,17 @@
             border-radius: 50%;
             animation: float 8s ease-in-out infinite reverse;
         }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+
         .hero h1 {
             font-size: 4.5rem;
             font-weight: 800;
             margin-bottom: 10px;
+            letter-spacing: 1px;
             text-transform: uppercase;
             background: linear-gradient(90deg, #fff, #ab0202);
             -webkit-background-clip: text;
@@ -158,6 +221,7 @@
             transform: translateY(30px);
             animation: fadeUp 1s ease forwards 0.5s;
         }
+
         .hero .subtitle {
             font-size: 1.8rem;
             color: #ab0202;
@@ -171,6 +235,7 @@
             transform: translateY(30px);
             animation: fadeUp 1s ease forwards 0.7s;
         }
+
         .hero p {
             font-size: 1.2rem;
             max-width: 700px;
@@ -182,6 +247,8 @@
             opacity: 0;
             animation: fadeUp 1s ease forwards 0.9s;
         }
+
+        /* Super Button */
         .super-button {
             position: relative;
             display: inline-flex;
@@ -195,6 +262,7 @@
             color: #fff;
             font-size: 16px;
             font-weight: 600;
+            letter-spacing: 0.5px;
             cursor: pointer;
             overflow: hidden;
             transition: all 0.4s ease-in-out;
@@ -204,6 +272,7 @@
             opacity: 0;
             animation: fadeUp 1s ease forwards 1.1s;
         }
+
         .super-button::before {
             content: "";
             position: absolute;
@@ -215,6 +284,7 @@
             animation: rotate 9s linear infinite;
             z-index: -2;
         }
+
         .super-button::after {
             content: "";
             position: absolute;
@@ -223,12 +293,32 @@
             border-radius: inherit;
             z-index: -1;
         }
-        .super-button:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 0 40px rgba(171, 2, 2, 0.3); }
-        .super-button:hover .arrow { transform: translateX(6px); }
-        .arrow { width: 22px; height: 22px; transition: transform 0.3s ease-in-out; color: #ff4444; }
 
-        /* Sections reveal */
-        .services-section, .about-section, .certificate-section, .contact-section, .footer {
+        .super-button:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 0 40px rgba(171, 2, 2, 0.3);
+        }
+
+        .super-button:hover .arrow { transform: translateX(6px); }
+
+        .arrow {
+            width: 22px;
+            height: 22px;
+            transition: transform 0.3s ease-in-out;
+            color: #ff4444;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ── SECTIONS HIDDEN BY DEFAULT ── */
+        .services-section,
+        .about-section,
+        .certificate-section,
+        .contact-section,
+        .footer {
             opacity: 0;
             transform: translateY(50px);
             max-height: 0;
@@ -236,6 +326,7 @@
             transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
             visibility: hidden;
         }
+
         .revealed {
             opacity: 1 !important;
             transform: translateY(0) !important;
@@ -244,23 +335,26 @@
             visibility: visible !important;
         }
 
-        /* Services Section (Portfolio) */
+        /* ── SERVICES / PORTFOLIO SECTION ── */
         .services-section {
             padding: 100px 5%;
             background-color: rgba(17, 17, 17, 0.9);
             position: relative;
             backdrop-filter: blur(10px);
         }
+
         .section-title {
             text-align: center;
             font-size: 2.8rem;
             font-weight: 700;
             margin-bottom: 20px;
+            color: #fff;
             position: relative;
             display: inline-block;
             left: 50%;
             transform: translateX(-50%);
         }
+
         .section-title::after {
             content: '';
             position: absolute;
@@ -272,6 +366,7 @@
             background: #ab0202;
             border-radius: 2px;
         }
+
         .section-subtitle {
             text-align: center;
             font-size: 1.2rem;
@@ -280,12 +375,15 @@
             margin: 0 auto 60px;
             line-height: 1.8;
         }
+
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 50px;
         }
+
+        /* Work Example Cards */
         .service-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -303,7 +401,12 @@
             opacity: 0;
             transform: translateY(50px) rotateX(10deg);
         }
-        .service-card:hover { border-color: rgba(255, 31, 31, 0.3); box-shadow: 0 15px 40px rgba(171, 2, 2, 0.3); }
+
+        .service-card:hover {
+            border-color: rgba(255, 31, 31, 0.3);
+            box-shadow: 0 15px 40px rgba(171, 2, 2, 0.3);
+        }
+
         .service-card::after {
             content: '';
             position: absolute;
@@ -315,8 +418,11 @@
             opacity: 0;
             transition: opacity 0.3s;
             pointer-events: none;
+            z-index: 0;
         }
+
         .service-card:hover::after { opacity: 1; }
+
         .service-icon {
             width: 70px;
             height: 70px;
@@ -330,13 +436,54 @@
             color: #ab0202;
             border: 1px solid rgba(171, 2, 2, 0.3);
             transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
         }
-        .service-card:hover .service-icon { background: rgba(171, 2, 2, 0.2); transform: scale(1.1) rotate(5deg); }
-        .service-card h3 { font-size: 1.4rem; margin-bottom: 15px; color: #fff; }
-        .service-card p { color: #bbb; font-size: 1rem; line-height: 1.7; margin-bottom: 20px; }
-        .service-features { list-style: none; margin-top: auto; }
-        .service-features li { color: #ddd; font-size: 0.95rem; padding: 8px 0; padding-left: 25px; position: relative; }
-        .service-features li::before { content: '▹'; color: var(--primary); position: absolute; left: 0; }
+
+        .service-card:hover .service-icon {
+            background: rgba(171, 2, 2, 0.2);
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #fff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card p {
+            color: #bbb;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-top: auto;
+        }
+
+        .service-features li {
+            color: #ddd;
+            font-size: 0.95rem;
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-features li::before {
+            content: '▹';
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
         .work-tag {
             display: inline-block;
             background: rgba(171, 2, 2, 0.15);
@@ -346,21 +493,67 @@
             padding: 4px 12px;
             border-radius: 50px;
             margin: 4px 4px 4px 0;
+            position: relative;
+            z-index: 1;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        .card-tags { margin-top: 15px; }
 
-        /* About Section */
+        .card-tags {
+            margin-top: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px) rotateX(10deg);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) rotateX(0);
+        }
+
+        /* ── ABOUT SECTION ── */
         .about-section {
             padding: 100px 5%;
             background-color: rgba(10, 10, 10, 0.9);
+            position: relative;
             backdrop-filter: blur(10px);
         }
-        .about-content { max-width: 800px; margin: 0 auto; text-align: center; }
-        .about-text h2 { font-size: 2.8rem; margin-bottom: 20px; }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
         .about-text h2 span { color: #ab0202; }
-        .about-text p { color: #bbb; line-height: 1.8; margin-bottom: 20px; font-size: 1.1rem; }
-        .skills { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 30px; justify-content: center; }
+
+        .about-text p {
+            color: #bbb;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: center;
+        }
+
         .skill-tag {
             background: rgba(171, 2, 2, 0.1);
             border: 1px solid rgba(171, 2, 2, 0.3);
@@ -370,15 +563,20 @@
             color: #ff4444;
             transition: all 0.3s ease;
         }
-        .skill-tag:hover { background: rgba(171, 2, 2, 0.2); transform: translateY(-3px) scale(1.05); }
 
-        /* Certificate Section */
+        .skill-tag:hover {
+            background: rgba(171, 2, 2, 0.2);
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        /* ── CERTIFICATE SECTION ── */
         .certificate-section {
             padding: 80px 5%;
             background-color: rgba(17, 17, 17, 0.9);
             text-align: center;
             backdrop-filter: blur(10px);
         }
+
         .certificate-container {
             max-width: 800px;
             margin: 0 auto;
@@ -391,6 +589,7 @@
             overflow: hidden;
             backdrop-filter: blur(5px);
         }
+
         .certificate-container::before {
             content: '';
             position: absolute;
@@ -402,12 +601,33 @@
             z-index: 0;
             animation: rotateSlow 20s linear infinite;
         }
-        .certificate-container h3 { font-size: 2rem; margin-bottom: 20px; position: relative; z-index: 1; }
-        .certificate-container p { color: #bbb; margin-bottom: 30px; line-height: 1.8; position: relative; z-index: 1; }
+
+        @keyframes rotateSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .certificate-container h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #fff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .certificate-container p {
+            color: #bbb;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
         .btn {
             font-size: 1.2rem;
             padding: 1rem 2.5rem;
             border: none;
+            outline: none;
             border-radius: 0.4rem;
             cursor: pointer;
             text-transform: uppercase;
@@ -417,16 +637,24 @@
             transition: 0.6s;
             box-shadow: 0px 0px 60px rgba(171, 2, 2, 0.3);
             -webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+            position: relative;
+            z-index: 1;
         }
-        .btn:hover { background: linear-gradient(270deg, rgba(171, 2, 2, 0.681) 0%, rgba(255, 68, 68, 0.873) 60%); color: #fff; }
+
         .btn:active { scale: 0.92; }
 
-        /* Contact Section */
+        .btn:hover {
+            background: linear-gradient(270deg, rgba(171, 2, 2, 0.681) 0%, rgba(255, 68, 68, 0.873) 60%);
+            color: rgb(234, 234, 234);
+        }
+
+        /* ── CONTACT / QUESTIONNAIRE SECTION ── */
         .contact-section {
             padding: 100px 5%;
             background-color: rgba(10, 10, 10, 0.9);
             backdrop-filter: blur(10px);
         }
+
         .contact-container {
             display: grid;
             grid-template-columns: 1fr 1.6fr;
@@ -434,9 +662,21 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-        .contact-info h3 { font-size: 2.2rem; margin-bottom: 20px; }
-        .contact-info p { color: #bbb; margin-bottom: 30px; line-height: 1.8; }
+
+        .contact-info h3 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .contact-info p {
+            color: #bbb;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
         .contact-details { margin-top: 40px; }
+
         .contact-item {
             display: flex;
             align-items: center;
@@ -445,7 +685,16 @@
             opacity: 0;
             transform: translateX(-20px);
         }
-        .contact-item.revealed { animation: slideInRight 0.6s ease forwards; animation-delay: calc(var(--item-index) * 0.1s); }
+
+        .contact-item.revealed {
+            animation: slideInRight 0.6s ease forwards;
+            animation-delay: calc(var(--item-index) * 0.1s);
+        }
+
+        @keyframes slideInRight {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
         .contact-icon {
             width: 50px;
             height: 50px;
@@ -460,11 +709,24 @@
             transition: all 0.3s ease;
             flex-shrink: 0;
         }
-        .contact-item:hover .contact-icon { background: rgba(171, 2, 2, 0.2); transform: scale(1.1) rotate(10deg); }
-        .contact-text h4 { color: #fff; margin-bottom: 5px; font-size: 1.1rem; }
-        .contact-text p { color: #bbb; margin: 0; }
 
-        /* Questionnaire Form */
+        .contact-item:hover .contact-icon {
+            background: rgba(171, 2, 2, 0.2);
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .contact-text h4 {
+            color: #fff;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .contact-text p {
+            color: #bbb;
+            margin: 0;
+        }
+
+        /* ── QUESTIONNAIRE FORM ── */
         .contact-form {
             background: linear-gradient(145deg, rgba(26, 26, 26, 0.8), rgba(34, 34, 34, 0.8));
             border-radius: 20px;
@@ -473,8 +735,15 @@
             backdrop-filter: blur(5px);
             transform: perspective(1000px) rotateY(5deg);
             transition: transform 0.8s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .contact-form:hover { transform: perspective(1000px) rotateY(0); }
+
+        .contact-form:hover {
+            transform: perspective(1000px) rotateY(0);
+        }
+
+        /* Progress Bar */
         .progress-bar-wrap {
             width: 100%;
             height: 4px;
@@ -483,6 +752,7 @@
             margin-bottom: 30px;
             overflow: hidden;
         }
+
         .progress-bar-fill {
             height: 100%;
             background: linear-gradient(90deg, #ab0202, #ff4444);
@@ -490,18 +760,93 @@
             transition: width 0.5s ease;
             width: 11.11%;
         }
-        .step-counter { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-        .step-label { font-size: 0.85rem; color: #888; text-transform: uppercase; }
-        .step-number { font-size: 0.85rem; color: #ab0202; font-weight: 600; }
-        .form-step { display: none; animation: stepIn 0.4s ease; }
+
+        .step-counter {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .step-label {
+            font-size: 0.85rem;
+            color: #888;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .step-number {
+            font-size: 0.85rem;
+            color: #ab0202;
+            font-weight: 600;
+        }
+
+        /* Step */
+        .form-step {
+            display: none;
+            animation: stepIn 0.4s ease;
+        }
+
         .form-step.active { display: block; }
-        .step-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
-        .step-dot { width: 10px; height: 10px; background: #ab0202; border-radius: 50%; display: inline-block; box-shadow: 0 0 8px rgba(171,2,2,0.7); }
-        .step-desc { font-size: 0.9rem; color: #777; margin-bottom: 25px; }
-        .form-group { margin-bottom: 20px; opacity: 0; transform: translateY(20px); }
-        .form-group.revealed { animation: formReveal 0.6s ease forwards; animation-delay: calc(var(--field-index) * 0.1s); }
-        .form-group label { display: block; margin-bottom: 8px; color: #fff; font-weight: 500; font-size: 0.95rem; }
+
+        @keyframes stepIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .step-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .step-title .step-dot {
+            width: 10px;
+            height: 10px;
+            background: #ab0202;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 8px rgba(171,2,2,0.7);
+        }
+
+        .step-desc {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            position: relative;
+        }
+
+        .form-group.revealed {
+            animation: formReveal 0.6s ease forwards;
+            animation-delay: calc(var(--field-index) * 0.1s);
+        }
+
+        @keyframes formReveal {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #fff;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
         .form-group label span.req { color: #ab0202; margin-left: 3px; }
+
         .form-control {
             width: 100%;
             padding: 13px 15px;
@@ -511,17 +856,56 @@
             color: #fff;
             font-size: 0.95rem;
             transition: all 0.4s ease;
+            backdrop-filter: blur(5px);
             font-family: 'Lexend', sans-serif;
         }
-        .form-control:hover { border-color: #ab0202; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(171, 2, 2, 0.1); }
-        .form-control:focus { outline: none; border-color: #ab0202; box-shadow: 0 0 0 2px rgba(171, 2, 2, 0.2); transform: translateY(-4px); }
-        textarea.form-control { min-height: 110px; resize: vertical; }
-        select.form-control option { background: #1a1a1a; color: #fff; }
-        .choices-grid { display: grid; gap: 10px; }
+
+        .form-control:hover {
+            border-color: #ab0202;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(171, 2, 2, 0.1);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #ab0202;
+            box-shadow: 0 0 0 2px rgba(171, 2, 2, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .form-control::placeholder { color: #555; }
+
+        textarea.form-control {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        select.form-control option {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        /* Multiple Choice */
+        .choices-grid {
+            display: grid;
+            gap: 10px;
+        }
+
         .choices-grid.cols-2 { grid-template-columns: 1fr 1fr; }
         .choices-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
-        .choice-item { position: relative; }
-        .choice-item input[type="radio"], .choice-item input[type="checkbox"] { position: absolute; opacity: 0; width: 0; height: 0; }
+
+        .choice-item {
+            position: relative;
+        }
+
+        .choice-item input[type="radio"],
+        .choice-item input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
         .choice-label {
             display: flex;
             align-items: center;
@@ -534,9 +918,23 @@
             font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.3s ease;
+            user-select: none;
         }
-        .choice-label:hover { border-color: rgba(171, 2, 2, 0.5); background: rgba(171, 2, 2, 0.08); color: #fff; transform: translateY(-2px); }
-        .choice-item input:checked + .choice-label { border-color: #ab0202; background: rgba(171, 2, 2, 0.15); color: #fff; box-shadow: 0 0 12px rgba(171, 2, 2, 0.2); }
+
+        .choice-label:hover {
+            border-color: rgba(171, 2, 2, 0.5);
+            background: rgba(171, 2, 2, 0.08);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .choice-item input:checked + .choice-label {
+            border-color: #ab0202;
+            background: rgba(171, 2, 2, 0.15);
+            color: #fff;
+            box-shadow: 0 0 12px rgba(171, 2, 2, 0.2);
+        }
+
         .choice-icon {
             width: 18px;
             height: 18px;
@@ -548,16 +946,37 @@
             align-items: center;
             justify-content: center;
         }
-        .choice-item input[type="checkbox"] + .choice-label .choice-icon { border-radius: 4px; }
-        .choice-item input:checked + .choice-label .choice-icon { border-color: #ab0202; background: #ab0202; }
-        .choice-item input:checked + .choice-label .choice-icon::after { content: '✓'; font-size: 10px; color: #fff; font-weight: 700; }
-        .form-nav { display: flex; gap: 15px; margin-top: 30px; }
+
+        .choice-item input[type="checkbox"] + .choice-label .choice-icon {
+            border-radius: 4px;
+        }
+
+        .choice-item input:checked + .choice-label .choice-icon {
+            border-color: #ab0202;
+            background: #ab0202;
+        }
+
+        .choice-item input:checked + .choice-label .choice-icon::after {
+            content: '✓';
+            font-size: 10px;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        /* Navigation Buttons */
+        .form-nav {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
         .btn-prev, .btn-next, .submit-btn {
             flex: 1;
             height: 55px;
             border-radius: 12px;
             font-size: 1rem;
             font-weight: 600;
+            letter-spacing: 0.5px;
             cursor: pointer;
             transition: all 0.4s ease;
             display: flex;
@@ -567,8 +986,18 @@
             text-transform: uppercase;
             font-family: 'Lexend', sans-serif;
         }
-        .btn-prev { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: #888; }
-        .btn-prev:hover { border-color: rgba(255,255,255,0.3); color: #fff; }
+
+        .btn-prev {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #888;
+        }
+
+        .btn-prev:hover {
+            border-color: rgba(255,255,255,0.3);
+            color: #fff;
+        }
+
         .btn-next {
             background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
             border: 2px solid rgba(171, 2, 2, 0.4);
@@ -577,39 +1006,101 @@
             overflow: hidden;
             box-shadow: 0 0 20px rgba(171, 2, 2, 0.15);
         }
-        .btn-next::after { content: ""; position: absolute; inset: 2px; background: #0a0a0a; border-radius: 10px; z-index: -1; }
-        .btn-next:hover { transform: translateY(-3px); box-shadow: 0 0 30px rgba(171, 2, 2, 0.35); border-color: rgba(255, 31, 31, 0.6); }
+
+        .btn-next::after {
+            content: "";
+            position: absolute;
+            inset: 2px;
+            background: #0a0a0a;
+            border-radius: 10px;
+            z-index: -1;
+        }
+
+        .btn-next:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(171, 2, 2, 0.35);
+            border-color: rgba(255, 31, 31, 0.6);
+        }
+
         .btn-next i { color: #ff4444; }
+
         .submit-btn {
             background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
             border: 2px solid rgba(171, 2, 2, 0.4);
             color: #fff;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 0 20px rgba(171, 2, 2, 0.2);
         }
-        .submit-btn::after { content: ""; position: absolute; inset: 2px; background: #0a0a0a; border-radius: 10px; z-index: -1; }
-        .submit-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 0 30px rgba(171, 2, 2, 0.4); border-color: rgba(255, 31, 31, 0.6); }
-        .submit-btn.loading { cursor: wait; opacity: 0.7; }
-        .conditional-field { display: none; margin-top: 10px; }
+
+        .submit-btn::after {
+            content: "";
+            position: absolute;
+            inset: 2px;
+            background: #0a0a0a;
+            border-radius: 10px;
+            z-index: -1;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 30px rgba(171, 2, 2, 0.4);
+            border-color: rgba(255, 31, 31, 0.6);
+        }
+
+        .submit-btn i { color: #ff4444; }
+        .submit-btn.loading { cursor: not-allowed; opacity: 0.7; }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Conditional field */
+        .conditional-field {
+            display: none;
+            margin-top: 10px;
+        }
         .conditional-field.show { display: block; }
 
-        /* Footer */
+        /* ── FOOTER ── */
         .footer {
             background: rgba(17, 17, 17, 0.9);
             padding: 70px 5% 30px;
             border-top: 1px solid rgba(51, 51, 51, 0.5);
             backdrop-filter: blur(10px);
         }
+
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
             margin-bottom: 50px;
         }
-        .footer-logo { font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 20px; display: block; text-decoration: none; }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 20px;
+            display: block;
+            text-decoration: none;
+        }
+
         .footer-logo span { color: #ab0202; }
-        .footer-about p { color: #bbb; line-height: 1.8; margin-bottom: 20px; }
-        .social-links { display: flex; gap: 15px; margin-top: 20px; }
+
+        .footer-about p {
+            color: #bbb;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
         .social-link {
             width: 45px;
             height: 45px;
@@ -626,19 +1117,95 @@
             opacity: 0;
             transform: translateY(20px);
         }
-        .social-link.revealed { animation: socialReveal 0.6s ease forwards; animation-delay: calc(var(--social-index) * 0.1s); }
-        .social-link:hover { background: #ab0202; transform: translateY(-5px) scale(1.1); }
-        .footer-links h4 { color: #fff; font-size: 1.3rem; margin-bottom: 25px; position: relative; padding-bottom: 10px; opacity: 0; transform: translateY(20px); }
-        .footer-links.revealed h4 { animation: slideUp 0.6s ease forwards; }
-        .footer-links h4::after { content: ''; position: absolute; bottom: 0; left: 0; width: 50px; height: 3px; background: #ab0202; }
+
+        .social-link.revealed {
+            animation: socialReveal 0.6s ease forwards;
+            animation-delay: calc(var(--social-index) * 0.1s);
+        }
+
+        @keyframes socialReveal {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .social-link:hover {
+            background: #ab0202;
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .footer-links h4 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .footer-links.revealed h4 {
+            animation: slideUp 0.6s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #ab0202;
+        }
+
         .footer-links ul { list-style: none; }
-        .footer-links li { margin-bottom: 12px; opacity: 0; transform: translateX(-20px); }
-        .footer-links.revealed li { animation: slideInRight 0.6s ease forwards; animation-delay: calc(var(--link-index) * 0.1s); }
-        .footer-links a { color: #bbb; text-decoration: none; transition: all 0.3s ease; display: flex; align-items: center; gap: 10px; }
-        .footer-links a:hover { color: #ab0202; transform: translateX(5px); }
-        .footer-links a i { font-size: 0.8rem; color: #ab0202; }
-        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(51, 51, 51, 0.5); color: #777; font-size: 0.9rem; opacity: 0; transform: translateY(20px); }
-        .footer-bottom.revealed { animation: slideUp 0.6s ease forwards; animation-delay: 0.3s; }
+
+        .footer-links li {
+            margin-bottom: 12px;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .footer-links.revealed li {
+            animation: slideInRight 0.6s ease forwards;
+            animation-delay: calc(var(--link-index) * 0.1s);
+        }
+
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: #ab0202;
+            transform: translateX(5px);
+        }
+
+        .footer-links a i {
+            font-size: 0.8rem;
+            color: #ab0202;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(51, 51, 51, 0.5);
+            color: #777;
+            font-size: 0.9rem;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .footer-bottom.revealed {
+            animation: slideUp 0.6s ease forwards;
+            animation-delay: 0.3s;
+        }
 
         /* Mute Button */
         .mute-btn {
@@ -664,8 +1231,15 @@
             transform: scale(0);
             animation: muteBtnReveal 0.8s ease forwards 2s;
         }
-        @keyframes muteBtnReveal { to { opacity: 1; transform: scale(1); } }
-        .mute-btn:hover { background: rgba(171, 2, 2, 0.8); transform: scale(1.1) rotate(15deg); }
+
+        @keyframes muteBtnReveal {
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .mute-btn:hover {
+            background: rgba(171, 2, 2, 0.8);
+            transform: scale(1.1) rotate(15deg);
+        }
 
         /* Floating Elements */
         .floating-element {
@@ -678,6 +1252,7 @@
             z-index: -1;
             animation: floatAround 20s linear infinite;
         }
+
         @keyframes floatAround {
             0% { transform: translate(0, 0) rotate(0deg); }
             25% { transform: translate(calc(100vw - 100px), calc(100vh - 100px)) rotate(90deg); }
@@ -699,22 +1274,121 @@
             opacity: 0;
             transition: opacity 0.3s;
         }
+
         .letter-image.show { opacity: 1; pointer-events: auto; }
-        .animated-mail { position: absolute; height: 150px; width: 200px; transition: 0.4s; }
-        .animated-mail .body { position: absolute; bottom: 0; width: 0; height: 0; border-style: solid; border-width: 0 0 100px 200px; border-color: transparent transparent #ab0202 transparent; z-index: 2; }
-        .animated-mail .top-fold { position: absolute; top: 50px; width: 0; height: 0; border-style: solid; border-width: 50px 100px 0 100px; transform-origin: 50% 0%; transition: transform 0.4s 0.4s, z-index 0.2s 0.4s; border-color: #8a0202 transparent transparent transparent; z-index: 2; }
-        .animated-mail .back-fold { position: absolute; bottom: 0; width: 200px; height: 100px; background: #8a0202; z-index: 0; }
-        .animated-mail .left-fold { position: absolute; bottom: 0; width: 0; height: 0; border-style: solid; border-width: 50px 0 50px 100px; border-color: transparent transparent transparent #9a0202; z-index: 2; }
-        .animated-mail .letter { left: 20px; bottom: 0; position: absolute; width: 160px; height: 60px; background: white; z-index: 1; overflow: hidden; transition: 0.4s 0.2s; }
-        .animated-mail .letter .letter-border { height: 10px; width: 100%; background: repeating-linear-gradient(-45deg, #ab0202, #ab0202 8px, transparent 8px, transparent 18px); }
-        .animated-mail .letter .letter-title { margin-top: 10px; margin-left: 5px; height: 10px; width: 40%; background: #ab0202; }
-        .animated-mail .letter .letter-context { margin-top: 10px; margin-left: 5px; height: 10px; width: 20%; background: #ab0202; }
-        .animated-mail .letter .letter-stamp { margin-top: 30px; margin-left: 120px; border-radius: 100%; height: 30px; width: 30px; background: #ab0202; opacity: 0.3; }
-        .letter-image .shadow { position: absolute; top: 200px; left: 50%; width: 400px; height: 30px; transition: 0.4s; transform: translateX(-50%); border-radius: 100%; background: radial-gradient(rgba(171, 2, 2, 0.5), rgba(171, 2, 2, 0.2), rgba(171, 2, 2, 0)); }
+
+        .animated-mail {
+            position: absolute;
+            height: 150px;
+            width: 200px;
+            transition: 0.4s;
+        }
+
+        .animated-mail .body {
+            position: absolute;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 0 100px 200px;
+            border-color: transparent transparent #ab0202 transparent;
+            z-index: 2;
+        }
+
+        .animated-mail .top-fold {
+            position: absolute;
+            top: 50px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 50px 100px 0 100px;
+            transform-origin: 50% 0%;
+            transition: transform 0.4s 0.4s, z-index 0.2s 0.4s;
+            border-color: #8a0202 transparent transparent transparent;
+            z-index: 2;
+        }
+
+        .animated-mail .back-fold {
+            position: absolute;
+            bottom: 0;
+            width: 200px;
+            height: 100px;
+            background: #8a0202;
+            z-index: 0;
+        }
+
+        .animated-mail .left-fold {
+            position: absolute;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 50px 0 50px 100px;
+            border-color: transparent transparent transparent #9a0202;
+            z-index: 2;
+        }
+
+        .animated-mail .letter {
+            left: 20px;
+            bottom: 0;
+            position: absolute;
+            width: 160px;
+            height: 60px;
+            background: white;
+            z-index: 1;
+            overflow: hidden;
+            transition: 0.4s 0.2s;
+        }
+
+        .animated-mail .letter .letter-border {
+            height: 10px;
+            width: 100%;
+            background: repeating-linear-gradient(-45deg, #ab0202, #ab0202 8px, transparent 8px, transparent 18px);
+        }
+
+        .animated-mail .letter .letter-title {
+            margin-top: 10px;
+            margin-left: 5px;
+            height: 10px;
+            width: 40%;
+            background: #ab0202;
+        }
+
+        .animated-mail .letter .letter-context {
+            margin-top: 10px;
+            margin-left: 5px;
+            height: 10px;
+            width: 20%;
+            background: #ab0202;
+        }
+
+        .animated-mail .letter .letter-stamp {
+            margin-top: 30px;
+            margin-left: 120px;
+            border-radius: 100%;
+            height: 30px;
+            width: 30px;
+            background: #ab0202;
+            opacity: 0.3;
+        }
+
+        .letter-image .shadow {
+            position: absolute;
+            top: 200px;
+            left: 50%;
+            width: 400px;
+            height: 30px;
+            transition: 0.4s;
+            transform: translateX(-50%);
+            border-radius: 100%;
+            background: radial-gradient(rgba(171, 2, 2, 0.5), rgba(171, 2, 2, 0.2), rgba(171, 2, 2, 0));
+        }
+
         .letter-image:hover .animated-mail { transform: translateY(50px); }
         .letter-image:hover .animated-mail .top-fold { transition: transform 0.4s, z-index 0.2s; transform: rotateX(180deg); z-index: 0; }
         .letter-image:hover .animated-mail .letter { height: 180px; }
         .letter-image:hover .shadow { width: 250px; }
+
         .letter-overlay {
             position: fixed;
             top: 0;
@@ -727,14 +1401,17 @@
             pointer-events: none;
             transition: opacity 0.3s;
         }
+
         .letter-overlay.show { opacity: 1; pointer-events: auto; }
 
-        /* Responsive */
+        /* ── RESPONSIVE ── */
         @media (max-width: 992px) {
             .hero h1 { font-size: 3.5rem; }
             .contact-container { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
             .choices-grid.cols-3 { grid-template-columns: 1fr 1fr; }
         }
+
         @media (max-width: 768px) {
             .cursor-dot, .cursor-outline { display: none; }
             * { cursor: auto; }
@@ -759,6 +1436,7 @@
             .hero h1 { font-size: 2.8rem; }
             .hero .subtitle { font-size: 1.4rem; letter-spacing: 5px; }
             .section-title { font-size: 2.3rem; }
+            .service-card { padding: 30px 20px; }
             .choices-grid.cols-2 { grid-template-columns: 1fr; }
             .choices-grid.cols-3 { grid-template-columns: 1fr; }
             .contact-form { padding: 30px 20px; }
@@ -772,11 +1450,14 @@
             .animated-mail .letter { left: 16px; width: 128px; }
             .letter-image .shadow { width: 300px; top: 160px; }
         }
+
         @media (max-width: 576px) {
             .hero h1 { font-size: 2.2rem; }
             .hero .subtitle { font-size: 1.1rem; letter-spacing: 3px; }
+            .hero p { font-size: 1rem; }
             .super-button { padding: 12px 24px; font-size: 0.9rem; }
             .section-title { font-size: 2rem; }
+            .service-card { padding: 25px 15px; }
             .certificate-container { padding: 30px 20px; }
             .contact-form { padding: 25px 15px; }
             .mute-btn { width: 50px; height: 50px; bottom: 20px; right: 20px; }
@@ -785,6 +1466,7 @@
     </style>
 </head>
 <body>
+    <!-- Custom Cursor -->
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
 
@@ -818,7 +1500,7 @@
         <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
         <div class="nav-links" id="navLinks">
             <a href="#home" class="active">Home</a>
-            <a href="#about">About</a>
+                        <a href="#about">About</a>
             <a href="#certificate">Certificate</a>
             <a href="#contact">Start Project</a>
         </div>
@@ -837,56 +1519,9 @@
         </button>
     </section>
 
-    <!-- Services Section (Portfolio) -->
-    <section class="services-section" id="services">
-        <h2 class="section-title">My Work & Services</h2>
-        <p class="section-subtitle">I specialize in building high-performance websites and e-commerce stores that drive results.</p>
-        <div class="services-grid">
-            <div class="service-card reveal">
-                <div class="service-icon"><i class="fas fa-store"></i></div>
-                <h3>E-Commerce Stores</h3>
-                <p>Full-featured online stores with product management, payment gateways, and secure checkout.</p>
-                <div class="card-tags">
-                    <span class="work-tag">WooCommerce</span>
-                    <span class="work-tag">Shopify-style</span>
-                    <span class="work-tag">Payment Integration</span>
-                </div>
-                <ul class="service-features">
-                    <li>Unlimited products</li>
-                    <li>Mobile responsive</li>
-                    <li>SEO optimized</li>
-                </ul>
-            </div>
-            <div class="service-card reveal">
-                <div class="service-icon"><i class="fas fa-briefcase"></i></div>
-                <h3>Business Websites</h3>
-                <p>Professional corporate websites that build trust and convert visitors into customers.</p>
-                <div class="card-tags">
-                    <span class="work-tag">Custom Design</span>
-                    <span class="work-tag">Contact Forms</span>
-                    <span class="work-tag">Google Maps</span>
-                </div>
-                <ul class="service-features">
-                    <li>Fast loading</li>
-                    <li>Easy to update</li>
-                    <li>Lead generation</li>
-                </ul>
-            </div>
-            <div class="service-card reveal">
-                <div class="service-icon"><i class="fas fa-rocket"></i></div>
-                <h3>Landing Pages</h3>
-                <p>High-converting landing pages designed for marketing campaigns and product launches.</p>
-                <div class="card-tags">
-                    <span class="work-tag">Mailchimp</span>
-                    <span class="work-tag">A/B Testing</span>
-                    <span class="work-tag">Analytics</span>
-                </div>
-                <ul class="service-features">
-                    <li>Mobile-first</li>
-                    <li>Newsletter integration</li>
-                    <li>Call-to-action focus</li>
-                </ul>
-            </div>
+                        
+        
+            
         </div>
     </section>
 
@@ -929,6 +1564,7 @@
         <p class="section-subtitle">Fill in the details below so I can understand your vision and build exactly what you need.</p>
 
         <div class="contact-container">
+            <!-- Left Info -->
             <div class="contact-info">
                 <h3>Let's Build Something Great</h3>
                 <p>Ready to launch your website or online store? Answer the quick questions on the right and I'll get back to you with a plan and a price.</p>
@@ -964,6 +1600,7 @@
                 </div>
             </div>
 
+            <!-- Right: Multi-Step Form -->
             <div class="contact-form">
                 <div class="progress-bar-wrap">
                     <div class="progress-bar-fill" id="progressBar"></div>
@@ -974,10 +1611,12 @@
                 </div>
 
                 <form id="contactForm" action="https://formspree.io/f/xbdwrqon" method="POST">
-                    <!-- STEP 1 -->
+
+                    <!-- ── STEP 1: Basic Info ── -->
                     <div class="form-step active" id="step-1">
                         <div class="step-title"><span class="step-dot"></span> Basic Information</div>
                         <p class="step-desc">Let's start with some contact details.</p>
+
                         <div class="form-group revealed" style="--field-index:0">
                             <label for="fullName">Full Name <span class="req">*</span></label>
                             <input type="text" id="fullName" name="fullName" class="form-control" placeholder="Your full name" required>
@@ -997,108 +1636,230 @@
                         <div class="form-group revealed" style="--field-index:4">
                             <label>Preferred Way of Communication <span class="req">*</span></label>
                             <div class="choices-grid cols-2">
-                                <div class="choice-item"><input type="radio" name="communication" id="comm-whatsapp" value="WhatsApp" required><label class="choice-label" for="comm-whatsapp"><span class="choice-icon"></span> <i class="fab fa-whatsapp" style="color:#25d366"></i> WhatsApp</label></div>
-                                <div class="choice-item"><input type="radio" name="communication" id="comm-email" value="Email"><label class="choice-label" for="comm-email"><span class="choice-icon"></span> <i class="fas fa-envelope" style="color:#ab0202"></i> Email</label></div>
-                                <div class="choice-item"><input type="radio" name="communication" id="comm-call" value="Phone Call"><label class="choice-label" for="comm-call"><span class="choice-icon"></span> <i class="fas fa-phone" style="color:#aaa"></i> Phone Call</label></div>
-                                <div class="choice-item"><input type="radio" name="communication" id="comm-any" value="Any"><label class="choice-label" for="comm-any"><span class="choice-icon"></span> <i class="fas fa-globe" style="color:#aaa"></i> Any</label></div>
+                                <div class="choice-item">
+                                    <input type="radio" name="communication" id="comm-whatsapp" value="WhatsApp" required>
+                                    <label class="choice-label" for="comm-whatsapp"><span class="choice-icon"></span> <i class="fab fa-whatsapp" style="color:#25d366"></i> WhatsApp</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="communication" id="comm-email" value="Email">
+                                    <label class="choice-label" for="comm-email"><span class="choice-icon"></span> <i class="fas fa-envelope" style="color:#ab0202"></i> Email</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="communication" id="comm-call" value="Phone Call">
+                                    <label class="choice-label" for="comm-call"><span class="choice-icon"></span> <i class="fas fa-phone" style="color:#aaa"></i> Phone Call</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="communication" id="comm-any" value="Any">
+                                    <label class="choice-label" for="comm-any"><span class="choice-icon"></span> <i class="fas fa-globe" style="color:#aaa"></i> Any</label>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- STEP 2 -->
+                    <!-- ── STEP 2: Project Overview ── -->
                     <div class="form-step" id="step-2">
                         <div class="step-title"><span class="step-dot"></span> Project Overview</div>
                         <p class="step-desc">Tell me about the website you need.</p>
+
                         <div class="form-group revealed" style="--field-index:0">
                             <label>What type of website do you need? <span class="req">*</span></label>
                             <div class="choices-grid cols-2">
-                                <div class="choice-item"><input type="radio" name="siteType" id="type-business" value="Business" required><label class="choice-label" for="type-business"><span class="choice-icon"></span> <i class="fas fa-briefcase"></i> Business</label></div>
-                                <div class="choice-item"><input type="radio" name="siteType" id="type-ecom" value="E-Commerce Store"><label class="choice-label" for="type-ecom"><span class="choice-icon"></span> <i class="fas fa-store"></i> E-Commerce Store</label></div>
-                                <div class="choice-item"><input type="radio" name="siteType" id="type-portfolio" value="Portfolio"><label class="choice-label" for="type-portfolio"><span class="choice-icon"></span> <i class="fas fa-user-tie"></i> Portfolio</label></div>
-                                <div class="choice-item"><input type="radio" name="siteType" id="type-blog" value="Blog"><label class="choice-label" for="type-blog"><span class="choice-icon"></span> <i class="fas fa-blog"></i> Blog</label></div>
-                                <div class="choice-item"><input type="radio" name="siteType" id="type-landing" value="Landing Page"><label class="choice-label" for="type-landing"><span class="choice-icon"></span> <i class="fas fa-rocket"></i> Landing Page</label></div>
-                                <div class="choice-item"><input type="radio" name="siteType" id="type-other" value="Other"><label class="choice-label" for="type-other"><span class="choice-icon"></span> <i class="fas fa-ellipsis-h"></i> Other</label></div>
+                                <div class="choice-item">
+                                    <input type="radio" name="siteType" id="type-business" value="Business" required>
+                                    <label class="choice-label" for="type-business"><span class="choice-icon"></span> <i class="fas fa-briefcase"></i> Business</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="siteType" id="type-ecom" value="E-Commerce Store">
+                                    <label class="choice-label" for="type-ecom"><span class="choice-icon"></span> <i class="fas fa-store"></i> E-Commerce Store</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="siteType" id="type-portfolio" value="Portfolio">
+                                    <label class="choice-label" for="type-portfolio"><span class="choice-icon"></span> <i class="fas fa-user-tie"></i> Portfolio</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="siteType" id="type-blog" value="Blog">
+                                    <label class="choice-label" for="type-blog"><span class="choice-icon"></span> <i class="fas fa-blog"></i> Blog</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="siteType" id="type-landing" value="Landing Page">
+                                    <label class="choice-label" for="type-landing"><span class="choice-icon"></span> <i class="fas fa-rocket"></i> Landing Page</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="siteType" id="type-other" value="Other">
+                                    <label class="choice-label" for="type-other"><span class="choice-icon"></span> <i class="fas fa-ellipsis-h"></i> Other</label>
+                                </div>
                             </div>
                         </div>
+
                         <div class="form-group revealed" style="--field-index:1">
                             <label>Main goal of the website? <span class="req">*</span></label>
                             <div class="choices-grid cols-2">
-                                <div class="choice-item"><input type="radio" name="goal" id="goal-sell" value="Sell Products" required><label class="choice-label" for="goal-sell"><span class="choice-icon"></span> <i class="fas fa-shopping-cart"></i> Sell Products</label></div>
-                                <div class="choice-item"><input type="radio" name="goal" id="goal-leads" value="Generate Leads"><label class="choice-label" for="goal-leads"><span class="choice-icon"></span> <i class="fas fa-funnel-dollar"></i> Generate Leads</label></div>
-                                <div class="choice-item"><input type="radio" name="goal" id="goal-showcase" value="Showcase Work"><label class="choice-label" for="goal-showcase"><span class="choice-icon"></span> <i class="fas fa-images"></i> Showcase Work</label></div>
-                                <div class="choice-item"><input type="radio" name="goal" id="goal-info" value="Share Information"><label class="choice-label" for="goal-info"><span class="choice-icon"></span> <i class="fas fa-info-circle"></i> Share Information</label></div>
-                                <div class="choice-item"><input type="radio" name="goal" id="goal-booking" value="Take Bookings"><label class="choice-label" for="goal-booking"><span class="choice-icon"></span> <i class="fas fa-calendar-check"></i> Take Bookings</label></div>
-                                <div class="choice-item"><input type="radio" name="goal" id="goal-other" value="Other Goal"><label class="choice-label" for="goal-other"><span class="choice-icon"></span> <i class="fas fa-ellipsis-h"></i> Other</label></div>
+                                <div class="choice-item">
+                                    <input type="radio" name="goal" id="goal-sell" value="Sell Products" required>
+                                    <label class="choice-label" for="goal-sell"><span class="choice-icon"></span> <i class="fas fa-shopping-cart"></i> Sell Products</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="goal" id="goal-leads" value="Generate Leads">
+                                    <label class="choice-label" for="goal-leads"><span class="choice-icon"></span> <i class="fas fa-funnel-dollar"></i> Generate Leads</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="goal" id="goal-showcase" value="Showcase Work">
+                                    <label class="choice-label" for="goal-showcase"><span class="choice-icon"></span> <i class="fas fa-images"></i> Showcase Work</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="goal" id="goal-info" value="Share Information">
+                                    <label class="choice-label" for="goal-info"><span class="choice-icon"></span> <i class="fas fa-info-circle"></i> Share Information</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="goal" id="goal-booking" value="Take Bookings">
+                                    <label class="choice-label" for="goal-booking"><span class="choice-icon"></span> <i class="fas fa-calendar-check"></i> Take Bookings</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="goal" id="goal-other" value="Other Goal">
+                                    <label class="choice-label" for="goal-other"><span class="choice-icon"></span> <i class="fas fa-ellipsis-h"></i> Other</label>
+                                </div>
                             </div>
                         </div>
+
                         <div class="form-group revealed" style="--field-index:2">
                             <label>Do you already have a website?</label>
                             <div class="choices-grid cols-2">
-                                <div class="choice-item"><input type="radio" name="hasWebsite" id="web-yes" value="Yes" onclick="document.getElementById('existingUrl').classList.add('show')"><label class="choice-label" for="web-yes"><span class="choice-icon"></span> Yes</label></div>
-                                <div class="choice-item"><input type="radio" name="hasWebsite" id="web-no" value="No" onclick="document.getElementById('existingUrl').classList.remove('show')"><label class="choice-label" for="web-no"><span class="choice-icon"></span> No</label></div>
+                                <div class="choice-item">
+                                    <input type="radio" name="hasWebsite" id="web-yes" value="Yes" onclick="document.getElementById('existingUrl').classList.add('show')">
+                                    <label class="choice-label" for="web-yes"><span class="choice-icon"></span> Yes</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="hasWebsite" id="web-no" value="No" onclick="document.getElementById('existingUrl').classList.remove('show')">
+                                    <label class="choice-label" for="web-no"><span class="choice-icon"></span> No</label>
+                                </div>
                             </div>
-                            <div class="conditional-field" id="existingUrl"><input type="url" name="existingWebsite" class="form-control" placeholder="https://your-current-website.com"></div>
+                            <div class="conditional-field" id="existingUrl">
+                                <input type="url" name="existingWebsite" class="form-control" placeholder="https://your-current-website.com">
+                            </div>
                         </div>
                     </div>
 
-                    <!-- STEP 3 -->
+                    <!-- ── STEP 3: Branding & Design ── -->
                     <div class="form-step" id="step-3">
                         <div class="step-title"><span class="step-dot"></span> Branding & Design</div>
                         <p class="step-desc">Help me understand your brand identity.</p>
+
                         <div class="form-group revealed" style="--field-index:0">
                             <label>Do you have a logo?</label>
                             <div class="choices-grid cols-2">
-                                <div class="choice-item"><input type="radio" name="hasLogo" id="logo-yes" value="Yes"><label class="choice-label" for="logo-yes"><span class="choice-icon"></span> Yes, I have one</label></div>
-                                <div class="choice-item"><input type="radio" name="hasLogo" id="logo-no" value="No"><label class="choice-label" for="logo-no"><span class="choice-icon"></span> No, I need one</label></div>
+                                <div class="choice-item">
+                                    <input type="radio" name="hasLogo" id="logo-yes" value="Yes">
+                                    <label class="choice-label" for="logo-yes"><span class="choice-icon"></span> Yes, I have one</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="hasLogo" id="logo-no" value="No">
+                                    <label class="choice-label" for="logo-no"><span class="choice-icon"></span> No, I need one</label>
+                                </div>
                             </div>
                         </div>
+
                         <div class="form-group revealed" style="--field-index:1">
                             <label>Do you have brand colors?</label>
                             <div class="choices-grid cols-2">
-                                <div class="choice-item"><input type="radio" name="hasColors" id="colors-yes" value="Yes" onclick="document.getElementById('colorsField').classList.add('show')"><label class="choice-label" for="colors-yes"><span class="choice-icon"></span> Yes</label></div>
-                                <div class="choice-item"><input type="radio" name="hasColors" id="colors-no" value="No" onclick="document.getElementById('colorsField').classList.remove('show')"><label class="choice-label" for="colors-no"><span class="choice-icon"></span> No / Let you decide</label></div>
+                                <div class="choice-item">
+                                    <input type="radio" name="hasColors" id="colors-yes" value="Yes" onclick="document.getElementById('colorsField').classList.add('show')">
+                                    <label class="choice-label" for="colors-yes"><span class="choice-icon"></span> Yes</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="hasColors" id="colors-no" value="No" onclick="document.getElementById('colorsField').classList.remove('show')">
+                                    <label class="choice-label" for="colors-no"><span class="choice-icon"></span> No / Let you decide</label>
+                                </div>
                             </div>
-                            <div class="conditional-field" id="colorsField"><input type="text" name="brandColors" class="form-control" placeholder="e.g. Red #ab0202, Black, White"></div>
+                            <div class="conditional-field" id="colorsField">
+                                <input type="text" name="brandColors" class="form-control" placeholder="e.g. Red #ab0202, Black, White">
+                            </div>
                         </div>
+
                         <div class="form-group revealed" style="--field-index:2">
                             <label for="refLinks">Any websites you like as reference?</label>
                             <input type="text" id="refLinks" name="referenceLinks" class="form-control" placeholder="https://example1.com, https://example2.com">
                         </div>
+
                         <div class="form-group revealed" style="--field-index:3">
                             <label>What style do you prefer? <span class="req">*</span></label>
                             <div class="choices-grid cols-3">
-                                <div class="choice-item"><input type="radio" name="style" id="style-modern" value="Modern" required><label class="choice-label" for="style-modern"><span class="choice-icon"></span> Modern</label></div>
-                                <div class="choice-item"><input type="radio" name="style" id="style-minimal" value="Minimal"><label class="choice-label" for="style-minimal"><span class="choice-icon"></span> Minimal</label></div>
-                                <div class="choice-item"><input type="radio" name="style" id="style-corporate" value="Corporate"><label class="choice-label" for="style-corporate"><span class="choice-icon"></span> Corporate</label></div>
-                                <div class="choice-item"><input type="radio" name="style" id="style-bold" value="Bold"><label class="choice-label" for="style-bold"><span class="choice-icon"></span> Bold</label></div>
-                                <div class="choice-item"><input type="radio" name="style" id="style-luxury" value="Luxury"><label class="choice-label" for="style-luxury"><span class="choice-icon"></span> Luxury</label></div>
-                                <div class="choice-item"><input type="radio" name="style" id="style-fun" value="Fun / Playful"><label class="choice-label" for="style-fun"><span class="choice-icon"></span> Fun / Playful</label></div>
+                                <div class="choice-item">
+                                    <input type="radio" name="style" id="style-modern" value="Modern" required>
+                                    <label class="choice-label" for="style-modern"><span class="choice-icon"></span> Modern</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="style" id="style-minimal" value="Minimal">
+                                    <label class="choice-label" for="style-minimal"><span class="choice-icon"></span> Minimal</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="style" id="style-corporate" value="Corporate">
+                                    <label class="choice-label" for="style-corporate"><span class="choice-icon"></span> Corporate</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="style" id="style-bold" value="Bold">
+                                    <label class="choice-label" for="style-bold"><span class="choice-icon"></span> Bold</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="style" id="style-luxury" value="Luxury">
+                                    <label class="choice-label" for="style-luxury"><span class="choice-icon"></span> Luxury</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="style" id="style-fun" value="Fun / Playful">
+                                    <label class="choice-label" for="style-fun"><span class="choice-icon"></span> Fun / Playful</label>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- STEP 4 -->
+                    <!-- ── STEP 4: Content ── -->
                     <div class="form-step" id="step-4">
                         <div class="step-title"><span class="step-dot"></span> Content</div>
                         <p class="step-desc">What content will go on the website?</p>
+
                         <div class="form-group revealed" style="--field-index:0">
                             <label>Do you have the content ready?</label>
                             <div class="choices-grid cols-2">
-                                <div class="choice-item"><input type="radio" name="contentReady" id="content-yes" value="Yes, fully ready"><label class="choice-label" for="content-yes"><span class="choice-icon"></span> Yes, fully ready</label></div>
-                                <div class="choice-item"><input type="radio" name="contentReady" id="content-partial" value="Partially ready"><label class="choice-label" for="content-partial"><span class="choice-icon"></span> Partially ready</label></div>
-                                <div class="choice-item"><input type="radio" name="contentReady" id="content-no" value="No, need help"><label class="choice-label" for="content-no"><span class="choice-icon"></span> No, need help</label></div>
-                                <div class="choice-item"><input type="radio" name="contentReady" id="content-later" value="Will provide later"><label class="choice-label" for="content-later"><span class="choice-icon"></span> Will provide later</label></div>
+                                <div class="choice-item">
+                                    <input type="radio" name="contentReady" id="content-yes" value="Yes, fully ready">
+                                    <label class="choice-label" for="content-yes"><span class="choice-icon"></span> Yes, fully ready</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="contentReady" id="content-partial" value="Partially ready">
+                                    <label class="choice-label" for="content-partial"><span class="choice-icon"></span> Partially ready</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="contentReady" id="content-no" value="No, need help">
+                                    <label class="choice-label" for="content-no"><span class="choice-icon"></span> No, need help</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="contentReady" id="content-later" value="Will provide later">
+                                    <label class="choice-label" for="content-later"><span class="choice-icon"></span> Will provide later</label>
+                                </div>
                             </div>
                         </div>
+
                         <div class="form-group revealed" style="--field-index:1">
                             <label>Will you provide text and images?</label>
                             <div class="choices-grid cols-2">
-                                <div class="choice-item"><input type="radio" name="provideMedia" id="media-both" value="Both text and images"><label class="choice-label" for="media-both"><span class="choice-icon"></span> Both text & images</label></div>
-                                <div class="choice-item"><input type="radio" name="provideMedia" id="media-text" value="Text only"><label class="choice-label" for="media-text"><span class="choice-icon"></span> Text only</label></div>
-                                <div class="choice-item"><input type="radio" name="provideMedia" id="media-images" value="Images only"><label class="choice-label" for="media-images"><span class="choice-icon"></span> Images only</label></div>
-                                <div class="choice-item"><input type="radio" name="provideMedia" id="media-none" value="Neither, need help"><label class="choice-label" for="media-none"><span class="choice-icon"></span> Need help with both</label></div>
+                                <div class="choice-item">
+                                    <input type="radio" name="provideMedia" id="media-both" value="Both text and images">
+                                    <label class="choice-label" for="media-both"><span class="choice-icon"></span> Both text & images</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="provideMedia" id="media-text" value="Text only">
+                                    <label class="choice-label" for="media-text"><span class="choice-icon"></span> Text only</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="provideMedia" id="media-images" value="Images only">
+                                    <label class="choice-label" for="media-images"><span class="choice-icon"></span> Images only</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="provideMedia" id="media-none" value="Neither, need help">
+                                    <label class="choice-label" for="media-none"><span class="choice-icon"></span> Need help with both</label>
+                                </div>
                             </div>
                         </div>
+
                         <div class="form-group revealed" style="--field-index:2">
                             <label for="numPages">Approximate number of pages needed</label>
                             <select id="numPages" name="numPages" class="form-control">
@@ -1111,155 +1872,305 @@
                                 <option value="Not sure">Not sure yet</option>
                             </select>
                         </div>
+
                         <div class="form-group revealed" style="--field-index:3">
                             <label for="pagesList">List the pages you want</label>
                             <input type="text" id="pagesList" name="pagesList" class="form-control" placeholder="e.g. Home, About, Services, Portfolio, Contact">
                         </div>
                     </div>
 
-                    <!-- STEP 5 -->
+                    <!-- ── STEP 5: Features ── -->
                     <div class="form-step" id="step-5">
                         <div class="step-title"><span class="step-dot"></span> Features & Functionality</div>
                         <p class="step-desc">Select all features you'd like on your website.</p>
+
                         <div class="form-group revealed" style="--field-index:0">
                             <label>What features do you need? (select all that apply)</label>
                             <div class="choices-grid cols-2">
-                                <div class="choice-item"><input type="checkbox" name="features" id="feat-contact" value="Contact Form"><label class="choice-label" for="feat-contact"><span class="choice-icon"></span> <i class="fas fa-envelope"></i> Contact Form</label></div>
-                                <div class="choice-item"><input type="checkbox" name="features" id="feat-booking" value="Booking System"><label class="choice-label" for="feat-booking"><span class="choice-icon"></span> <i class="fas fa-calendar"></i> Booking System</label></div>
-                                <div class="choice-item"><input type="checkbox" name="features" id="feat-payment" value="Payment Gateway"><label class="choice-label" for="feat-payment"><span class="choice-icon"></span> <i class="fas fa-credit-card"></i> Payment Gateway</label></div>
-                                <div class="choice-item"><input type="checkbox" name="features" id="feat-chat" value="Live Chat"><label class="choice-label" for="feat-chat"><span class="choice-icon"></span> <i class="fas fa-comments"></i> Live Chat</label></div>
-                                <div class="choice-item"><input type="checkbox" name="features" id="feat-whatsapp" value="WhatsApp Button"><label class="choice-label" for="feat-whatsapp"><span class="choice-icon"></span> <i class="fab fa-whatsapp"></i> WhatsApp Button</label></div>
-                                <div class="choice-item"><input type="checkbox" name="features" id="feat-gallery" value="Photo Gallery"><label class="choice-label" for="feat-gallery"><span class="choice-icon"></span> <i class="fas fa-images"></i> Photo Gallery</label></div>
-                                <div class="choice-item"><input type="checkbox" name="features" id="feat-blog" value="Blog Section"><label class="choice-label" for="feat-blog"><span class="choice-icon"></span> <i class="fas fa-blog"></i> Blog Section</label></div>
-                                <div class="choice-item"><input type="checkbox" name="features" id="feat-map" value="Google Maps"><label class="choice-label" for="feat-map"><span class="choice-icon"></span> <i class="fas fa-map-marker-alt"></i> Google Maps</label></div>
+                                <div class="choice-item">
+                                    <input type="checkbox" name="features" id="feat-contact" value="Contact Form">
+                                    <label class="choice-label" for="feat-contact"><span class="choice-icon"></span> <i class="fas fa-envelope"></i> Contact Form</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="checkbox" name="features" id="feat-booking" value="Booking System">
+                                    <label class="choice-label" for="feat-booking"><span class="choice-icon"></span> <i class="fas fa-calendar"></i> Booking System</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="checkbox" name="features" id="feat-payment" value="Payment Gateway">
+                                    <label class="choice-label" for="feat-payment"><span class="choice-icon"></span> <i class="fas fa-credit-card"></i> Payment Gateway</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="checkbox" name="features" id="feat-chat" value="Live Chat">
+                                    <label class="choice-label" for="feat-chat"><span class="choice-icon"></span> <i class="fas fa-comments"></i> Live Chat</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="checkbox" name="features" id="feat-whatsapp" value="WhatsApp Button">
+                                    <label class="choice-label" for="feat-whatsapp"><span class="choice-icon"></span> <i class="fab fa-whatsapp"></i> WhatsApp Button</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="checkbox" name="features" id="feat-gallery" value="Photo Gallery">
+                                    <label class="choice-label" for="feat-gallery"><span class="choice-icon"></span> <i class="fas fa-images"></i> Photo Gallery</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="checkbox" name="features" id="feat-blog" value="Blog Section">
+                                    <label class="choice-label" for="feat-blog"><span class="choice-icon"></span> <i class="fas fa-blog"></i> Blog Section</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="checkbox" name="features" id="feat-map" value="Google Maps">
+                                    <label class="choice-label" for="feat-map"><span class="choice-icon"></span> <i class="fas fa-map-marker-alt"></i> Google Maps</label>
+                                </div>
                             </div>
                         </div>
+
                         <div class="form-group revealed" style="--field-index:1">
                             <label>Do you need user accounts or a login system?</label>
                             <div class="choices-grid cols-3">
-                                <div class="choice-item"><input type="radio" name="loginSystem" id="login-yes" value="Yes"><label class="choice-label" for="login-yes"><span class="choice-icon"></span> Yes</label></div>
-                                <div class="choice-item"><input type="radio" name="loginSystem" id="login-no" value="No"><label class="choice-label" for="login-no"><span class="choice-icon"></span> No</label></div>
-                                <div class="choice-item"><input type="radio" name="loginSystem" id="login-unsure" value="Not sure"><label class="choice-label" for="login-unsure"><span class="choice-icon"></span> Not sure</label></div>
+                                <div class="choice-item">
+                                    <input type="radio" name="loginSystem" id="login-yes" value="Yes">
+                                    <label class="choice-label" for="login-yes"><span class="choice-icon"></span> Yes</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="loginSystem" id="login-no" value="No">
+                                    <label class="choice-label" for="login-no"><span class="choice-icon"></span> No</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="loginSystem" id="login-unsure" value="Not sure">
+                                    <label class="choice-label" for="login-unsure"><span class="choice-icon"></span> Not sure</label>
+                                </div>
                             </div>
                         </div>
+
                         <div class="form-group revealed" style="--field-index:2">
                             <label>Do you need multi-language support?</label>
                             <div class="choices-grid cols-3">
-                                <div class="choice-item"><input type="radio" name="multiLang" id="lang-yes" value="Yes"><label class="choice-label" for="lang-yes"><span class="choice-icon"></span> Yes</label></div>
-                                <div class="choice-item"><input type="radio" name="multiLang" id="lang-no" value="No"><label class="choice-label" for="lang-no"><span class="choice-icon"></span> No</label></div>
-                                <div class="choice-item"><input type="radio" name="multiLang" id="lang-maybe" value="Maybe later"><label class="choice-label" for="lang-maybe"><span class="choice-icon"></span> Maybe later</label></div>
+                                <div class="choice-item">
+                                    <input type="radio" name="multiLang" id="lang-yes" value="Yes">
+                                    <label class="choice-label" for="lang-yes"><span class="choice-icon"></span> Yes</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="multiLang" id="lang-no" value="No">
+                                    <label class="choice-label" for="lang-no"><span class="choice-icon"></span> No</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="multiLang" id="lang-maybe" value="Maybe later">
+                                    <label class="choice-label" for="lang-maybe"><span class="choice-icon"></span> Maybe later</label>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- STEP 6 -->
+                    <!-- ── STEP 6: E-Commerce ── -->
                     <div class="form-step" id="step-6">
                         <div class="step-title"><span class="step-dot"></span> E-Commerce Details</div>
                         <p class="step-desc">Only relevant if you're building an online store — skip if not applicable.</p>
+
                         <div class="form-group revealed" style="--field-index:0">
                             <label>Approximate number of products</label>
                             <div class="choices-grid cols-2">
-                                <div class="choice-item"><input type="radio" name="numProducts" id="prod-small" value="1-20 products"><label class="choice-label" for="prod-small"><span class="choice-icon"></span> 1 – 20 products</label></div>
-                                <div class="choice-item"><input type="radio" name="numProducts" id="prod-med" value="21-100 products"><label class="choice-label" for="prod-med"><span class="choice-icon"></span> 21 – 100 products</label></div>
-                                <div class="choice-item"><input type="radio" name="numProducts" id="prod-large" value="100+ products"><label class="choice-label" for="prod-large"><span class="choice-icon"></span> 100+ products</label></div>
-                                <div class="choice-item"><input type="radio" name="numProducts" id="prod-na" value="Not applicable"><label class="choice-label" for="prod-na"><span class="choice-icon"></span> Not applicable</label></div>
+                                <div class="choice-item">
+                                    <input type="radio" name="numProducts" id="prod-small" value="1-20 products">
+                                    <label class="choice-label" for="prod-small"><span class="choice-icon"></span> 1 – 20 products</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="numProducts" id="prod-med" value="21-100 products">
+                                    <label class="choice-label" for="prod-med"><span class="choice-icon"></span> 21 – 100 products</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="numProducts" id="prod-large" value="100+ products">
+                                    <label class="choice-label" for="prod-large"><span class="choice-icon"></span> 100+ products</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="numProducts" id="prod-na" value="Not applicable">
+                                    <label class="choice-label" for="prod-na"><span class="choice-icon"></span> Not applicable</label>
+                                </div>
                             </div>
                         </div>
+
                         <div class="form-group revealed" style="--field-index:1">
                             <label>Payment methods needed (select all)</label>
                             <div class="choices-grid cols-2">
-                                <div class="choice-item"><input type="checkbox" name="payment" id="pay-card" value="Credit / Debit Card"><label class="choice-label" for="pay-card"><span class="choice-icon"></span> <i class="fas fa-credit-card"></i> Credit / Debit Card</label></div>
-                                <div class="choice-item"><input type="checkbox" name="payment" id="pay-paypal" value="PayPal"><label class="choice-label" for="pay-paypal"><span class="choice-icon"></span> <i class="fab fa-paypal"></i> PayPal</label></div>
-                                <div class="choice-item"><input type="checkbox" name="payment" id="pay-cod" value="Cash on Delivery"><label class="choice-label" for="pay-cod"><span class="choice-icon"></span> <i class="fas fa-money-bill"></i> Cash on Delivery</label></div>
-                                <div class="choice-item"><input type="checkbox" name="payment" id="pay-local" value="Local Payment Gateway"><label class="choice-label" for="pay-local"><span class="choice-icon"></span> <i class="fas fa-landmark"></i> Local Payment Gateway</label></div>
+                                <div class="choice-item">
+                                    <input type="checkbox" name="payment" id="pay-card" value="Credit / Debit Card">
+                                    <label class="choice-label" for="pay-card"><span class="choice-icon"></span> <i class="fas fa-credit-card"></i> Credit / Debit Card</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="checkbox" name="payment" id="pay-paypal" value="PayPal">
+                                    <label class="choice-label" for="pay-paypal"><span class="choice-icon"></span> <i class="fab fa-paypal"></i> PayPal</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="checkbox" name="payment" id="pay-cod" value="Cash on Delivery">
+                                    <label class="choice-label" for="pay-cod"><span class="choice-icon"></span> <i class="fas fa-money-bill"></i> Cash on Delivery</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="checkbox" name="payment" id="pay-local" value="Local Payment Gateway">
+                                    <label class="choice-label" for="pay-local"><span class="choice-icon"></span> <i class="fas fa-landmark"></i> Local Payment Gateway</label>
+                                </div>
                             </div>
                         </div>
+
                         <div class="form-group revealed" style="--field-index:2">
                             <label for="shipping">Shipping details</label>
                             <input type="text" id="shipping" name="shipping" class="form-control" placeholder="e.g. Egypt only, free shipping over 500 EGP, etc.">
                         </div>
+
                         <div class="form-group revealed" style="--field-index:3">
                             <label>Do you want discount codes / offers system?</label>
                             <div class="choices-grid cols-3">
-                                <div class="choice-item"><input type="radio" name="discounts" id="disc-yes" value="Yes"><label class="choice-label" for="disc-yes"><span class="choice-icon"></span> Yes</label></div>
-                                <div class="choice-item"><input type="radio" name="discounts" id="disc-no" value="No"><label class="choice-label" for="disc-no"><span class="choice-icon"></span> No</label></div>
-                                <div class="choice-item"><input type="radio" name="discounts" id="disc-later" value="Maybe later"><label class="choice-label" for="disc-later"><span class="choice-icon"></span> Maybe later</label></div>
+                                <div class="choice-item">
+                                    <input type="radio" name="discounts" id="disc-yes" value="Yes">
+                                    <label class="choice-label" for="disc-yes"><span class="choice-icon"></span> Yes</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="discounts" id="disc-no" value="No">
+                                    <label class="choice-label" for="disc-no"><span class="choice-icon"></span> No</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="discounts" id="disc-later" value="Maybe later">
+                                    <label class="choice-label" for="disc-later"><span class="choice-icon"></span> Maybe later</label>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- STEP 7 -->
+                    <!-- ── STEP 7: Technical ── -->
                     <div class="form-step" id="step-7">
                         <div class="step-title"><span class="step-dot"></span> Technical Details</div>
                         <p class="step-desc">Domain, hosting and setup info.</p>
+
                         <div class="form-group revealed" style="--field-index:0">
                             <label>Do you have a domain name?</label>
                             <div class="choices-grid cols-2">
-                                <div class="choice-item"><input type="radio" name="hasDomain" id="domain-yes" value="Yes" onclick="document.getElementById('domainField').classList.add('show')"><label class="choice-label" for="domain-yes"><span class="choice-icon"></span> Yes</label></div>
-                                <div class="choice-item"><input type="radio" name="hasDomain" id="domain-no" value="No" onclick="document.getElementById('domainField').classList.remove('show')"><label class="choice-label" for="domain-no"><span class="choice-icon"></span> No</label></div>
+                                <div class="choice-item">
+                                    <input type="radio" name="hasDomain" id="domain-yes" value="Yes" onclick="document.getElementById('domainField').classList.add('show')">
+                                    <label class="choice-label" for="domain-yes"><span class="choice-icon"></span> Yes</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="hasDomain" id="domain-no" value="No" onclick="document.getElementById('domainField').classList.remove('show')">
+                                    <label class="choice-label" for="domain-no"><span class="choice-icon"></span> No</label>
+                                </div>
                             </div>
-                            <div class="conditional-field" id="domainField"><input type="text" name="domainName" class="form-control" placeholder="e.g. www.mybrand.com"></div>
+                            <div class="conditional-field" id="domainField">
+                                <input type="text" name="domainName" class="form-control" placeholder="e.g. www.mybrand.com">
+                            </div>
                         </div>
+
                         <div class="form-group revealed" style="--field-index:1">
                             <label>Do you have hosting?</label>
                             <div class="choices-grid cols-3">
-                                <div class="choice-item"><input type="radio" name="hasHosting" id="host-yes" value="Yes"><label class="choice-label" for="host-yes"><span class="choice-icon"></span> Yes</label></div>
-                                <div class="choice-item"><input type="radio" name="hasHosting" id="host-no" value="No"><label class="choice-label" for="host-no"><span class="choice-icon"></span> No</label></div>
-                                <div class="choice-item"><input type="radio" name="hasHosting" id="host-unsure" value="Not sure"><label class="choice-label" for="host-unsure"><span class="choice-icon"></span> Not sure</label></div>
+                                <div class="choice-item">
+                                    <input type="radio" name="hasHosting" id="host-yes" value="Yes">
+                                    <label class="choice-label" for="host-yes"><span class="choice-icon"></span> Yes</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="hasHosting" id="host-no" value="No">
+                                    <label class="choice-label" for="host-no"><span class="choice-icon"></span> No</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="hasHosting" id="host-unsure" value="Not sure">
+                                    <label class="choice-label" for="host-unsure"><span class="choice-icon"></span> Not sure</label>
+                                </div>
                             </div>
                         </div>
+
                         <div class="form-group revealed" style="--field-index:2">
                             <label>Do you need help with setup & launch?</label>
                             <div class="choices-grid cols-3">
-                                <div class="choice-item"><input type="radio" name="needSetup" id="setup-yes" value="Yes"><label class="choice-label" for="setup-yes"><span class="choice-icon"></span> Yes please</label></div>
-                                <div class="choice-item"><input type="radio" name="needSetup" id="setup-no" value="No"><label class="choice-label" for="setup-no"><span class="choice-icon"></span> I'll manage it</label></div>
-                                <div class="choice-item"><input type="radio" name="needSetup" id="setup-discuss" value="Let's discuss"><label class="choice-label" for="setup-discuss"><span class="choice-icon"></span> Let's discuss</label></div>
+                                <div class="choice-item">
+                                    <input type="radio" name="needSetup" id="setup-yes" value="Yes">
+                                    <label class="choice-label" for="setup-yes"><span class="choice-icon"></span> Yes please</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="needSetup" id="setup-no" value="No">
+                                    <label class="choice-label" for="setup-no"><span class="choice-icon"></span> I'll manage it</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="needSetup" id="setup-discuss" value="Let's discuss">
+                                    <label class="choice-label" for="setup-discuss"><span class="choice-icon"></span> Let's discuss</label>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- STEP 8 -->
+                    <!-- ── STEP 8: Timeline & Budget ── -->
                     <div class="form-step" id="step-8">
                         <div class="step-title"><span class="step-dot"></span> Timeline & Budget</div>
                         <p class="step-desc">When do you need it, and what's your budget?</p>
+
                         <div class="form-group revealed" style="--field-index:0">
                             <label>When do you want the project delivered?</label>
                             <div class="choices-grid cols-2">
-                                <div class="choice-item"><input type="radio" name="timeline" id="time-asap" value="ASAP (within 1 week)"><label class="choice-label" for="time-asap"><span class="choice-icon"></span> <i class="fas fa-bolt"></i> ASAP (1 week)</label></div>
-                                <div class="choice-item"><input type="radio" name="timeline" id="time-2weeks" value="2 weeks"><label class="choice-label" for="time-2weeks"><span class="choice-icon"></span> 2 weeks</label></div>
-                                <div class="choice-item"><input type="radio" name="timeline" id="time-month" value="1 month"><label class="choice-label" for="time-month"><span class="choice-icon"></span> 1 month</label></div>
-                                <div class="choice-item"><input type="radio" name="timeline" id="time-flexible" value="Flexible"><label class="choice-label" for="time-flexible"><span class="choice-icon"></span> Flexible</label></div>
+                                <div class="choice-item">
+                                    <input type="radio" name="timeline" id="time-asap" value="ASAP (within 1 week)">
+                                    <label class="choice-label" for="time-asap"><span class="choice-icon"></span> <i class="fas fa-bolt"></i> ASAP (1 week)</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="timeline" id="time-2weeks" value="2 weeks">
+                                    <label class="choice-label" for="time-2weeks"><span class="choice-icon"></span> 2 weeks</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="timeline" id="time-month" value="1 month">
+                                    <label class="choice-label" for="time-month"><span class="choice-icon"></span> 1 month</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="timeline" id="time-flexible" value="Flexible">
+                                    <label class="choice-label" for="time-flexible"><span class="choice-icon"></span> Flexible</label>
+                                </div>
                             </div>
                         </div>
+
                         <div class="form-group revealed" style="--field-index:1">
                             <label>What is your budget range?</label>
                             <div class="choices-grid cols-2">
-                                <div class="choice-item"><input type="radio" name="budget" id="bud-small" value="Under $200"><label class="choice-label" for="bud-small"><span class="choice-icon"></span> Under $200</label></div>
-                                <div class="choice-item"><input type="radio" name="budget" id="bud-med" value="$200 – $500"><label class="choice-label" for="bud-med"><span class="choice-icon"></span> $200 – $500</label></div>
-                                <div class="choice-item"><input type="radio" name="budget" id="bud-large" value="$500 – $1000"><label class="choice-label" for="bud-large"><span class="choice-icon"></span> $500 – $1,000</label></div>
-                                <div class="choice-item"><input type="radio" name="budget" id="bud-open" value="$1000+"><label class="choice-label" for="bud-open"><span class="choice-icon"></span> $1,000+</label></div>
-                                <div class="choice-item"><input type="radio" name="budget" id="bud-discuss" value="Let's discuss"><label class="choice-label" for="bud-discuss"><span class="choice-icon"></span> Let's discuss</label></div>
+                                <div class="choice-item">
+                                    <input type="radio" name="budget" id="bud-small" value="Under $200">
+                                    <label class="choice-label" for="bud-small"><span class="choice-icon"></span> Under $200</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="budget" id="bud-med" value="$200 – $500">
+                                    <label class="choice-label" for="bud-med"><span class="choice-icon"></span> $200 – $500</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="budget" id="bud-large" value="$500 – $1000">
+                                    <label class="choice-label" for="bud-large"><span class="choice-icon"></span> $500 – $1,000</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="budget" id="bud-open" value="$1000+">
+                                    <label class="choice-label" for="bud-open"><span class="choice-icon"></span> $1,000+</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="budget" id="bud-discuss" value="Let's discuss">
+                                    <label class="choice-label" for="bud-discuss"><span class="choice-icon"></span> Let's discuss</label>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- STEP 9 -->
+                    <!-- ── STEP 9: Additional Notes ── -->
                     <div class="form-step" id="step-9">
                         <div class="step-title"><span class="step-dot"></span> Additional Notes</div>
                         <p class="step-desc">Anything else you'd like me to know before we start?</p>
+
                         <div class="form-group revealed" style="--field-index:0">
                             <label for="notes">Extra details, special requests, or questions</label>
                             <textarea id="notes" name="notes" class="form-control" placeholder="Tell me anything else that would help — special requirements, inspiration, concerns, questions..."></textarea>
                         </div>
                     </div>
 
+                    <!-- Hidden fields -->
                     <input type="hidden" name="_subject" value="New Website Project Request">
                     <input type="text" name="_gotcha" style="display:none">
 
+                    <!-- Navigation -->
                     <div class="form-nav">
-                        <button type="button" class="btn-prev" id="btnPrev" style="display:none" onclick="changeStep(-1)"><i class="fas fa-arrow-left"></i> Back</button>
-                        <button type="button" class="btn-next" id="btnNext" onclick="changeStep(1)">Next <i class="fas fa-arrow-right"></i></button>
-                        <button type="submit" class="submit-btn" id="submitBtn" style="display:none"><i class="fas fa-paper-plane"></i> <span>SUBMIT</span></button>
+                        <button type="button" class="btn-prev" id="btnPrev" style="display:none" onclick="changeStep(-1)">
+                            <i class="fas fa-arrow-left"></i> Back
+                        </button>
+                        <button type="button" class="btn-next" id="btnNext" onclick="changeStep(1)">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <button type="submit" class="submit-btn" id="submitBtn" style="display:none">
+                            <i class="fas fa-paper-plane"></i> <span>SUBMIT</span>
+                        </button>
                     </div>
                 </form>
             </div>
@@ -1303,13 +2214,14 @@
         </div>
     </footer>
 
+    <!-- Music -->
     <audio id="background-music" loop>
         <source src="https://github.com/seifyasser8/VA.github.io/raw/refs/heads/main/Cigarettes%20After%20Sex%20X%20Beach%20House%20Type%20Beat%20-%20'tired%20love'%20-%20blossom.mp3" type="audio/mpeg">
     </audio>
     <button class="mute-btn" id="muteBtn"><i class="fas fa-volume-up"></i></button>
 
     <script>
-        // Custom Cursor
+        // ── 1. Custom Cursor ──
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorOutline = document.querySelector('.cursor-outline');
         window.addEventListener('mousemove', (e) => {
@@ -1322,21 +2234,21 @@
             el.addEventListener('mouseleave', () => document.body.classList.remove('hover-target'));
         });
 
-        // Mobile Menu
+        // ── 2. Mobile Menu ──
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinksMobile = document.getElementById('navLinks');
+        const navLinks = document.getElementById('navLinks');
         mobileMenuBtn.addEventListener('click', () => {
-            navLinksMobile.classList.toggle('active');
-            mobileMenuBtn.innerHTML = navLinksMobile.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         });
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
-                navLinksMobile.classList.remove('active');
+                navLinks.classList.remove('active');
                 mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
             });
         });
 
-        // Reveal sections on Explore button
+        // ── 3. Explore Button – Reveal Sections ──
         const exploreServicesBtn = document.getElementById('exploreServicesBtn');
         const sectionsToReveal = [
             document.getElementById('services'),
@@ -1345,9 +2257,11 @@
             document.getElementById('contact'),
             document.querySelector('.footer')
         ];
+        document.body.classList.add('no-scroll');
         let isFirstClick = true;
 
         exploreServicesBtn.addEventListener('click', () => {
+            document.body.classList.remove('no-scroll');
             if (isFirstClick) {
                 isFirstClick = false;
                 sectionsToReveal.forEach((section, index) => {
@@ -1357,6 +2271,7 @@
                             if (section.id === 'services') {
                                 const cards = section.querySelectorAll('.service-card');
                                 cards.forEach((card, i) => {
+                                    card.style.setProperty('--card-index', i);
                                     setTimeout(() => card.classList.add('active'), i * 100 + 300);
                                 });
                             }
@@ -1389,12 +2304,12 @@
             }
         });
 
-        // Certificate button
+        // ── 4. Certificate Button ──
         document.getElementById('viewCertificateBtn').addEventListener('click', () => {
             window.open('https://savanna.alxafrica.com/certificates/ByHL7YcMrX', '_blank');
         });
 
-        // 3D tilt on cards
+        // ── 5. 3D Tilt on Cards ──
         document.querySelectorAll('.service-card').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
@@ -1412,15 +2327,15 @@
             });
         });
 
-        // Scroll reveal for elements with .reveal class
-        function revealOnScroll() {
+        // ── 6. Scroll Reveal ──
+        const revealOnScroll = () => {
             document.querySelectorAll('.reveal').forEach(el => {
                 if (el.getBoundingClientRect().top < window.innerHeight - 150) el.classList.add('active');
             });
-        }
+        };
         window.addEventListener('scroll', revealOnScroll);
 
-        // Navbar active link
+        // ── 7. Navbar Scroll ──
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.navbar');
             navbar.style.padding = window.scrollY > 100 ? '15px 5%' : '20px 5%';
@@ -1436,7 +2351,7 @@
             revealOnScroll();
         });
 
-        // Music toggle
+        // ── 8. Music Toggle ──
         const muteBtn = document.getElementById('muteBtn');
         const bgMusic = document.getElementById('background-music');
         muteBtn.addEventListener('click', () => {
@@ -1451,11 +2366,11 @@
             }
         });
 
-        // Copy protection
+        // ── 9. Copy Protection ──
         document.addEventListener('copy', e => { e.preventDefault(); alert('Copying content from this website is not allowed.'); });
         document.addEventListener('contextmenu', e => e.preventDefault());
 
-        // Floating elements
+        // ── 10. Floating Elements ──
         window.addEventListener('load', () => {
             for (let i = 0; i < 10; i++) {
                 const el = document.createElement('div');
@@ -1471,12 +2386,19 @@
             setTimeout(revealOnScroll, 100);
         });
 
-        // Multi-step form logic
+        // ── 11. Multi-Step Form Logic ──
         const stepTitles = [
-            'Basic Information', 'Project Overview', 'Branding & Design', 'Content',
-            'Features & Functionality', 'E-Commerce Details', 'Technical Details',
-            'Timeline & Budget', 'Additional Notes'
+            'Basic Information',
+            'Project Overview',
+            'Branding & Design',
+            'Content',
+            'Features & Functionality',
+            'E-Commerce Details',
+            'Technical Details',
+            'Timeline & Budget',
+            'Additional Notes'
         ];
+
         let currentStep = 1;
         const totalSteps = 9;
 
@@ -1491,95 +2413,105 @@
             document.getElementById('submitBtn').style.display = currentStep === totalSteps ? 'flex' : 'none';
         }
 
-        window.changeStep = function(dir) {
+        function changeStep(dir) {
             const next = currentStep + dir;
             if (next < 1 || next > totalSteps) return;
             currentStep = next;
             updateUI();
             document.querySelector('.contact-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        };
+        }
 
-        // Form submission with proper fetch and fallback
+        // ── 12. Form Submission ──
         const contactForm = document.getElementById('contactForm');
-        const submitBtnForm = document.getElementById('submitBtn');
-        const letterImageEl = document.getElementById('letterImage');
-        const letterOverlayEl = document.getElementById('letterOverlay');
+        const submitBtn = document.getElementById('submitBtn');
+        const letterImage = document.getElementById('letterImage');
+        const letterOverlay = document.getElementById('letterOverlay');
 
+        // Form Submission with fallback to traditional submit
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            if (submitBtnForm.disabled) return;
 
-            const originalHTML = submitBtnForm.innerHTML;
-            submitBtnForm.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span> SENDING...</span>';
-            submitBtnForm.classList.add('loading');
-            submitBtnForm.disabled = true;
+            // Prevent multiple clicks
+            if (submitBtn.disabled) return;
+
+            const originalHTML = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span> جاري الإرسال...</span>';
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
 
             try {
                 const formData = new FormData(contactForm);
+
+                // Use fetch with explicit headers
                 const response = await fetch(contactForm.action, {
                     method: 'POST',
                     body: formData,
-                    headers: { 'Accept': 'application/json' }
+                    headers: {
+                        'Accept': 'application/json'
+                    }
                 });
 
                 if (response.ok) {
-                    // Success animation
-                    submitBtnForm.innerHTML = '<i class="fas fa-check"></i><span> SENT!</span>';
-                    submitBtnForm.style.background = 'rgba(0,200,0,0.2)';
-                    submitBtnForm.style.borderColor = 'rgba(0,200,0,0.5)';
-                    letterOverlayEl.classList.add('show');
-                    letterImageEl.classList.add('show');
+                    // Success
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i><span> تم الإرسال!</span>';
+                    submitBtn.style.background = 'rgba(0,200,0,0.2)';
+                    submitBtn.style.borderColor = 'rgba(0,200,0,0.5)';
+
+                    // Show envelope animation
+                    letterOverlay.classList.add('show');
+                    letterImage.classList.add('show');
                     setTimeout(() => {
-                        const mail = letterImageEl.querySelector('.animated-mail');
-                        const topFold = letterImageEl.querySelector('.top-fold');
-                        const letterDiv = letterImageEl.querySelector('.letter');
-                        const shadowDiv = letterImageEl.querySelector('.shadow');
-                        if (mail) mail.style.transform = 'translateY(50px)';
-                        if (topFold) { topFold.style.transform = 'rotateX(180deg)'; topFold.style.zIndex = '0'; }
-                        if (letterDiv) letterDiv.style.height = '180px';
-                        if (shadowDiv) shadowDiv.style.width = '250px';
+                        letterImage.querySelector('.animated-mail').style.transform = 'translateY(50px)';
+                        letterImage.querySelector('.animated-mail .top-fold').style.transform = 'rotateX(180deg)';
+                        letterImage.querySelector('.animated-mail .letter').style.height = '180px';
+                        letterImage.querySelector('.shadow').style.width = '250px';
                     }, 100);
+
+                    // Reset form after 3.5 seconds
                     setTimeout(() => {
-                        letterOverlayEl.classList.remove('show');
-                        letterImageEl.classList.remove('show');
-                        // Reset animation
-                        const mail = letterImageEl.querySelector('.animated-mail');
-                        const topFold = letterImageEl.querySelector('.top-fold');
-                        const letterDiv = letterImageEl.querySelector('.letter');
-                        const shadowDiv = letterImageEl.querySelector('.shadow');
+                        letterOverlay.classList.remove('show');
+                        letterImage.classList.remove('show');
+                        // Reset animation temporarily
+                        const mail = letterImage.querySelector('.animated-mail');
                         if (mail) mail.style.transform = '';
-                        if (topFold) { topFold.style.transform = ''; topFold.style.zIndex = ''; }
-                        if (letterDiv) letterDiv.style.height = '';
-                        if (shadowDiv) shadowDiv.style.width = '';
-                        // Reset form
+                        const topFold = letterImage.querySelector('.top-fold');
+                        if (topFold) topFold.style.transform = '';
+                        const letter = letterImage.querySelector('.letter');
+                        if (letter) letter.style.height = '';
+                        const shadow = letterImage.querySelector('.shadow');
+                        if (shadow) shadow.style.width = '';
+
+                        // Clear fields
                         contactForm.reset();
-                        // Hide conditional fields
+                        // Reset buttons and conditional fields
                         document.querySelectorAll('.conditional-field').forEach(f => f.classList.remove('show'));
+                        // Return to step 1
                         currentStep = 1;
                         updateUI();
-                        submitBtnForm.innerHTML = originalHTML;
-                        submitBtnForm.classList.remove('loading');
-                        submitBtnForm.disabled = false;
-                        submitBtnForm.style.background = '';
-                        submitBtnForm.style.borderColor = '';
+                        submitBtn.innerHTML = originalHTML;
+                        submitBtn.classList.remove('loading');
+                        submitBtn.disabled = false;
+                        submitBtn.style.background = '';
+                        submitBtn.style.borderColor = '';
                     }, 3500);
                 } else {
-                    throw new Error('Formspree fetch failed');
+                    // Failed - try traditional submit (redirect)
+                    throw new Error('Fetch failed, trying traditional submit');
                 }
-            } catch (err) {
-                console.error(err);
-                // Fallback: traditional submit (will redirect to Formspree thank you page)
-                submitBtnForm.innerHTML = '<i class="fas fa-external-link-alt"></i><span> REDIRECT...</span>';
-                // Remove event listener temporarily and submit
+            } catch (error) {
+                console.error('Formspree error:', error);
+                // Alternative method: submit form traditionally (opens in same page or redirect)
+                // So user experience isn't broken, we use normal form.submit()
+                submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i><span> إعادة توجيه...</span>';
+                // Remove event listener temporarily and submit form
                 contactForm.removeEventListener('submit', arguments.callee);
                 contactForm.submit();
             }
         });
 
-        // Close letter overlay on click
-        letterOverlayEl.addEventListener('click', () => {
-            letterOverlayEl.classList.remove('show');
-            letterImageEl.classList.remove('show');
+        letterOverlay.addEventListener('click', () => {
+            letterOverlay.classList.remove('show');
+            letterImage.classList.remove('show');
         });
 
         updateUI();
