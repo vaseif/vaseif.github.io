@@ -2427,63 +2427,85 @@
         const letterImage = document.getElementById('letterImage');
         const letterOverlay = document.getElementById('letterOverlay');
 
+        // Form Submission with fallback to traditional submit
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+
+            // Prevent multiple clicks
+            if (submitBtn.disabled) return;
+
             const originalHTML = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span> SENDING...</span>';
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span> جاري الإرسال...</span>';
             submitBtn.classList.add('loading');
             submitBtn.disabled = true;
+
             try {
                 const formData = new FormData(contactForm);
+
+                // Use fetch with explicit headers
                 const response = await fetch(contactForm.action, {
                     method: 'POST',
                     body: formData,
-                    headers: { 'Accept': 'application/json' }
+                    headers: {
+                        'Accept': 'application/json'
+                    }
                 });
+
                 if (response.ok) {
-                    submitBtn.innerHTML = '<i class="fas fa-check"></i><span> SENT!</span>';
+                    // Success
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i><span> تم الإرسال!</span>';
                     submitBtn.style.background = 'rgba(0,200,0,0.2)';
                     submitBtn.style.borderColor = 'rgba(0,200,0,0.5)';
+
+                    // Show envelope animation
                     letterOverlay.classList.add('show');
                     letterImage.classList.add('show');
                     setTimeout(() => {
                         letterImage.querySelector('.animated-mail').style.transform = 'translateY(50px)';
                         letterImage.querySelector('.animated-mail .top-fold').style.transform = 'rotateX(180deg)';
-                        letterImage.querySelector('.animated-mail .top-fold').style.zIndex = '0';
                         letterImage.querySelector('.animated-mail .letter').style.height = '180px';
                         letterImage.querySelector('.shadow').style.width = '250px';
                     }, 100);
+
+                    // Reset form after 3.5 seconds
                     setTimeout(() => {
                         letterOverlay.classList.remove('show');
                         letterImage.classList.remove('show');
-                        letterImage.querySelector('.animated-mail').style.transform = '';
-                        letterImage.querySelector('.animated-mail .top-fold').style.transform = '';
-                        letterImage.querySelector('.animated-mail .top-fold').style.zIndex = '';
-                        letterImage.querySelector('.animated-mail .letter').style.height = '';
-                        letterImage.querySelector('.shadow').style.width = '';
-                        setTimeout(() => {
-                            contactForm.reset();
-                            submitBtn.innerHTML = originalHTML;
-                            submitBtn.classList.remove('loading');
-                            submitBtn.disabled = false;
-                            submitBtn.style.background = '';
-                            submitBtn.style.borderColor = '';
-                            currentStep = 1;
-                            updateUI();
-                        }, 1000);
-                    }, 3000);
-                } else { throw new Error('Failed'); }
-            } catch {
-                submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i><span> ERROR! TRY AGAIN</span>';
-                submitBtn.style.background = 'rgba(255,0,0,0.2)';
-                submitBtn.style.borderColor = 'rgba(255,0,0,0.5)';
-                setTimeout(() => {
-                    submitBtn.innerHTML = originalHTML;
-                    submitBtn.classList.remove('loading');
-                    submitBtn.disabled = false;
-                    submitBtn.style.background = '';
-                    submitBtn.style.borderColor = '';
-                }, 3000);
+                        // Reset animation temporarily
+                        const mail = letterImage.querySelector('.animated-mail');
+                        if (mail) mail.style.transform = '';
+                        const topFold = letterImage.querySelector('.top-fold');
+                        if (topFold) topFold.style.transform = '';
+                        const letter = letterImage.querySelector('.letter');
+                        if (letter) letter.style.height = '';
+                        const shadow = letterImage.querySelector('.shadow');
+                        if (shadow) shadow.style.width = '';
+
+                        // Clear fields
+                        contactForm.reset();
+                        // Reset buttons and conditional fields
+                        document.querySelectorAll('.conditional-field').forEach(f => f.classList.remove('show'));
+                        // Return to step 1
+                        currentStep = 1;
+                        updateUI();
+                        submitBtn.innerHTML = originalHTML;
+                        submitBtn.classList.remove('loading');
+                        submitBtn.disabled = false;
+                        submitBtn.style.background = '';
+                        submitBtn.style.borderColor = '';
+                    }, 3500);
+                } else {
+                    // Failed - try traditional submit (redirect)
+                    throw new Error('Fetch failed, trying traditional submit');
+                }
+            } catch (error) {
+                console.error('Formspree error:', error);
+                // Alternative method: submit form traditionally (opens in same page or redirect)
+                // So user experience isn't broken, we use normal form.submit()
+                submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i><span> إعادة توجيه...</span>';
+                // Remove event listener temporarily and submit form
+                contactForm.removeEventListener('submit', arguments.callee);
+                contactForm.submit();
             }
         });
 
