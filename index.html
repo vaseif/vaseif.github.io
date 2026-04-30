@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEIF YASSER | VIRTUAL ASSISTANT</title>
+    <title>SEIF YASSER | WEB DEVELOPER</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         
-        /* CSS Variables */
         :root {
             --primary: #ab0202;
             --glass-border: rgba(255, 255, 255, 0.1);
             --text-muted: #aaa;
         }
         
-        /* Reset and Global Styles */
         * {
             margin: 0;
             padding: 0;
@@ -28,10 +26,9 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
-            cursor: none; /* إخفاء الماوس الافتراضي */
+            cursor: none;
         }
 
-        /* --- Custom Cursor --- */
         .cursor-dot,
         .cursor-outline {
             position: fixed;
@@ -56,11 +53,8 @@
             transition: width 0.2s, height 0.2s, background-color 0.2s;
         }
 
-        body:hover .cursor-outline {
-            opacity: 1;
-        }
+        body:hover .cursor-outline { opacity: 1; }
 
-        /* Hover states for cursor */
         body.hover-target .cursor-outline {
             width: 60px;
             height: 60px;
@@ -68,7 +62,6 @@
             border-color: var(--primary);
         }
 
-        /* New Animations */
         @keyframes fadeUp {
             to { opacity: 1; transform: translateY(0); }
         }
@@ -76,26 +69,23 @@
         body {
             font-family: 'Lexend', 'Poppins', sans-serif;
             line-height: 1.6;
-            background-color: #0a0a0a;
             color: #fff;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             background: radial-gradient(circle at center, #1a0000 0%, #0a0000 50%, #000000 100%);
             animation: backgroundPulse 15s ease infinite;
-            overflow-y: auto; /* تم التعديل: تفعيل التمرير بشكل افتراضي */
+            overflow-y: auto;
         }
 
-        body.no-scroll {
-            overflow-y: hidden; /* منع التمرير فقط عند إضافة هذا الكلاس */
-        }
+        body.no-scroll { overflow-y: hidden; }
 
         @keyframes backgroundPulse {
             0%, 100% { background: radial-gradient(circle at center, #1a0000 0%, #0a0000 50%, #000000 100%); }
             50% { background: radial-gradient(circle at center, #220000 0%, #0a0000 50%, #000000 100%); }
         }
 
-        /* Navigation */
+        /* ── NAVBAR ── */
         .navbar {
             position: fixed;
             top: 0;
@@ -115,10 +105,7 @@
         }
 
         @keyframes slideDown {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .logo {
@@ -129,9 +116,7 @@
             letter-spacing: 1px;
         }
 
-        .logo span {
-            color: #ab0202;
-        }
+        .logo span { color: #ab0202; }
 
         .nav-links {
             display: flex;
@@ -160,14 +145,10 @@
         }
 
         .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
+        .nav-links a.active::after { width: 100%; }
 
         .nav-links a:hover,
-        .nav-links a.active {
-            color: #ab0202;
-        }
+        .nav-links a.active { color: #ab0202; }
 
         .mobile-menu-btn {
             display: none;
@@ -178,7 +159,7 @@
             cursor: pointer;
         }
 
-        /* Hero Section */
+        /* ── HERO ── */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -193,11 +174,7 @@
             animation: fadeIn 1.5s ease forwards 0.8s;
         }
 
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
+        @keyframes fadeIn { to { opacity: 1; } }
 
         .hero::before {
             content: '';
@@ -221,6 +198,11 @@
             right: 10%;
             border-radius: 50%;
             animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
         }
 
         .hero h1 {
@@ -266,7 +248,7 @@
             animation: fadeUp 1s ease forwards 0.9s;
         }
 
-        /* New Explore Services Button */
+        /* Super Button */
         .super-button {
             position: relative;
             display: inline-flex;
@@ -317,9 +299,7 @@
             box-shadow: 0 0 40px rgba(171, 2, 2, 0.3);
         }
 
-        .super-button:hover .arrow {
-            transform: translateX(6px);
-        }
+        .super-button:hover .arrow { transform: translateX(6px); }
 
         .arrow {
             width: 22px;
@@ -329,56 +309,11 @@
         }
 
         @keyframes rotate {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        /* Stats Section */
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            margin-top: 60px;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUp 1s ease forwards 1.3s;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 20px;
-            min-width: 150px;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #ab0202;
-            margin-bottom: 5px;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .stat-text {
-            font-size: 1rem;
-            color: #aaa;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Glow Button Animation Class */
-        .btn-glow {
-            opacity: 0;
-            animation: fadeUp 1s ease forwards 1.1s;
-        }
-
-        /* Sections hidden by default */
+        /* ── SECTIONS HIDDEN BY DEFAULT ── */
         .services-section,
         .about-section,
         .certificate-section,
@@ -395,12 +330,12 @@
         .revealed {
             opacity: 1 !important;
             transform: translateY(0) !important;
-            max-height: 5000px !important;
+            max-height: 9000px !important;
             overflow: visible !important;
             visibility: visible !important;
         }
 
-        /* Services Section */
+        /* ── SERVICES / PORTFOLIO SECTION ── */
         .services-section {
             padding: 100px 5%;
             background-color: rgba(17, 17, 17, 0.9);
@@ -441,7 +376,6 @@
             line-height: 1.8;
         }
 
-        /* --- Services 3D Cards --- */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -449,6 +383,7 @@
             margin-top: 50px;
         }
 
+        /* Work Example Cards */
         .service-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -472,7 +407,6 @@
             box-shadow: 0 15px 40px rgba(171, 2, 2, 0.3);
         }
 
-        /* Radial Gradient Effect on Hover */
         .service-card::after {
             content: '';
             position: absolute;
@@ -487,35 +421,43 @@
             z-index: 0;
         }
 
-        .service-card:hover::after {
-            opacity: 1;
-        }
+        .service-card:hover::after { opacity: 1; }
 
-        /* محتويات الكارد مع تأثير 3D */
         .service-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
+            width: 70px;
+            height: 70px;
+            background: rgba(171, 2, 2, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-bottom: 25px;
-            transform: translateZ(20px);
+            font-size: 1.8rem;
+            color: #ab0202;
+            border: 1px solid rgba(171, 2, 2, 0.3);
+            transition: all 0.3s ease;
             position: relative;
             z-index: 1;
         }
 
+        .service-card:hover .service-icon {
+            background: rgba(171, 2, 2, 0.2);
+            transform: scale(1.1) rotate(5deg);
+        }
+
         .service-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 15px;
             color: #fff;
-            transform: translateZ(30px);
             position: relative;
             z-index: 1;
         }
 
         .service-card p {
-            font-size: 1rem;
             color: #bbb;
-            margin-bottom: 20px;
+            font-size: 1rem;
             line-height: 1.7;
-            transform: translateZ(20px);
+            margin-bottom: 20px;
             position: relative;
             z-index: 1;
         }
@@ -531,8 +473,6 @@
             padding: 8px 0;
             padding-left: 25px;
             position: relative;
-            transform: translateZ(10px);
-            position: relative;
             z-index: 1;
         }
 
@@ -542,6 +482,27 @@
             position: absolute;
             left: 0;
             font-weight: bold;
+        }
+
+        .work-tag {
+            display: inline-block;
+            background: rgba(171, 2, 2, 0.15);
+            border: 1px solid rgba(171, 2, 2, 0.3);
+            color: #ff6666;
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            margin: 4px 4px 4px 0;
+            position: relative;
+            z-index: 1;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-tags {
+            margin-top: 15px;
+            position: relative;
+            z-index: 1;
         }
 
         /* Reveal Animation */
@@ -556,7 +517,7 @@
             transform: translateY(0) rotateX(0);
         }
 
-        /* About Section */
+        /* ── ABOUT SECTION ── */
         .about-section {
             padding: 100px 5%;
             background-color: rgba(10, 10, 10, 0.9);
@@ -565,12 +526,9 @@
         }
 
         .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
+            text-align: center;
         }
 
         .about-text h2 {
@@ -579,9 +537,7 @@
             color: #fff;
         }
 
-        .about-text h2 span {
-            color: #ab0202;
-        }
+        .about-text h2 span { color: #ab0202; }
 
         .about-text p {
             color: #bbb;
@@ -595,6 +551,7 @@
             flex-wrap: wrap;
             gap: 15px;
             margin-top: 30px;
+            justify-content: center;
         }
 
         .skill-tag {
@@ -612,67 +569,7 @@
             transform: translateY(-3px) scale(1.05);
         }
 
-        .about-image {
-            position: relative;
-        }
-
-        .image-container {
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            position: relative;
-            transform: rotateY(5deg) rotateX(2deg);
-            transition: transform 0.8s ease;
-        }
-
-        .image-container:hover {
-            transform: rotateY(0) rotateX(0) scale(1.03);
-        }
-
-        .image-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.8s ease;
-        }
-
-        .image-container:hover img {
-            transform: scale(1.05);
-        }
-
-        .experience-badge {
-            position: absolute;
-            bottom: 30px;
-            right: -20px;
-            background: linear-gradient(45deg, #ab0202, #ff4444);
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(171, 2, 2, 0.4);
-            z-index: 2;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .experience-badge .years {
-            font-size: 2.5rem;
-            font-weight: 700;
-            display: block;
-            line-height: 1;
-        }
-
-        .experience-badge .text {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Certificate Section */
+        /* ── CERTIFICATE SECTION ── */
         .certificate-section {
             padding: 80px 5%;
             background-color: rgba(17, 17, 17, 0.9);
@@ -702,10 +599,10 @@
             height: 200%;
             background: radial-gradient(circle, rgba(171, 2, 2, 0.1) 0%, transparent 70%);
             z-index: 0;
-            animation: rotate 20s linear infinite;
+            animation: rotateSlow 20s linear infinite;
         }
 
-        @keyframes rotate {
+        @keyframes rotateSlow {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
@@ -726,7 +623,6 @@
             z-index: 1;
         }
 
-        /* Certificate Button - New Design */
         .btn {
             font-size: 1.2rem;
             padding: 1rem 2.5rem;
@@ -741,19 +637,18 @@
             transition: 0.6s;
             box-shadow: 0px 0px 60px rgba(171, 2, 2, 0.3);
             -webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+            position: relative;
+            z-index: 1;
         }
 
-        .btn:active {
-            scale: 0.92;
-        }
+        .btn:active { scale: 0.92; }
 
         .btn:hover {
-            background: rgb(2,29,78);
             background: linear-gradient(270deg, rgba(171, 2, 2, 0.681) 0%, rgba(255, 68, 68, 0.873) 60%);
             color: rgb(234, 234, 234);
         }
 
-        /* Contact Section */
+        /* ── CONTACT / QUESTIONNAIRE SECTION ── */
         .contact-section {
             padding: 100px 5%;
             background-color: rgba(10, 10, 10, 0.9);
@@ -762,7 +657,7 @@
 
         .contact-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1.6fr;
             gap: 60px;
             max-width: 1200px;
             margin: 0 auto;
@@ -780,9 +675,7 @@
             line-height: 1.8;
         }
 
-        .contact-details {
-            margin-top: 40px;
-        }
+        .contact-details { margin-top: 40px; }
 
         .contact-item {
             display: flex;
@@ -799,10 +692,7 @@
         }
 
         @keyframes slideInRight {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         .contact-icon {
@@ -817,6 +707,7 @@
             font-size: 1.2rem;
             border: 1px solid rgba(171, 2, 2, 0.3);
             transition: all 0.3s ease;
+            flex-shrink: 0;
         }
 
         .contact-item:hover .contact-icon {
@@ -835,6 +726,7 @@
             margin: 0;
         }
 
+        /* ── QUESTIONNAIRE FORM ── */
         .contact-form {
             background: linear-gradient(145deg, rgba(26, 26, 26, 0.8), rgba(34, 34, 34, 0.8));
             border-radius: 20px;
@@ -851,9 +743,85 @@
             transform: perspective(1000px) rotateY(0);
         }
 
-        /* Form Field Hover Effects */
-        .form-group {
+        /* Progress Bar */
+        .progress-bar-wrap {
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ab0202, #ff4444);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            width: 11.11%;
+        }
+
+        .step-counter {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 25px;
+        }
+
+        .step-label {
+            font-size: 0.85rem;
+            color: #888;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .step-number {
+            font-size: 0.85rem;
+            color: #ab0202;
+            font-weight: 600;
+        }
+
+        /* Step */
+        .form-step {
+            display: none;
+            animation: stepIn 0.4s ease;
+        }
+
+        .form-step.active { display: block; }
+
+        @keyframes stepIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .step-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .step-title .step-dot {
+            width: 10px;
+            height: 10px;
+            background: #ab0202;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 8px rgba(171,2,2,0.7);
+        }
+
+        .step-desc {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
             opacity: 0;
             transform: translateY(20px);
             position: relative;
@@ -865,10 +833,7 @@
         }
 
         @keyframes formReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .form-group label {
@@ -876,19 +841,23 @@
             margin-bottom: 8px;
             color: #fff;
             font-weight: 500;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
         }
 
+        .form-group label span.req { color: #ab0202; margin-left: 3px; }
+
         .form-control {
             width: 100%;
-            padding: 15px;
+            padding: 13px 15px;
             background: rgba(42, 42, 42, 0.8);
             border: 1px solid rgba(68, 68, 68, 0.5);
             border-radius: 10px;
             color: #fff;
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: all 0.4s ease;
             backdrop-filter: blur(5px);
+            font-family: 'Lexend', sans-serif;
         }
 
         .form-control:hover {
@@ -904,47 +873,165 @@
             transform: translateY(-4px);
         }
 
-        .form-control::placeholder {
-            color: #777;
-        }
+        .form-control::placeholder { color: #555; }
 
         textarea.form-control {
-            min-height: 150px;
+            min-height: 110px;
             resize: vertical;
         }
 
-        /* Updated Send Message Button - Much Better Design */
-        .submit-btn {
-            width: 100%;
-            height: 60px;
-            background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
-            border: 2px solid rgba(171, 2, 2, 0.4);
-            border-radius: 12px;
+        select.form-control option {
+            background: #1a1a1a;
             color: #fff;
-            font-size: 1.1rem;
+        }
+
+        /* Multiple Choice */
+        .choices-grid {
+            display: grid;
+            gap: 10px;
+        }
+
+        .choices-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+        .choices-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+        .choice-item {
+            position: relative;
+        }
+
+        .choice-item input[type="radio"],
+        .choice-item input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .choice-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            background: rgba(42, 42, 42, 0.6);
+            border: 1px solid rgba(68, 68, 68, 0.5);
+            border-radius: 10px;
+            color: #ccc;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .choice-label:hover {
+            border-color: rgba(171, 2, 2, 0.5);
+            background: rgba(171, 2, 2, 0.08);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .choice-item input:checked + .choice-label {
+            border-color: #ab0202;
+            background: rgba(171, 2, 2, 0.15);
+            color: #fff;
+            box-shadow: 0 0 12px rgba(171, 2, 2, 0.2);
+        }
+
+        .choice-icon {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .choice-item input[type="checkbox"] + .choice-label .choice-icon {
+            border-radius: 4px;
+        }
+
+        .choice-item input:checked + .choice-label .choice-icon {
+            border-color: #ab0202;
+            background: #ab0202;
+        }
+
+        .choice-item input:checked + .choice-label .choice-icon::after {
+            content: '✓';
+            font-size: 10px;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        /* Navigation Buttons */
+        .form-nav {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn-prev, .btn-next, .submit-btn {
+            flex: 1;
+            height: 55px;
+            border-radius: 12px;
+            font-size: 1rem;
             font-weight: 600;
             letter-spacing: 0.5px;
             cursor: pointer;
-            overflow: hidden;
-            transition: all 0.4s ease-in-out;
-            box-shadow: 0 0 20px rgba(171, 2, 2, 0.2);
-            backdrop-filter: blur(8px);
-            position: relative;
+            transition: all 0.4s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            margin-top: 10px;
-            opacity: 0;
-            transform: translateY(20px);
             text-transform: uppercase;
+            font-family: 'Lexend', sans-serif;
         }
 
-        .submit-btn.revealed {
-            animation: formReveal 0.6s ease forwards;
-            animation-delay: 0.4s;
+        .btn-prev {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #888;
         }
 
+        .btn-prev:hover {
+            border-color: rgba(255,255,255,0.3);
+            color: #fff;
+        }
+
+        .btn-next {
+            background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
+            border: 2px solid rgba(171, 2, 2, 0.4);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(171, 2, 2, 0.15);
+        }
+
+        .btn-next::after {
+            content: "";
+            position: absolute;
+            inset: 2px;
+            background: #0a0a0a;
+            border-radius: 10px;
+            z-index: -1;
+        }
+
+        .btn-next:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(171, 2, 2, 0.35);
+            border-color: rgba(255, 31, 31, 0.6);
+        }
+
+        .btn-next i { color: #ff4444; }
+
+        .submit-btn {
+            background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
+            border: 2px solid rgba(171, 2, 2, 0.4);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(171, 2, 2, 0.2);
+        }
 
         .submit-btn::after {
             content: "";
@@ -961,35 +1048,22 @@
             border-color: rgba(255, 31, 31, 0.6);
         }
 
-        .submit-btn:active {
-            transform: translateY(0) scale(0.98);
-        }
-
-        .submit-btn i {
-            font-size: 1.2rem;
-            color: #ff4444;
-            transition: transform 0.3s ease;
-        }
-
-        .submit-btn:hover i {
-            transform: translateX(5px);
-        }
-
-        .submit-btn.loading {
-            background: rgba(171, 2, 2, 0.1);
-            cursor: not-allowed;
-        }
-
-        .submit-btn.loading i {
-            animation: spin 1s linear infinite;
-        }
+        .submit-btn i { color: #ff4444; }
+        .submit-btn.loading { cursor: not-allowed; opacity: 0.7; }
 
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
 
-        /* Footer */
+        /* Conditional field */
+        .conditional-field {
+            display: none;
+            margin-top: 10px;
+        }
+        .conditional-field.show { display: block; }
+
+        /* ── FOOTER ── */
         .footer {
             background: rgba(17, 17, 17, 0.9);
             padding: 70px 5% 30px;
@@ -1010,11 +1084,10 @@
             color: #fff;
             margin-bottom: 20px;
             display: block;
+            text-decoration: none;
         }
 
-        .footer-logo span {
-            color: #ab0202;
-        }
+        .footer-logo span { color: #ab0202; }
 
         .footer-about p {
             color: #bbb;
@@ -1051,10 +1124,7 @@
         }
 
         @keyframes socialReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .social-link:hover {
@@ -1076,6 +1146,10 @@
             animation: slideUp 0.6s ease forwards;
         }
 
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .footer-links h4::after {
             content: '';
             position: absolute;
@@ -1086,9 +1160,7 @@
             background: #ab0202;
         }
 
-        .footer-links ul {
-            list-style: none;
-        }
+        .footer-links ul { list-style: none; }
 
         .footer-links li {
             margin-bottom: 12px;
@@ -1161,10 +1233,7 @@
         }
 
         @keyframes muteBtnReveal {
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            to { opacity: 1; transform: scale(1); }
         }
 
         .mute-btn:hover {
@@ -1185,21 +1254,11 @@
         }
 
         @keyframes floatAround {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-            25% {
-                transform: translate(calc(100vw - 100px), calc(100vh - 100px)) rotate(90deg);
-            }
-            50% {
-                transform: translate(calc(100vw - 100px), 0) rotate(180deg);
-            }
-            75% {
-                transform: translate(0, calc(100vh - 100px)) rotate(270deg);
-            }
-            100% {
-                transform: translate(0, 0) rotate(360deg);
-            }
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(calc(100vw - 100px), calc(100vh - 100px)) rotate(90deg); }
+            50% { transform: translate(calc(100vw - 100px), 0) rotate(180deg); }
+            75% { transform: translate(0, calc(100vh - 100px)) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
         }
 
         /* Letter Animation */
@@ -1216,10 +1275,7 @@
             transition: opacity 0.3s;
         }
 
-        .letter-image.show {
-            opacity: 1;
-            pointer-events: auto;
-        }
+        .letter-image.show { opacity: 1; pointer-events: auto; }
 
         .animated-mail {
             position: absolute;
@@ -1274,7 +1330,7 @@
 
         .animated-mail .letter {
             left: 20px;
-            bottom: 0px;
+            bottom: 0;
             position: absolute;
             width: 160px;
             height: 60px;
@@ -1287,13 +1343,7 @@
         .animated-mail .letter .letter-border {
             height: 10px;
             width: 100%;
-            background: repeating-linear-gradient(
-                -45deg,
-                #ab0202,
-                #ab0202 8px,
-                transparent 8px,
-                transparent 18px
-            );
+            background: repeating-linear-gradient(-45deg, #ab0202, #ab0202 8px, transparent 8px, transparent 18px);
         }
 
         .animated-mail .letter .letter-title {
@@ -1331,32 +1381,14 @@
             transition: 0.4s;
             transform: translateX(-50%);
             border-radius: 100%;
-            background: radial-gradient(
-                rgba(171, 2, 2, 0.5),
-                rgba(171, 2, 2, 0.2),
-                rgba(171, 2, 2, 0)
-            );
+            background: radial-gradient(rgba(171, 2, 2, 0.5), rgba(171, 2, 2, 0.2), rgba(171, 2, 2, 0));
         }
 
-        .letter-image:hover .animated-mail {
-            transform: translateY(50px);
-        }
+        .letter-image:hover .animated-mail { transform: translateY(50px); }
+        .letter-image:hover .animated-mail .top-fold { transition: transform 0.4s, z-index 0.2s; transform: rotateX(180deg); z-index: 0; }
+        .letter-image:hover .animated-mail .letter { height: 180px; }
+        .letter-image:hover .shadow { width: 250px; }
 
-        .letter-image:hover .animated-mail .top-fold {
-            transition: transform 0.4s, z-index 0.2s;
-            transform: rotateX(180deg);
-            z-index: 0;
-        }
-
-        .letter-image:hover .animated-mail .letter {
-            height: 180px;
-        }
-
-        .letter-image:hover .shadow {
-            width: 250px;
-        }
-
-        /* Overlay for letter animation */
         .letter-overlay {
             position: fixed;
             top: 0;
@@ -1370,44 +1402,20 @@
             transition: opacity 0.3s;
         }
 
-        .letter-overlay.show {
-            opacity: 1;
-            pointer-events: auto;
-        }
+        .letter-overlay.show { opacity: 1; pointer-events: auto; }
 
-        /* Responsive Design */
+        /* ── RESPONSIVE ── */
         @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .services-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            }
+            .hero h1 { font-size: 3.5rem; }
+            .contact-container { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+            .choices-grid.cols-3 { grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 768px) {
-            /* CSS لتعطيل المؤشر المخصص على الهواتف */
-            .cursor-dot, .cursor-outline { 
-                display: none; 
-            }
-            * { 
-                cursor: auto; 
-            }
-            
-            .navbar {
-                padding: 15px 5%;
-            }
-            
+            .cursor-dot, .cursor-outline { display: none; }
+            * { cursor: auto; }
+            .navbar { padding: 15px 5%; }
             .nav-links {
                 position: fixed;
                 top: 70px;
@@ -1423,141 +1431,42 @@
                 border-top: 1px solid rgba(171, 2, 2, 0.2);
                 z-index: 999;
             }
-            
-            .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            
-            .hero .subtitle {
-                font-size: 1.4rem;
-                letter-spacing: 5px;
-            }
-            
-            .stats {
-                gap: 30px;
-            }
-            
-            .stat-item {
-                min-width: 120px;
-            }
-            
-            .stat-number {
-                font-size: 2.5rem;
-            }
-            
-            .section-title {
-                font-size: 2.3rem;
-            }
-            
-            .service-card {
-                padding: 30px 20px;
-            }
-            
-            .letter-image {
-                width: 150px;
-                height: 150px;
-            }
-            
-            .animated-mail {
-                height: 120px;
-                width: 160px;
-            }
-            
-            .animated-mail .body {
-                border-width: 0 0 80px 160px;
-            }
-            
-            .animated-mail .top-fold {
-                top: 40px;
-                border-width: 40px 80px 0 80px;
-            }
-            
-            .animated-mail .back-fold {
-                width: 160px;
-                height: 80px;
-            }
-            
-            .animated-mail .left-fold {
-                border-width: 40px 0 40px 80px;
-            }
-            
-            .animated-mail .letter {
-                left: 16px;
-                width: 128px;
-            }
-            
-            .letter-image .shadow {
-                width: 300px;
-                top: 160px;
-            }
+            .nav-links.active { transform: translateY(0); opacity: 1; visibility: visible; }
+            .mobile-menu-btn { display: block; }
+            .hero h1 { font-size: 2.8rem; }
+            .hero .subtitle { font-size: 1.4rem; letter-spacing: 5px; }
+            .section-title { font-size: 2.3rem; }
+            .service-card { padding: 30px 20px; }
+            .choices-grid.cols-2 { grid-template-columns: 1fr; }
+            .choices-grid.cols-3 { grid-template-columns: 1fr; }
+            .contact-form { padding: 30px 20px; }
+            .form-nav { flex-direction: column; }
+            .letter-image { width: 150px; height: 150px; }
+            .animated-mail { height: 120px; width: 160px; }
+            .animated-mail .body { border-width: 0 0 80px 160px; }
+            .animated-mail .top-fold { top: 40px; border-width: 40px 80px 0 80px; }
+            .animated-mail .back-fold { width: 160px; height: 80px; }
+            .animated-mail .left-fold { border-width: 40px 0 40px 80px; }
+            .animated-mail .letter { left: 16px; width: 128px; }
+            .letter-image .shadow { width: 300px; top: 160px; }
         }
 
         @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .hero .subtitle {
-                font-size: 1.1rem;
-                letter-spacing: 3px;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .super-button {
-                padding: 12px 24px;
-                font-size: 0.9rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .service-card {
-                padding: 25px 15px;
-            }
-            
-            .certificate-container {
-                padding: 30px 20px;
-            }
-            
-            .contact-form {
-                padding: 30px 20px;
-            }
-            
-            .submit-btn {
-                height: 55px;
-                font-size: 1rem;
-            }
-            
-            .mute-btn {
-                width: 50px;
-                height: 50px;
-                bottom: 20px;
-                right: 20px;
-            }
-            
-            .btn {
-                font-size: 1rem;
-                padding: 0.8rem 2rem;
-            }
+            .hero h1 { font-size: 2.2rem; }
+            .hero .subtitle { font-size: 1.1rem; letter-spacing: 3px; }
+            .hero p { font-size: 1rem; }
+            .super-button { padding: 12px 24px; font-size: 0.9rem; }
+            .section-title { font-size: 2rem; }
+            .service-card { padding: 25px 15px; }
+            .certificate-container { padding: 30px 20px; }
+            .contact-form { padding: 25px 15px; }
+            .mute-btn { width: 50px; height: 50px; bottom: 20px; right: 20px; }
+            .btn { font-size: 1rem; padding: 0.8rem 2rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Custom Cursor Elements -->
+    <!-- Custom Cursor -->
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
 
@@ -1567,7 +1476,7 @@
     <div class="floating-element" style="top: 70%; left: 10%; animation-delay: -10s;"></div>
     <div class="floating-element" style="top: 80%; left: 70%; animation-delay: -15s;"></div>
 
-    <!-- Letter Animation (Hidden by default) -->
+    <!-- Letter Animation -->
     <div class="letter-overlay" id="letterOverlay"></div>
     <div class="letter-image" id="letterImage">
         <div class="animated-mail">
@@ -1576,9 +1485,7 @@
                 <div class="letter-border"></div>
                 <div class="letter-title"></div>
                 <div class="letter-context"></div>
-                <div class="letter-stamp">
-                    <div class="letter-stamp-inner"></div>
-                </div>
+                <div class="letter-stamp"><div class="letter-stamp-inner"></div></div>
             </div>
             <div class="top-fold"></div>
             <div class="body"></div>
@@ -1590,173 +1497,31 @@
     <!-- Navigation -->
     <nav class="navbar">
         <a href="#" class="logo">SEIF<span>YASSER</span></a>
-        
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
-            <i class="fas fa-bars"></i>
-        </button>
-        
+        <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
         <div class="nav-links" id="navLinks">
             <a href="#home" class="active">Home</a>
-            <a href="#services">Services</a>
-            <a href="#about">About</a>
+                        <a href="#about">About</a>
             <a href="#certificate">Certificate</a>
-            <a href="#contact">Contact</a>
+            <a href="#contact">Start Project</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
         <h1>SEIF YASSER</h1>
-        <p class="subtitle">VIRTUAL ASSISTANT</p>
-        <p>Professional virtual assistant with expertise in administrative support, data management, and client coordination. Dedicated to enhancing productivity and streamlining operations for businesses and individuals.</p>
-        
-        <!-- New Explore Services Button -->
+        <p class="subtitle">WEB DEVELOPER</p>
+        <p>I build professional websites, e-commerce stores, and landing pages tailored to your brand — modern, fast, and built to convert. Let's bring your vision to life.</p>
         <button class="super-button" id="exploreServicesBtn">
-            <span>Explore Services</span>
+            <span>Explore</span>
             <svg fill="none" viewBox="0 0 24 24" class="arrow">
-                <path
-                    stroke-linejoin="round"
-                    stroke-linecap="round"
-                    stroke-width="2"
-                    stroke="currentColor"
-                    d="M5 12h14M13 6l6 6-6 6"
-                ></path>
+                <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" d="M5 12h14M13 6l6 6-6 6"></path>
             </svg>
         </button>
-        
-        <div class="stats">
-            <div class="stat-item">
-                <div class="stat-number" data-count="50">0</div>
-                <div class="stat-text">Projects Completed</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number" data-count="40">0</div>
-                <div class="stat-text">Happy Clients</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number" data-count="24">0</div>
-                <div class="stat-text">Support Hours</div>
-            </div>
-        </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services-section" id="services">
-        <h2 class="section-title">My Services</h2>
-        <p class="section-subtitle">I offer a comprehensive range of virtual assistant services tailored to meet your specific needs and help streamline your operations.</p>
+                        
         
-        <div class="services-grid">
-            <div class="service-card reveal" data-tilt data-hover>
-                <div class="service-icon">
-                    <i class="fas fa-plane"></i>
-                </div>
-                <h3>Travel Research & Planning</h3>
-                <p>Comprehensive travel arrangements including flights, accommodations, and itineraries tailored to your preferences and budget.</p>
-                <ul class="service-features">
-                    <li>Flight and hotel research</li>
-                    <li>Itinerary planning</li>
-                    <li>Price comparison</li>
-                    <li>Travel requirements check</li>
-                </ul>
-            </div>
             
-            <div class="service-card reveal" data-tilt data-hover>
-                <div class="service-icon">
-                    <i class="fas fa-calendar-check"></i>
-                </div>
-                <h3>Appointment Management</h3>
-                <p>Efficient scheduling and rescheduling of appointments with various service providers to optimize your time.</p>
-                <ul class="service-features">
-                    <li>Medical appointments</li>
-                    <li>Service provider bookings</li>
-                    <li>Reminder systems</li>
-                    <li>Calendar management</li>
-                </ul>
-            </div>
-            
-            <div class="service-card reveal" data-tilt data-hover>
-                <div class="service-icon">
-                    <i class="fas fa-birthday-cake"></i>
-                </div>
-                <h3>Event Planning</h3>
-                <p>Creative and budget-friendly event planning services for special occasions, ensuring memorable experiences.</p>
-                <ul class="service-features">
-                    <li>Theme development</li>
-                    <li>Venue research</li>
-                    <li>Vendor coordination</li>
-                    <li>Budget management</li>
-                </ul>
-            </div>
-            
-            <div class="service-card reveal" data-tilt data-hover>
-                <div class="service-icon">
-                    <i class="fas fa-file-alt"></i>
-                </div>
-                <h3>Data & Document Management</h3>
-                <p>Organized data entry and document management services to keep your information accessible and well-structured.</p>
-                <ul class="service-features">
-                    <li>Data entry</li>
-                    <li>Document organization</li>
-                    <li>Spreadsheet creation</li>
-                    <li>File management</li>
-                </ul>
-            </div>
-            
-            <div class="service-card reveal" data-tilt data-hover>
-                <div class="service-icon">
-                    <i class="fas fa-utensils"></i>
-                </div>
-                <h3>Meal Planning & Research</h3>
-                <p>Customized meal plans and recipe research based on dietary preferences, restrictions, and nutritional goals.</p>
-                <ul class="service-features">
-                    <li>Recipe research</li>
-                    <li>Meal planning</li>
-                    <li>Dietary customization</li>
-                    <li>Grocery lists</li>
-                </ul>
-            </div>
-            
-            <div class="service-card reveal" data-tilt data-hover>
-                <div class="service-icon">
-                    <i class="fas fa-laptop-house"></i>
-                </div>
-                <h3>Workspace Research</h3>
-                <p>Identification and evaluation of optimal workspace solutions for remote workers and digital nomads.</p>
-                <ul class="service-features">
-                    <li>Co-working space research</li>
-                    <li>Price comparison</li>
-                    <li>Amenity evaluation</li>
-                    <li>Location analysis</li>
-                </ul>
-            </div>
-            
-            <div class="service-card reveal" data-tilt data-hover>
-                <div class="service-icon">
-                    <i class="fas fa-envelope"></i>
-                </div>
-                <h3>Email Management</h3>
-                <p>Professional email organization and management to ensure timely responses and efficient communication.</p>
-                <ul class="service-features">
-                    <li>Inbox organization</li>
-                    <li>Response drafting</li>
-                    <li>Follow-up management</li>
-                    <li>Priority filtering</li>
-                </ul>
-            </div>
-            
-            <div class="service-card reveal" data-tilt data-hover>
-                <div class="service-icon">
-                    <i class="fas fa-hashtag"></i>
-                </div>
-                <h3>Social Media Support</h3>
-                <p>Strategic social media management support to enhance your online presence and audience engagement.</p>
-                <ul class="service-features">
-                    <li>Content calendar creation</li>
-                    <li>Trend research</li>
-                    <li>Hashtag optimization</li>
-                    <li>Engagement analysis</li>
-                </ul>
-            </div>
         </div>
     </section>
 
@@ -1765,29 +1530,18 @@
         <div class="about-content">
             <div class="about-text">
                 <h2>About <span>Me</span></h2>
-                <p>I'm Seif Yasser, a dedicated virtual assistant with specialized training in administrative support and task management. I completed an intensive 8-week Virtual Assistant training program that equipped me with professional skills for efficient task management and client coordination.</p>
-                <p>My expertise includes scheduling, travel planning, appointment coordination, data organization, and document management using Google Suite and Microsoft Office. I'm skilled in drafting business correspondence and managing email systems for maximum efficiency.</p>
-                <p>I'm passionate about helping clients streamline their operations, save time, and focus on what matters most to their business or personal life. My approach is detail-oriented, proactive, and tailored to each client's unique needs.</p>
-                
+                <p>I'm Seif Yasser, a web developer focused on building clean, high-performance websites and online stores. I completed an intensive Virtual Assistant training program that sharpened my skills in digital tools, client coordination, and online business systems.</p>
+                <p>I work with individuals and businesses to turn their ideas into fully functional websites — whether it's a personal portfolio, a business landing page, or a complete e-commerce store. My builds are optimized for speed, design, and results.</p>
+                <p>I'm detail-oriented, deadline-driven, and always focused on what matters most: delivering something that actually works for your business.</p>
                 <div class="skills">
-                    <span class="skill-tag">Scheduling</span>
-                    <span class="skill-tag">Travel Planning</span>
-                    <span class="skill-tag">Data Entry</span>
-                    <span class="skill-tag">Email Management</span>
-                    <span class="skill-tag">Research</span>
-                    <span class="skill-tag">Organization</span>
-                    <span class="skill-tag">Communication</span>
-                    <span class="skill-tag">Problem Solving</span>
-                </div>
-            </div>
-            
-            <div class="about-image">
-                <div class="image-container">
-                    <img src="https://i.ibb.co/RT5fLTVL/Untitled-Project.jpg" alt="Seif Yasser">
-                </div>
-                <div class="experience-badge">
-                    <span class="years">8</span>
-                    <span class="text">Weeks Intensive Training</span>
+                    <span class="skill-tag">HTML & CSS</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">E-Commerce</span>
+                    <span class="skill-tag">UI / UX Design</span>
+                    <span class="skill-tag">Responsive Design</span>
+                    <span class="skill-tag">SEO Basics</span>
+                    <span class="skill-tag">WordPress</span>
+                    <span class="skill-tag">Google Suite</span>
                 </div>
             </div>
         </div>
@@ -1797,113 +1551,627 @@
     <section class="certificate-section" id="certificate">
         <div class="certificate-container">
             <h3>Professional Certification</h3>
-            <p>Successfully completed an intensive 8-week Virtual Assistant training program focused on professional skills, task management, and client coordination. This certification demonstrates expertise in scheduling, travel planning, data organization, and efficient administrative support.</p>
-            
+            <p>Successfully completed an intensive 8-week Virtual Assistant training program focused on professional skills, task management, and client coordination. This certification demonstrates expertise in scheduling, digital tools, data organization, and efficient administrative support.</p>
             <button class="btn" id="viewCertificateBtn">
                 <i class="fas fa-award"></i> View Certificate
             </button>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact / Questionnaire Section -->
     <section class="contact-section" id="contact">
-        <h2 class="section-title">Get In Touch</h2>
-        <p class="section-subtitle">Have a question or want to discuss how I can help your business? Contact me today! I'll respond to you promptly.</p>
-        
+        <h2 class="section-title">Start Your Project</h2>
+        <p class="section-subtitle">Fill in the details below so I can understand your vision and build exactly what you need.</p>
+
         <div class="contact-container">
+            <!-- Left Info -->
             <div class="contact-info">
-                <h3>Let's Work Together</h3>
-                <p>I'm ready to help you streamline your operations, manage your tasks, and boost your productivity. Whether you need ongoing support or assistance with a specific project, I'm here to help.</p>
-                
+                <h3>Let's Build Something Great</h3>
+                <p>Ready to launch your website or online store? Answer the quick questions on the right and I'll get back to you with a plan and a price.</p>
                 <div class="contact-details">
                     <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                         <div class="contact-text">
                             <h4>Email</h4>
                             <p>seifyasserhussain@gmail.com</p>
                         </div>
                     </div>
-                    
                     <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
+                        <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
                         <div class="contact-text">
-                            <h4>Phone</h4>
+                            <h4>WhatsApp</h4>
                             <p>+20 128 339 1426</p>
                         </div>
                     </div>
-                    
                     <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
                         <div class="contact-text">
                             <h4>Location</h4>
                             <p>Egypt</p>
                         </div>
                     </div>
-                    
                     <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
+                        <div class="contact-icon"><i class="fas fa-clock"></i></div>
                         <div class="contact-text">
-                            <h4>Availability</h4>
-                            <p>24/7</p>
+                            <h4>Response Time</h4>
+                            <p>Within 24 hours</p>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
+            <!-- Right: Multi-Step Form -->
             <div class="contact-form">
-                <form id="contactForm" action="https://formspree.io/f/mgvgpqzn" method="POST">
-                    <div class="form-group">
-                        <label for="name">Full Name *</label>
-                        <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required>
+                <div class="progress-bar-wrap">
+                    <div class="progress-bar-fill" id="progressBar"></div>
+                </div>
+                <div class="step-counter">
+                    <span class="step-label" id="stepLabel">Basic Information</span>
+                    <span class="step-number" id="stepNum">Step 1 / 9</span>
+                </div>
+
+                <form id="contactForm" action="https://formspree.io/f/xbdwrqon" method="POST">
+
+                    <!-- ── STEP 1: Basic Info ── -->
+                    <div class="form-step active" id="step-1">
+                        <div class="step-title"><span class="step-dot"></span> Basic Information</div>
+                        <p class="step-desc">Let's start with some contact details.</p>
+
+                        <div class="form-group revealed" style="--field-index:0">
+                            <label for="fullName">Full Name <span class="req">*</span></label>
+                            <input type="text" id="fullName" name="fullName" class="form-control" placeholder="Your full name" required>
+                        </div>
+                        <div class="form-group revealed" style="--field-index:1">
+                            <label for="brand">Company / Brand Name</label>
+                            <input type="text" id="brand" name="brand" class="form-control" placeholder="Your brand or business name">
+                        </div>
+                        <div class="form-group revealed" style="--field-index:2">
+                            <label for="email">Email Address <span class="req">*</span></label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group revealed" style="--field-index:3">
+                            <label for="phone">Phone Number (WhatsApp preferred)</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="+20 1XX XXX XXXX">
+                        </div>
+                        <div class="form-group revealed" style="--field-index:4">
+                            <label>Preferred Way of Communication <span class="req">*</span></label>
+                            <div class="choices-grid cols-2">
+                                <div class="choice-item">
+                                    <input type="radio" name="communication" id="comm-whatsapp" value="WhatsApp" required>
+                                    <label class="choice-label" for="comm-whatsapp"><span class="choice-icon"></span> <i class="fab fa-whatsapp" style="color:#25d366"></i> WhatsApp</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="communication" id="comm-email" value="Email">
+                                    <label class="choice-label" for="comm-email"><span class="choice-icon"></span> <i class="fas fa-envelope" style="color:#ab0202"></i> Email</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="communication" id="comm-call" value="Phone Call">
+                                    <label class="choice-label" for="comm-call"><span class="choice-icon"></span> <i class="fas fa-phone" style="color:#aaa"></i> Phone Call</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="communication" id="comm-any" value="Any">
+                                    <label class="choice-label" for="comm-any"><span class="choice-icon"></span> <i class="fas fa-globe" style="color:#aaa"></i> Any</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
+
+                    <!-- ── STEP 2: Project Overview ── -->
+                    <div class="form-step" id="step-2">
+                        <div class="step-title"><span class="step-dot"></span> Project Overview</div>
+                        <p class="step-desc">Tell me about the website you need.</p>
+
+                        <div class="form-group revealed" style="--field-index:0">
+                            <label>What type of website do you need? <span class="req">*</span></label>
+                            <div class="choices-grid cols-2">
+                                <div class="choice-item">
+                                    <input type="radio" name="siteType" id="type-business" value="Business" required>
+                                    <label class="choice-label" for="type-business"><span class="choice-icon"></span> <i class="fas fa-briefcase"></i> Business</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="siteType" id="type-ecom" value="E-Commerce Store">
+                                    <label class="choice-label" for="type-ecom"><span class="choice-icon"></span> <i class="fas fa-store"></i> E-Commerce Store</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="siteType" id="type-portfolio" value="Portfolio">
+                                    <label class="choice-label" for="type-portfolio"><span class="choice-icon"></span> <i class="fas fa-user-tie"></i> Portfolio</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="siteType" id="type-blog" value="Blog">
+                                    <label class="choice-label" for="type-blog"><span class="choice-icon"></span> <i class="fas fa-blog"></i> Blog</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="siteType" id="type-landing" value="Landing Page">
+                                    <label class="choice-label" for="type-landing"><span class="choice-icon"></span> <i class="fas fa-rocket"></i> Landing Page</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="siteType" id="type-other" value="Other">
+                                    <label class="choice-label" for="type-other"><span class="choice-icon"></span> <i class="fas fa-ellipsis-h"></i> Other</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group revealed" style="--field-index:1">
+                            <label>Main goal of the website? <span class="req">*</span></label>
+                            <div class="choices-grid cols-2">
+                                <div class="choice-item">
+                                    <input type="radio" name="goal" id="goal-sell" value="Sell Products" required>
+                                    <label class="choice-label" for="goal-sell"><span class="choice-icon"></span> <i class="fas fa-shopping-cart"></i> Sell Products</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="goal" id="goal-leads" value="Generate Leads">
+                                    <label class="choice-label" for="goal-leads"><span class="choice-icon"></span> <i class="fas fa-funnel-dollar"></i> Generate Leads</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="goal" id="goal-showcase" value="Showcase Work">
+                                    <label class="choice-label" for="goal-showcase"><span class="choice-icon"></span> <i class="fas fa-images"></i> Showcase Work</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="goal" id="goal-info" value="Share Information">
+                                    <label class="choice-label" for="goal-info"><span class="choice-icon"></span> <i class="fas fa-info-circle"></i> Share Information</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="goal" id="goal-booking" value="Take Bookings">
+                                    <label class="choice-label" for="goal-booking"><span class="choice-icon"></span> <i class="fas fa-calendar-check"></i> Take Bookings</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="goal" id="goal-other" value="Other Goal">
+                                    <label class="choice-label" for="goal-other"><span class="choice-icon"></span> <i class="fas fa-ellipsis-h"></i> Other</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group revealed" style="--field-index:2">
+                            <label>Do you already have a website?</label>
+                            <div class="choices-grid cols-2">
+                                <div class="choice-item">
+                                    <input type="radio" name="hasWebsite" id="web-yes" value="Yes" onclick="document.getElementById('existingUrl').classList.add('show')">
+                                    <label class="choice-label" for="web-yes"><span class="choice-icon"></span> Yes</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="hasWebsite" id="web-no" value="No" onclick="document.getElementById('existingUrl').classList.remove('show')">
+                                    <label class="choice-label" for="web-no"><span class="choice-icon"></span> No</label>
+                                </div>
+                            </div>
+                            <div class="conditional-field" id="existingUrl">
+                                <input type="url" name="existingWebsite" class="form-control" placeholder="https://your-current-website.com">
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter your phone number">
+
+                    <!-- ── STEP 3: Branding & Design ── -->
+                    <div class="form-step" id="step-3">
+                        <div class="step-title"><span class="step-dot"></span> Branding & Design</div>
+                        <p class="step-desc">Help me understand your brand identity.</p>
+
+                        <div class="form-group revealed" style="--field-index:0">
+                            <label>Do you have a logo?</label>
+                            <div class="choices-grid cols-2">
+                                <div class="choice-item">
+                                    <input type="radio" name="hasLogo" id="logo-yes" value="Yes">
+                                    <label class="choice-label" for="logo-yes"><span class="choice-icon"></span> Yes, I have one</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="hasLogo" id="logo-no" value="No">
+                                    <label class="choice-label" for="logo-no"><span class="choice-icon"></span> No, I need one</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group revealed" style="--field-index:1">
+                            <label>Do you have brand colors?</label>
+                            <div class="choices-grid cols-2">
+                                <div class="choice-item">
+                                    <input type="radio" name="hasColors" id="colors-yes" value="Yes" onclick="document.getElementById('colorsField').classList.add('show')">
+                                    <label class="choice-label" for="colors-yes"><span class="choice-icon"></span> Yes</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="hasColors" id="colors-no" value="No" onclick="document.getElementById('colorsField').classList.remove('show')">
+                                    <label class="choice-label" for="colors-no"><span class="choice-icon"></span> No / Let you decide</label>
+                                </div>
+                            </div>
+                            <div class="conditional-field" id="colorsField">
+                                <input type="text" name="brandColors" class="form-control" placeholder="e.g. Red #ab0202, Black, White">
+                            </div>
+                        </div>
+
+                        <div class="form-group revealed" style="--field-index:2">
+                            <label for="refLinks">Any websites you like as reference?</label>
+                            <input type="text" id="refLinks" name="referenceLinks" class="form-control" placeholder="https://example1.com, https://example2.com">
+                        </div>
+
+                        <div class="form-group revealed" style="--field-index:3">
+                            <label>What style do you prefer? <span class="req">*</span></label>
+                            <div class="choices-grid cols-3">
+                                <div class="choice-item">
+                                    <input type="radio" name="style" id="style-modern" value="Modern" required>
+                                    <label class="choice-label" for="style-modern"><span class="choice-icon"></span> Modern</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="style" id="style-minimal" value="Minimal">
+                                    <label class="choice-label" for="style-minimal"><span class="choice-icon"></span> Minimal</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="style" id="style-corporate" value="Corporate">
+                                    <label class="choice-label" for="style-corporate"><span class="choice-icon"></span> Corporate</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="style" id="style-bold" value="Bold">
+                                    <label class="choice-label" for="style-bold"><span class="choice-icon"></span> Bold</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="style" id="style-luxury" value="Luxury">
+                                    <label class="choice-label" for="style-luxury"><span class="choice-icon"></span> Luxury</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="style" id="style-fun" value="Fun / Playful">
+                                    <label class="choice-label" for="style-fun"><span class="choice-icon"></span> Fun / Playful</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="service">Service Interested In</label>
-                        <select id="service" name="service" class="form-control">
-                            <option value="">Select a service</option>
-                            <option value="travel">Travel Research & Planning</option>
-                            <option value="appointments">Appointment Management</option>
-                            <option value="events">Event Planning</option>
-                            <option value="data">Data & Document Management</option>
-                            <option value="meals">Meal Planning & Research</option>
-                            <option value="workspace">Workspace Research</option>
-                            <option value="email">Email Management</option>
-                            <option value="social">Social Media Support</option>
-                            <option value="other">Other</option>
-                        </select>
+
+                    <!-- ── STEP 4: Content ── -->
+                    <div class="form-step" id="step-4">
+                        <div class="step-title"><span class="step-dot"></span> Content</div>
+                        <p class="step-desc">What content will go on the website?</p>
+
+                        <div class="form-group revealed" style="--field-index:0">
+                            <label>Do you have the content ready?</label>
+                            <div class="choices-grid cols-2">
+                                <div class="choice-item">
+                                    <input type="radio" name="contentReady" id="content-yes" value="Yes, fully ready">
+                                    <label class="choice-label" for="content-yes"><span class="choice-icon"></span> Yes, fully ready</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="contentReady" id="content-partial" value="Partially ready">
+                                    <label class="choice-label" for="content-partial"><span class="choice-icon"></span> Partially ready</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="contentReady" id="content-no" value="No, need help">
+                                    <label class="choice-label" for="content-no"><span class="choice-icon"></span> No, need help</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="contentReady" id="content-later" value="Will provide later">
+                                    <label class="choice-label" for="content-later"><span class="choice-icon"></span> Will provide later</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group revealed" style="--field-index:1">
+                            <label>Will you provide text and images?</label>
+                            <div class="choices-grid cols-2">
+                                <div class="choice-item">
+                                    <input type="radio" name="provideMedia" id="media-both" value="Both text and images">
+                                    <label class="choice-label" for="media-both"><span class="choice-icon"></span> Both text & images</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="provideMedia" id="media-text" value="Text only">
+                                    <label class="choice-label" for="media-text"><span class="choice-icon"></span> Text only</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="provideMedia" id="media-images" value="Images only">
+                                    <label class="choice-label" for="media-images"><span class="choice-icon"></span> Images only</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="provideMedia" id="media-none" value="Neither, need help">
+                                    <label class="choice-label" for="media-none"><span class="choice-icon"></span> Need help with both</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group revealed" style="--field-index:2">
+                            <label for="numPages">Approximate number of pages needed</label>
+                            <select id="numPages" name="numPages" class="form-control">
+                                <option value="">Select number of pages</option>
+                                <option value="1 page">1 page (Landing page)</option>
+                                <option value="2-3 pages">2-3 pages</option>
+                                <option value="4-6 pages">4-6 pages</option>
+                                <option value="7-10 pages">7-10 pages</option>
+                                <option value="More than 10">More than 10</option>
+                                <option value="Not sure">Not sure yet</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group revealed" style="--field-index:3">
+                            <label for="pagesList">List the pages you want</label>
+                            <input type="text" id="pagesList" name="pagesList" class="form-control" placeholder="e.g. Home, About, Services, Portfolio, Contact">
+                        </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Message *</label>
-                        <textarea id="message" name="message" class="form-control" placeholder="Describe your project or inquiry" required></textarea>
+
+                    <!-- ── STEP 5: Features ── -->
+                    <div class="form-step" id="step-5">
+                        <div class="step-title"><span class="step-dot"></span> Features & Functionality</div>
+                        <p class="step-desc">Select all features you'd like on your website.</p>
+
+                        <div class="form-group revealed" style="--field-index:0">
+                            <label>What features do you need? (select all that apply)</label>
+                            <div class="choices-grid cols-2">
+                                <div class="choice-item">
+                                    <input type="checkbox" name="features" id="feat-contact" value="Contact Form">
+                                    <label class="choice-label" for="feat-contact"><span class="choice-icon"></span> <i class="fas fa-envelope"></i> Contact Form</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="checkbox" name="features" id="feat-booking" value="Booking System">
+                                    <label class="choice-label" for="feat-booking"><span class="choice-icon"></span> <i class="fas fa-calendar"></i> Booking System</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="checkbox" name="features" id="feat-payment" value="Payment Gateway">
+                                    <label class="choice-label" for="feat-payment"><span class="choice-icon"></span> <i class="fas fa-credit-card"></i> Payment Gateway</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="checkbox" name="features" id="feat-chat" value="Live Chat">
+                                    <label class="choice-label" for="feat-chat"><span class="choice-icon"></span> <i class="fas fa-comments"></i> Live Chat</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="checkbox" name="features" id="feat-whatsapp" value="WhatsApp Button">
+                                    <label class="choice-label" for="feat-whatsapp"><span class="choice-icon"></span> <i class="fab fa-whatsapp"></i> WhatsApp Button</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="checkbox" name="features" id="feat-gallery" value="Photo Gallery">
+                                    <label class="choice-label" for="feat-gallery"><span class="choice-icon"></span> <i class="fas fa-images"></i> Photo Gallery</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="checkbox" name="features" id="feat-blog" value="Blog Section">
+                                    <label class="choice-label" for="feat-blog"><span class="choice-icon"></span> <i class="fas fa-blog"></i> Blog Section</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="checkbox" name="features" id="feat-map" value="Google Maps">
+                                    <label class="choice-label" for="feat-map"><span class="choice-icon"></span> <i class="fas fa-map-marker-alt"></i> Google Maps</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group revealed" style="--field-index:1">
+                            <label>Do you need user accounts or a login system?</label>
+                            <div class="choices-grid cols-3">
+                                <div class="choice-item">
+                                    <input type="radio" name="loginSystem" id="login-yes" value="Yes">
+                                    <label class="choice-label" for="login-yes"><span class="choice-icon"></span> Yes</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="loginSystem" id="login-no" value="No">
+                                    <label class="choice-label" for="login-no"><span class="choice-icon"></span> No</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="loginSystem" id="login-unsure" value="Not sure">
+                                    <label class="choice-label" for="login-unsure"><span class="choice-icon"></span> Not sure</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group revealed" style="--field-index:2">
+                            <label>Do you need multi-language support?</label>
+                            <div class="choices-grid cols-3">
+                                <div class="choice-item">
+                                    <input type="radio" name="multiLang" id="lang-yes" value="Yes">
+                                    <label class="choice-label" for="lang-yes"><span class="choice-icon"></span> Yes</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="multiLang" id="lang-no" value="No">
+                                    <label class="choice-label" for="lang-no"><span class="choice-icon"></span> No</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="multiLang" id="lang-maybe" value="Maybe later">
+                                    <label class="choice-label" for="lang-maybe"><span class="choice-icon"></span> Maybe later</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <input type="hidden" name="_subject" value="New Contact Form Submission from Website">
+
+                    <!-- ── STEP 6: E-Commerce ── -->
+                    <div class="form-step" id="step-6">
+                        <div class="step-title"><span class="step-dot"></span> E-Commerce Details</div>
+                        <p class="step-desc">Only relevant if you're building an online store — skip if not applicable.</p>
+
+                        <div class="form-group revealed" style="--field-index:0">
+                            <label>Approximate number of products</label>
+                            <div class="choices-grid cols-2">
+                                <div class="choice-item">
+                                    <input type="radio" name="numProducts" id="prod-small" value="1-20 products">
+                                    <label class="choice-label" for="prod-small"><span class="choice-icon"></span> 1 – 20 products</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="numProducts" id="prod-med" value="21-100 products">
+                                    <label class="choice-label" for="prod-med"><span class="choice-icon"></span> 21 – 100 products</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="numProducts" id="prod-large" value="100+ products">
+                                    <label class="choice-label" for="prod-large"><span class="choice-icon"></span> 100+ products</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="numProducts" id="prod-na" value="Not applicable">
+                                    <label class="choice-label" for="prod-na"><span class="choice-icon"></span> Not applicable</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group revealed" style="--field-index:1">
+                            <label>Payment methods needed (select all)</label>
+                            <div class="choices-grid cols-2">
+                                <div class="choice-item">
+                                    <input type="checkbox" name="payment" id="pay-card" value="Credit / Debit Card">
+                                    <label class="choice-label" for="pay-card"><span class="choice-icon"></span> <i class="fas fa-credit-card"></i> Credit / Debit Card</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="checkbox" name="payment" id="pay-paypal" value="PayPal">
+                                    <label class="choice-label" for="pay-paypal"><span class="choice-icon"></span> <i class="fab fa-paypal"></i> PayPal</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="checkbox" name="payment" id="pay-cod" value="Cash on Delivery">
+                                    <label class="choice-label" for="pay-cod"><span class="choice-icon"></span> <i class="fas fa-money-bill"></i> Cash on Delivery</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="checkbox" name="payment" id="pay-local" value="Local Payment Gateway">
+                                    <label class="choice-label" for="pay-local"><span class="choice-icon"></span> <i class="fas fa-landmark"></i> Local Payment Gateway</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group revealed" style="--field-index:2">
+                            <label for="shipping">Shipping details</label>
+                            <input type="text" id="shipping" name="shipping" class="form-control" placeholder="e.g. Egypt only, free shipping over 500 EGP, etc.">
+                        </div>
+
+                        <div class="form-group revealed" style="--field-index:3">
+                            <label>Do you want discount codes / offers system?</label>
+                            <div class="choices-grid cols-3">
+                                <div class="choice-item">
+                                    <input type="radio" name="discounts" id="disc-yes" value="Yes">
+                                    <label class="choice-label" for="disc-yes"><span class="choice-icon"></span> Yes</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="discounts" id="disc-no" value="No">
+                                    <label class="choice-label" for="disc-no"><span class="choice-icon"></span> No</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="discounts" id="disc-later" value="Maybe later">
+                                    <label class="choice-label" for="disc-later"><span class="choice-icon"></span> Maybe later</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── STEP 7: Technical ── -->
+                    <div class="form-step" id="step-7">
+                        <div class="step-title"><span class="step-dot"></span> Technical Details</div>
+                        <p class="step-desc">Domain, hosting and setup info.</p>
+
+                        <div class="form-group revealed" style="--field-index:0">
+                            <label>Do you have a domain name?</label>
+                            <div class="choices-grid cols-2">
+                                <div class="choice-item">
+                                    <input type="radio" name="hasDomain" id="domain-yes" value="Yes" onclick="document.getElementById('domainField').classList.add('show')">
+                                    <label class="choice-label" for="domain-yes"><span class="choice-icon"></span> Yes</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="hasDomain" id="domain-no" value="No" onclick="document.getElementById('domainField').classList.remove('show')">
+                                    <label class="choice-label" for="domain-no"><span class="choice-icon"></span> No</label>
+                                </div>
+                            </div>
+                            <div class="conditional-field" id="domainField">
+                                <input type="text" name="domainName" class="form-control" placeholder="e.g. www.mybrand.com">
+                            </div>
+                        </div>
+
+                        <div class="form-group revealed" style="--field-index:1">
+                            <label>Do you have hosting?</label>
+                            <div class="choices-grid cols-3">
+                                <div class="choice-item">
+                                    <input type="radio" name="hasHosting" id="host-yes" value="Yes">
+                                    <label class="choice-label" for="host-yes"><span class="choice-icon"></span> Yes</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="hasHosting" id="host-no" value="No">
+                                    <label class="choice-label" for="host-no"><span class="choice-icon"></span> No</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="hasHosting" id="host-unsure" value="Not sure">
+                                    <label class="choice-label" for="host-unsure"><span class="choice-icon"></span> Not sure</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group revealed" style="--field-index:2">
+                            <label>Do you need help with setup & launch?</label>
+                            <div class="choices-grid cols-3">
+                                <div class="choice-item">
+                                    <input type="radio" name="needSetup" id="setup-yes" value="Yes">
+                                    <label class="choice-label" for="setup-yes"><span class="choice-icon"></span> Yes please</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="needSetup" id="setup-no" value="No">
+                                    <label class="choice-label" for="setup-no"><span class="choice-icon"></span> I'll manage it</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="needSetup" id="setup-discuss" value="Let's discuss">
+                                    <label class="choice-label" for="setup-discuss"><span class="choice-icon"></span> Let's discuss</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── STEP 8: Timeline & Budget ── -->
+                    <div class="form-step" id="step-8">
+                        <div class="step-title"><span class="step-dot"></span> Timeline & Budget</div>
+                        <p class="step-desc">When do you need it, and what's your budget?</p>
+
+                        <div class="form-group revealed" style="--field-index:0">
+                            <label>When do you want the project delivered?</label>
+                            <div class="choices-grid cols-2">
+                                <div class="choice-item">
+                                    <input type="radio" name="timeline" id="time-asap" value="ASAP (within 1 week)">
+                                    <label class="choice-label" for="time-asap"><span class="choice-icon"></span> <i class="fas fa-bolt"></i> ASAP (1 week)</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="timeline" id="time-2weeks" value="2 weeks">
+                                    <label class="choice-label" for="time-2weeks"><span class="choice-icon"></span> 2 weeks</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="timeline" id="time-month" value="1 month">
+                                    <label class="choice-label" for="time-month"><span class="choice-icon"></span> 1 month</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="timeline" id="time-flexible" value="Flexible">
+                                    <label class="choice-label" for="time-flexible"><span class="choice-icon"></span> Flexible</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group revealed" style="--field-index:1">
+                            <label>What is your budget range?</label>
+                            <div class="choices-grid cols-2">
+                                <div class="choice-item">
+                                    <input type="radio" name="budget" id="bud-small" value="Under $200">
+                                    <label class="choice-label" for="bud-small"><span class="choice-icon"></span> Under $200</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="budget" id="bud-med" value="$200 – $500">
+                                    <label class="choice-label" for="bud-med"><span class="choice-icon"></span> $200 – $500</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="budget" id="bud-large" value="$500 – $1000">
+                                    <label class="choice-label" for="bud-large"><span class="choice-icon"></span> $500 – $1,000</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="budget" id="bud-open" value="$1000+">
+                                    <label class="choice-label" for="bud-open"><span class="choice-icon"></span> $1,000+</label>
+                                </div>
+                                <div class="choice-item">
+                                    <input type="radio" name="budget" id="bud-discuss" value="Let's discuss">
+                                    <label class="choice-label" for="bud-discuss"><span class="choice-icon"></span> Let's discuss</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── STEP 9: Additional Notes ── -->
+                    <div class="form-step" id="step-9">
+                        <div class="step-title"><span class="step-dot"></span> Additional Notes</div>
+                        <p class="step-desc">Anything else you'd like me to know before we start?</p>
+
+                        <div class="form-group revealed" style="--field-index:0">
+                            <label for="notes">Extra details, special requests, or questions</label>
+                            <textarea id="notes" name="notes" class="form-control" placeholder="Tell me anything else that would help — special requirements, inspiration, concerns, questions..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Hidden fields -->
+                    <input type="hidden" name="_subject" value="New Website Project Request">
                     <input type="text" name="_gotcha" style="display:none">
-                    
-                    <!-- Updated Send Button -->
-                    <button type="submit" class="submit-btn" id="submitBtn">
-                        <i class="fas fa-paper-plane"></i>
-                        <span>SEND MESSAGE</span>
-                    </button>
+
+                    <!-- Navigation -->
+                    <div class="form-nav">
+                        <button type="button" class="btn-prev" id="btnPrev" style="display:none" onclick="changeStep(-1)">
+                            <i class="fas fa-arrow-left"></i> Back
+                        </button>
+                        <button type="button" class="btn-next" id="btnNext" onclick="changeStep(1)">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <button type="submit" class="submit-btn" id="submitBtn" style="display:none">
+                            <i class="fas fa-paper-plane"></i> <span>SUBMIT</span>
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -1914,108 +2182,73 @@
         <div class="footer-content">
             <div class="footer-about">
                 <a href="#" class="footer-logo">SEIF<span>YASSER</span></a>
-                <p>Professional virtual assistant providing efficient administrative support, task management, and client coordination services to help businesses and individuals optimize their productivity.</p>
-                
+                <p>Professional web developer building modern websites and e-commerce stores — fast, clean, and tailored to your brand.</p>
                 <div class="social-links">
-                    <a href="https://www.facebook.com/saifalden299/" target="_blank" class="social-link">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/seifyasserh/" target="_blank" class="social-link">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://www.tiktok.com/@hr_seif_yasser" target="_blank" class="social-link">
-                        <i class="fab fa-tiktok"></i>
-                    </a>
-                    <a href="https://wa.link/9yb3be" target="_blank" class="social-link">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                    <a href="https://www.instagram.com/seif_yasser8/" target="_blank" class="social-link">
-                        <i class="fab fa-instagram"></i>
-                    </a>
+                    <a href="https://www.facebook.com/saifalden299/" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.linkedin.com/in/seifyasserh/" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.tiktok.com/@hr_seif_yasser" target="_blank" class="social-link"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://wa.link/9yb3be" target="_blank" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/seif_yasser8/" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
-            
             <div class="footer-links">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
-                    <li><a href="#services"><i class="fas fa-chevron-right"></i> Services</a></li>
-                    <li><a href="#about"><i class="fas fa-chevron-right"></i> About Me</a></li>
-                    <li><a href="#certificate"><i class="fas fa-chevron-right"></i> Certificate</a></li>
-                    <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    <li style="--link-index:0"><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li style="--link-index:1"><a href="#services"><i class="fas fa-chevron-right"></i> My Work</a></li>
+                    <li style="--link-index:2"><a href="#about"><i class="fas fa-chevron-right"></i> About Me</a></li>
+                    <li style="--link-index:3"><a href="#certificate"><i class="fas fa-chevron-right"></i> Certificate</a></li>
+                    <li style="--link-index:4"><a href="#contact"><i class="fas fa-chevron-right"></i> Start Project</a></li>
                 </ul>
             </div>
-            
             <div class="footer-links">
-                <h4>My Services</h4>
+                <h4>What I Build</h4>
                 <ul>
-                    <li><a href="#services"><i class="fas fa-chevron-right"></i> Travel Planning</a></li>
-                    <li><a href="#services"><i class="fas fa-chevron-right"></i> Appointment Management</a></li>
-                    <li><a href="#services"><i class="fas fa-chevron-right"></i> Data Entry</a></li>
-                    <li><a href="#services"><i class="fas fa-chevron-right"></i> Email Management</a></li>
-                    <li><a href="#services"><i class="fas fa-chevron-right"></i> Social Media Support</a></li>
+                    <li style="--link-index:0"><a href="#services"><i class="fas fa-chevron-right"></i> E-Commerce Stores</a></li>
+                    <li style="--link-index:1"><a href="#services"><i class="fas fa-chevron-right"></i> Business Websites</a></li>
+                    <li style="--link-index:2"><a href="#services"><i class="fas fa-chevron-right"></i> Personal Portfolios</a></li>
+                    <li style="--link-index:3"><a href="#services"><i class="fas fa-chevron-right"></i> Landing Pages</a></li>
+                    <li style="--link-index:4"><a href="#services"><i class="fas fa-chevron-right"></i> Restaurant Websites</a></li>
                 </ul>
             </div>
         </div>
     </footer>
 
-    <!-- Music Player -->
+    <!-- Music -->
     <audio id="background-music" loop>
         <source src="https://github.com/seifyasser8/VA.github.io/raw/refs/heads/main/Cigarettes%20After%20Sex%20X%20Beach%20House%20Type%20Beat%20-%20'tired%20love'%20-%20blossom.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
     </audio>
-    
-    <button class="mute-btn" id="muteBtn">
-        <i class="fas fa-volume-up"></i>
-    </button>
+    <button class="mute-btn" id="muteBtn"><i class="fas fa-volume-up"></i></button>
 
     <script>
-        // --- 1. Custom Cursor Logic ---
+        // ── 1. Custom Cursor ──
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorOutline = document.querySelector('.cursor-outline');
-
         window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
-
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-
-            // Delay for outline
-            cursorOutline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 500, fill: "forwards" });
+            cursorDot.style.left = `${e.clientX}px`;
+            cursorDot.style.top = `${e.clientY}px`;
+            cursorOutline.animate({ left: `${e.clientX}px`, top: `${e.clientY}px` }, { duration: 500, fill: "forwards" });
         });
-
-        // Hover Effect for Cursor - Apply to all interactive elements
-        const hoverElements = document.querySelectorAll('a, button, .super-button, .btn, .submit-btn, .skill-tag, .service-card, .social-link, .form-control, .mute-btn');
-        
-        hoverElements.forEach(el => {
+        document.querySelectorAll('a, button, .super-button, .btn, .submit-btn, .skill-tag, .service-card, .social-link, .form-control, .mute-btn, .choice-label').forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('hover-target'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('hover-target'));
         });
 
-        // --- 2. Mobile Menu Toggle ---
+        // ── 2. Mobile Menu ──
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
-        
         mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         });
-        
-        // Close mobile menu when clicking on a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
                 mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
             });
         });
-        
-        // --- 3. Explore Services Button - Reveal Sections ---
+
+        // ── 3. Explore Button – Reveal Sections ──
         const exploreServicesBtn = document.getElementById('exploreServicesBtn');
         const sectionsToReveal = [
             document.getElementById('services'),
@@ -2024,299 +2257,228 @@
             document.getElementById('contact'),
             document.querySelector('.footer')
         ];
-        
-        // إضافة كلاس no-scroll للbody عند تحميل الصفحة لمنع التمرير مؤقتاً
         document.body.classList.add('no-scroll');
-        
         let isFirstClick = true;
-        
+
         exploreServicesBtn.addEventListener('click', () => {
-            // إزالة كلاس no-scroll من الbody لتفعيل التمرير
             document.body.classList.remove('no-scroll');
-            
             if (isFirstClick) {
                 isFirstClick = false;
-                
-                // Add revealed class to all sections with delays
                 sectionsToReveal.forEach((section, index) => {
                     if (section) {
                         setTimeout(() => {
                             section.classList.add('revealed');
-                            
-                            // Add animation delays to service cards
                             if (section.id === 'services') {
-                                const serviceCards = section.querySelectorAll('.service-card');
-                                serviceCards.forEach((card, cardIndex) => {
-                                    card.style.setProperty('--card-index', cardIndex);
-                                    setTimeout(() => {
-                                        card.classList.add('reveal');
-                                    }, 100);
+                                const cards = section.querySelectorAll('.service-card');
+                                cards.forEach((card, i) => {
+                                    card.style.setProperty('--card-index', i);
+                                    setTimeout(() => card.classList.add('active'), i * 100 + 300);
                                 });
-                                
-                                // Trigger reveal animation for service cards
-                                setTimeout(() => {
-                                    const reveals = document.querySelectorAll('.service-card.reveal');
-                                    for (let i = 0; i < reveals.length; i++) {
-                                        setTimeout(() => {
-                                            reveals[i].classList.add('active');
-                                        }, i * 100);
-                                    }
-                                }, 300);
                             }
-                            
-                            // Add animation delays to contact items
                             if (section.id === 'contact') {
-                                const contactItems = section.querySelectorAll('.contact-item');
-                                const formGroups = section.querySelectorAll('.form-group');
-                                const submitBtn = section.querySelector('.submit-btn');
-                                const socialLinks = document.querySelectorAll('.social-link');
-                                const footerLinks = document.querySelectorAll('.footer-links');
-                                const footerLis = document.querySelectorAll('.footer-links li');
-                                
-                                contactItems.forEach((item, itemIndex) => {
-                                    item.style.setProperty('--item-index', itemIndex);
-                                    setTimeout(() => {
-                                        item.classList.add('revealed');
-                                    }, itemIndex * 100 + 300);
+                                section.querySelectorAll('.contact-item').forEach((item, i) => {
+                                    item.style.setProperty('--item-index', i);
+                                    setTimeout(() => item.classList.add('revealed'), i * 100 + 300);
                                 });
-                                
-                                formGroups.forEach((group, groupIndex) => {
-                                    group.style.setProperty('--field-index', groupIndex);
-                                    setTimeout(() => {
-                                        group.classList.add('revealed');
-                                    }, groupIndex * 100 + 300);
+                                document.querySelectorAll('.social-link').forEach((link, i) => {
+                                    link.style.setProperty('--social-index', i);
+                                    setTimeout(() => link.classList.add('revealed'), i * 100 + 300);
                                 });
-                                
-                                if (submitBtn) {
-                                    setTimeout(() => {
-                                        submitBtn.classList.add('revealed');
-                                    }, 700);
-                                }
-                                
-                                socialLinks.forEach((link, socialIndex) => {
-                                    link.style.setProperty('--social-index', socialIndex);
-                                    setTimeout(() => {
-                                        link.classList.add('revealed');
-                                    }, socialIndex * 100 + 300);
-                                });
-                                
-                                footerLinks.forEach(link => {
-                                    setTimeout(() => {
-                                        link.classList.add('revealed');
-                                    }, 300);
-                                });
-                                
-                                footerLis.forEach((li, linkIndex) => {
-                                    li.style.setProperty('--link-index', linkIndex);
-                                });
-                                
-                                // Footer bottom animation
-                                const footerBottom = document.querySelector('.footer-bottom');
-                                setTimeout(() => {
-                                    footerBottom.classList.add('revealed');
-                                }, 500);
+                                document.querySelectorAll('.footer-links').forEach(fl => setTimeout(() => fl.classList.add('revealed'), 300));
+                                const fb = document.querySelector('.footer-bottom');
+                                if (fb) setTimeout(() => fb.classList.add('revealed'), 500);
                             }
                         }, index * 300);
                     }
                 });
-                
-                // Smooth scroll to services section
                 setTimeout(() => {
-                    const servicesSection = document.getElementById('services');
-                    const offsetTop = servicesSection.offsetTop;
-                    
-                    window.scrollTo({
-                        top: offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+                    const s = document.getElementById('services');
+                    window.scrollTo({ top: s.offsetTop - 80, behavior: 'smooth' });
                 }, 800);
-                
-                // Start background music (autoplay with user interaction)
                 const bgMusic = document.getElementById('background-music');
                 bgMusic.volume = 0.2;
-                bgMusic.play().catch(e => {
-                    console.log("Autoplay prevented. User needs to interact first.");
-                });
+                bgMusic.play().catch(() => {});
             } else {
-                // إذا كان الزر تم النقر عليه مسبقاً، فقط انتقل إلى قسم الخدمات
-                const servicesSection = document.getElementById('services');
-                const offsetTop = servicesSection.offsetTop;
-                
-                window.scrollTo({
-                    top: offsetTop - 80,
-                    behavior: 'smooth'
-                });
+                const s = document.getElementById('services');
+                window.scrollTo({ top: s.offsetTop - 80, behavior: 'smooth' });
             }
         });
-        
-        // --- 4. View Certificate Button ---
-        const viewCertificateBtn = document.getElementById('viewCertificateBtn');
-        viewCertificateBtn.addEventListener('click', () => {
+
+        // ── 4. Certificate Button ──
+        document.getElementById('viewCertificateBtn').addEventListener('click', () => {
             window.open('https://savanna.alxafrica.com/certificates/ByHL7YcMrX', '_blank');
         });
-        
-        // --- 5. Animated Counter for Stats ---
-        const statNumbers = document.querySelectorAll('.stat-number');
-        
-        const animateCounter = () => {
-            statNumbers.forEach(stat => {
-                const target = parseInt(stat.getAttribute('data-count'));
-                const duration = 2000;
-                const increment = target / (duration / 16);
-                let current = 0;
-                
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        stat.textContent = target;
-                        clearInterval(timer);
-                    } else {
-                        stat.textContent = Math.floor(current);
-                    }
-                }, 16);
-            });
-        };
-        
-        // Initialize counters when stats section is revealed
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounter();
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        const statsSection = document.querySelector('.stats');
-        if (statsSection) {
-            statsObserver.observe(statsSection);
-        }
-        
-        // --- 6. 3D Tilt Effect for Cards ---
+
+        // ── 5. 3D Tilt on Cards ──
         document.querySelectorAll('.service-card').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
-                
-                // Set CSS custom properties for radial gradient position
                 card.style.setProperty('--x', `${x}px`);
                 card.style.setProperty('--y', `${y}px`);
-
-                // Tilt calculation
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = ((y - centerY) / centerY) * -8; // Max 8 degrees
-                const rotateY = ((x - centerX) / centerX) * 8;
-
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                const cx = rect.width / 2, cy = rect.height / 2;
+                const rX = ((y - cy) / cy) * -8;
+                const rY = ((x - cx) / cx) * 8;
+                card.style.transform = `perspective(1000px) rotateX(${rX}deg) rotateY(${rY}deg) scale3d(1.02,1.02,1.02)`;
             });
-
             card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-                card.style.setProperty('--x', '50%');
-                card.style.setProperty('--y', '50%');
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1,1,1)';
             });
         });
-        
-        // --- 7. Scroll Reveal Animation ---
-        const revealElements = document.querySelectorAll('.reveal');
 
+        // ── 6. Scroll Reveal ──
         const revealOnScroll = () => {
-            const windowHeight = window.innerHeight;
-            const elementVisible = 150;
-            
-            revealElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                
-                if (elementTop < windowHeight - elementVisible) {
-                    element.classList.add('active');
-                }
+            document.querySelectorAll('.reveal').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 150) el.classList.add('active');
             });
         };
-
-        // استدعاء الدالة عند التمرير
         window.addEventListener('scroll', revealOnScroll);
-        
-        // --- 8. Form Submission ---
+
+        // ── 7. Navbar Scroll ──
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            navbar.style.padding = window.scrollY > 100 ? '15px 5%' : '20px 5%';
+            navbar.style.background = window.scrollY > 100 ? 'rgba(10,10,10,0.98)' : 'rgba(10,10,10,0.95)';
+            const sections = document.querySelectorAll('section');
+            const links = document.querySelectorAll('.nav-links a');
+            let current = '';
+            sections.forEach(s => { if (scrollY >= s.offsetTop - 200) current = s.getAttribute('id'); });
+            links.forEach(l => {
+                l.classList.remove('active');
+                if (l.getAttribute('href').substring(1) === current) l.classList.add('active');
+            });
+            revealOnScroll();
+        });
+
+        // ── 8. Music Toggle ──
+        const muteBtn = document.getElementById('muteBtn');
+        const bgMusic = document.getElementById('background-music');
+        muteBtn.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.play();
+                muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                muteBtn.style.background = 'rgba(171,2,2,0.8)';
+            } else {
+                bgMusic.pause();
+                muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                muteBtn.style.background = 'rgba(100,100,100,0.8)';
+            }
+        });
+
+        // ── 9. Copy Protection ──
+        document.addEventListener('copy', e => { e.preventDefault(); alert('Copying content from this website is not allowed.'); });
+        document.addEventListener('contextmenu', e => e.preventDefault());
+
+        // ── 10. Floating Elements ──
+        window.addEventListener('load', () => {
+            for (let i = 0; i < 10; i++) {
+                const el = document.createElement('div');
+                el.className = 'floating-element';
+                el.style.top = `${Math.random() * 100}%`;
+                el.style.left = `${Math.random() * 100}%`;
+                el.style.width = `${Math.random() * 30 + 10}px`;
+                el.style.height = el.style.width;
+                el.style.animationDelay = `-${Math.random() * 20}s`;
+                el.style.opacity = Math.random() * 0.3 + 0.1;
+                document.body.appendChild(el);
+            }
+            setTimeout(revealOnScroll, 100);
+        });
+
+        // ── 11. Multi-Step Form Logic ──
+        const stepTitles = [
+            'Basic Information',
+            'Project Overview',
+            'Branding & Design',
+            'Content',
+            'Features & Functionality',
+            'E-Commerce Details',
+            'Technical Details',
+            'Timeline & Budget',
+            'Additional Notes'
+        ];
+
+        let currentStep = 1;
+        const totalSteps = 9;
+
+        function updateUI() {
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            document.getElementById(`step-${currentStep}`).classList.add('active');
+            document.getElementById('progressBar').style.width = `${(currentStep / totalSteps) * 100}%`;
+            document.getElementById('stepLabel').textContent = stepTitles[currentStep - 1];
+            document.getElementById('stepNum').textContent = `Step ${currentStep} / ${totalSteps}`;
+            document.getElementById('btnPrev').style.display = currentStep === 1 ? 'none' : 'flex';
+            document.getElementById('btnNext').style.display = currentStep === totalSteps ? 'none' : 'flex';
+            document.getElementById('submitBtn').style.display = currentStep === totalSteps ? 'flex' : 'none';
+        }
+
+        function changeStep(dir) {
+            const next = currentStep + dir;
+            if (next < 1 || next > totalSteps) return;
+            currentStep = next;
+            updateUI();
+            document.querySelector('.contact-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // ── 12. Form Submission ──
         const contactForm = document.getElementById('contactForm');
         const submitBtn = document.getElementById('submitBtn');
         const letterImage = document.getElementById('letterImage');
         const letterOverlay = document.getElementById('letterOverlay');
-        
+
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
-            const originalText = submitBtn.innerHTML;
-            
-            // Show loading state
+            const originalHTML = submitBtn.innerHTML;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span> SENDING...</span>';
             submitBtn.classList.add('loading');
             submitBtn.disabled = true;
-            
             try {
                 const formData = new FormData(contactForm);
-                
                 const response = await fetch(contactForm.action, {
                     method: 'POST',
                     body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
+                    headers: { 'Accept': 'application/json' }
                 });
-                
                 if (response.ok) {
-                    // Success message
-                    submitBtn.innerHTML = '<i class="fas fa-check"></i><span> MESSAGE SENT!</span>';
-                    submitBtn.style.background = 'rgba(0, 200, 0, 0.2)';
-                    submitBtn.style.borderColor = 'rgba(0, 200, 0, 0.5)';
-                    
-                    // Show letter animation
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i><span> SENT!</span>';
+                    submitBtn.style.background = 'rgba(0,200,0,0.2)';
+                    submitBtn.style.borderColor = 'rgba(0,200,0,0.5)';
                     letterOverlay.classList.add('show');
                     letterImage.classList.add('show');
-                    
-                    // Trigger hover effect on letter animation
                     setTimeout(() => {
-                        letterImage.style.transform = 'translate(-50%, -50%)';
                         letterImage.querySelector('.animated-mail').style.transform = 'translateY(50px)';
                         letterImage.querySelector('.animated-mail .top-fold').style.transform = 'rotateX(180deg)';
                         letterImage.querySelector('.animated-mail .top-fold').style.zIndex = '0';
                         letterImage.querySelector('.animated-mail .letter').style.height = '180px';
                         letterImage.querySelector('.shadow').style.width = '250px';
                     }, 100);
-                    
-                    // Hide letter animation after 3 seconds
                     setTimeout(() => {
                         letterOverlay.classList.remove('show');
                         letterImage.classList.remove('show');
-                        letterImage.style.transform = 'translate(-50%, -50%)';
                         letterImage.querySelector('.animated-mail').style.transform = '';
                         letterImage.querySelector('.animated-mail .top-fold').style.transform = '';
                         letterImage.querySelector('.animated-mail .top-fold').style.zIndex = '';
                         letterImage.querySelector('.animated-mail .letter').style.height = '';
                         letterImage.querySelector('.shadow').style.width = '';
-                        
-                        // Reset form after delay
                         setTimeout(() => {
                             contactForm.reset();
-                            submitBtn.innerHTML = originalText;
+                            submitBtn.innerHTML = originalHTML;
                             submitBtn.classList.remove('loading');
                             submitBtn.disabled = false;
                             submitBtn.style.background = '';
                             submitBtn.style.borderColor = '';
+                            currentStep = 1;
+                            updateUI();
                         }, 1000);
                     }, 3000);
-                } else {
-                    throw new Error('Form submission failed');
-                }
-            } catch (error) {
-                // Error message
+                } else { throw new Error('Failed'); }
+            } catch {
                 submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i><span> ERROR! TRY AGAIN</span>';
-                submitBtn.style.background = 'rgba(255, 0, 0, 0.2)';
-                submitBtn.style.borderColor = 'rgba(255, 0, 0, 0.5)';
-                
+                submitBtn.style.background = 'rgba(255,0,0,0.2)';
+                submitBtn.style.borderColor = 'rgba(255,0,0,0.5)';
                 setTimeout(() => {
-                    submitBtn.innerHTML = originalText;
+                    submitBtn.innerHTML = originalHTML;
                     submitBtn.classList.remove('loading');
                     submitBtn.disabled = false;
                     submitBtn.style.background = '';
@@ -2324,103 +2486,13 @@
                 }, 3000);
             }
         });
-        
-        // Close letter animation when clicking on overlay
+
         letterOverlay.addEventListener('click', () => {
             letterOverlay.classList.remove('show');
             letterImage.classList.remove('show');
         });
-        
-        // --- 9. Navbar scroll effect ---
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 100) {
-                navbar.style.padding = '15px 5%';
-                navbar.style.background = 'rgba(10, 10, 10, 0.98)';
-            } else {
-                navbar.style.padding = '20px 5%';
-                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
-            }
-            
-            // Update active nav link based on scroll position
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').substring(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-            
-            // Trigger reveal animation on scroll
-            revealOnScroll();
-        });
-        
-        // --- 10. Music mute/unmute button ---
-        const muteBtn = document.getElementById('muteBtn');
-        const bgMusic = document.getElementById('background-music');
-        
-        muteBtn.addEventListener('click', () => {
-            if (bgMusic.paused) {
-                bgMusic.play();
-                muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-                muteBtn.style.background = 'rgba(171, 2, 2, 0.8)';
-            } else {
-                bgMusic.pause();
-                muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-                muteBtn.style.background = 'rgba(100, 100, 100, 0.8)';
-            }
-        });
-        
-        // --- 11. Prevent text selection/copy ---
-        document.addEventListener('copy', (e) => {
-            e.preventDefault();
-            alert('Copying content from this website is not allowed.');
-        });
-        
-        document.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-        });
-        
-        // --- 12. Initialize animations on page load ---
-        window.addEventListener('load', () => {
-            // Start counter animation if stats are visible
-            const rect = statsSection.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom >= 0) {
-                animateCounter();
-            }
-            
-            // Add floating elements
-            for (let i = 0; i < 10; i++) {
-                const floatingEl = document.createElement('div');
-                floatingEl.className = 'floating-element';
-                floatingEl.style.top = `${Math.random() * 100}%`;
-                floatingEl.style.left = `${Math.random() * 100}%`;
-                floatingEl.style.width = `${Math.random() * 30 + 10}px`;
-                floatingEl.style.height = floatingEl.style.width;
-                floatingEl.style.animationDelay = `-${Math.random() * 20}s`;
-                floatingEl.style.opacity = Math.random() * 0.3 + 0.1;
-                document.body.appendChild(floatingEl);
-            }
-            
-            // Add reveal class to all service cards
-            document.querySelectorAll('.service-card').forEach(card => {
-                card.classList.add('reveal');
-            });
-            
-            // Trigger initial reveal check
-            setTimeout(revealOnScroll, 100);
-        });
+
+        updateUI();
     </script>
 </body>
 </html>
