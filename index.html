@@ -2435,7 +2435,7 @@
             if (submitBtn.disabled) return;
 
             const originalHTML = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span> جاري الإرسال...</span>';
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span> Sending...</span>';
             submitBtn.classList.add('loading');
             submitBtn.disabled = true;
 
@@ -2453,7 +2453,7 @@
 
                 if (response.ok) {
                     // Success
-                    submitBtn.innerHTML = '<i class="fas fa-check"></i><span> تم الإرسال!</span>';
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i><span> Sent! </span>';
                     submitBtn.style.background = 'rgba(0,200,0,0.2)';
                     submitBtn.style.borderColor = 'rgba(0,200,0,0.5)';
 
